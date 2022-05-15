@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.SignUpActivity"
+    android:background="#189AB4">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:gravity="center|bottom">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/createProfileDesc_TXT_logoTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="Teamder"
+                android:textColor="@color/white"
+                android:textSize="40dp">
+            </com.google.android.material.textview.MaterialTextView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/createProfileDesc_TXT_logoSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="Where dreams of teams come true"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/signUp_TF_userEmail"
+            android:src="@drawable/ic_teamder_logo">
+        </ImageView>
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/signUp_TF_userEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:textAlignment="textStart"
+                android:textColorHint="@color/white" />
+
+            <EditText
+                android:id="@+id/signUp_TF_userPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:ems="10"
+                android:hint="Enter Password"
+                android:inputType="textPassword"
+                android:textAlignment="textStart"
+                android:textColorHint="@color/white" />
+
+            <EditText
+                android:id="@+id/signUp_TF_reEnterPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:ems="10"
+                android:hint="Re-Enter Password"
+                android:inputType="textPassword"
+                android:textAlignment="textStart"
+                android:textColorHint="@color/white" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/signUp_BTN_signUpBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:text="Sign Up"
+                android:textSize="15dp">
+            </com.google.android.material.button.MaterialButton>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/signUp_TXT_signIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Already Have a User?"
+                android:textColor="@color/white"
+                android:textSize="15dp">
+            </com.google.android.material.textview.MaterialTextView>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

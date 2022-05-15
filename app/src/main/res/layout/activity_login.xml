@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.LoginActivity"
+    android:background="#189AB4">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:gravity="center">
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/createProfileDesc_TXT_logoTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/login_TF_userEmail"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="TEAMDER"
+                android:textColor="@color/white"
+                android:textSize="40dp">
+            </com.google.android.material.textview.MaterialTextView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/createProfileDesc_TXT_logoSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Where dreams of teams come true"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:fontFamily="sans-serif-condensed-medium">
+            </com.google.android.material.textview.MaterialTextView>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/login_TF_userEmail"
+                android:src="@drawable/ic_teamder_logo">
+            </ImageView>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:gravity="top">
+
+
+            <EditText
+                android:id="@+id/login_TF_userEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:textAlignment="textStart"
+                android:textColorHint="@color/white"
+                />
+
+            <EditText
+                android:id="@+id/login_TF_userPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:hint="@string/password"
+                android:textColorHint="@color/white"
+                android:textAlignment="textStart" />
+
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/login_TXT_signUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="60dp"
+                android:text="New here? sign up"
+                android:textSize="18dp"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/login_BTN_loginBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:text="Login"
+            android:textAppearance="@style/Widget.AppCompat.Button"
+            android:textSize="20dp">
+        </com.google.android.material.button.MaterialButton>
+
+    </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

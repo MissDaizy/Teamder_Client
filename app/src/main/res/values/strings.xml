@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Teamder</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="Arts">interest_arts</string>
+    <string name="title_groups">Groups</string>
+    <string name="title_search">Search</string>
+</resources>
