@@ -64,7 +64,7 @@ public class MainPageActivity extends AppCompatActivity {
                 if(!response.isSuccessful()){
                     textView.setText(""+response.code());
                 }
-                textView.setText(response.body ().getUserId ().getEmail ());
+                textView.setText(response.body().getUserId ().getEmail ());
             }
 
             @Override

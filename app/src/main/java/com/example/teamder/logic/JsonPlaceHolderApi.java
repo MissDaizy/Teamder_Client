@@ -1,5 +1,6 @@
 package com.example.teamder.logic;
 
+import com.example.teamder.models.NewUserBoundary;
 import com.example.teamder.models.UserBoundary;
 
 import java.util.List;
@@ -14,7 +15,10 @@ public interface JsonPlaceHolderApi {
     @GET("users/login/{userDomain}/{userEmail}")
     Call<UserBoundary> getUserBoundary(@Path(value="userDomain") String userDomain , @Path(value="userEmail") String userEmail);
 
-
-//    @POST("/iob/users")
-//    Call<List<User>> save(@Body User user);
+    /*
+    Input: New User Boundary (From this client)
+    Output: User Boundary (From server)
+     */
+  @POST("users")
+    Call<UserBoundary> createUser(@Body NewUserBoundary user);
 }
