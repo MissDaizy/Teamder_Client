@@ -1,4 +1,4 @@
-package com.example.teamder.logic;
+package com.example.teamder.server;
 
 import com.example.teamder.models.NewUserBoundary;
 import com.example.teamder.models.UserBoundary;

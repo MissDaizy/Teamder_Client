@@ -3,7 +3,7 @@ package com.example.teamder.activities;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.example.teamder.logic.JsonPlaceHolderApi;
+import com.example.teamder.server.JsonPlaceHolderApi;
 import com.example.teamder.R;
 import com.example.teamder.models.UserBoundary;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

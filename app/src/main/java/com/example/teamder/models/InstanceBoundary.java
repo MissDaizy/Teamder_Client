@@ -16,8 +16,8 @@ public class InstanceBoundary {
     private Map<String, Object> instanceAttributes;
 
         //dataManager.setInstanceBoundary (new InstanceBoundary ("USER",name,userDomain,userEmail,userDesc,tags);
-
-    public InstanceBoundary(String type, String name, String domain,String email, String description, List tags) {
+//TODO: PUT TO USER TO CHANGE TO ROLE = MANAGER AND TO REVERSE AFTERWARDS TO PLAYER
+    public InstanceBoundary(String type, String name,UserId userId, String description, List tags) {
         createdTimestamp=new Date ();
         instanceId=new GeneralId ();
         createdBy=new CreatedBy ();
@@ -31,9 +31,11 @@ public class InstanceBoundary {
         instanceAttributes.put ("User Description",description);
         this.type=type;
         instanceId=null;
-        this.createdBy.getUserId ().setDomain (domain);
-        this.createdBy.getUserId ().setEmail (email);
+        createdTimestamp=null;
+
+        this.createdBy.setUserId (userId);
         this.name=name;
+        active=true;
     }
 
     public InstanceBoundary() {

@@ -8,8 +8,14 @@ public class UserBoundary {
         private String username;
         private String avatar;
 
-        public UserBoundary() {
+    public UserBoundary(UserId userId, String role, String username, String avatar) {
+        this.userId = userId;
+        this.role = role;
+        this.username = username;
+        this.avatar = avatar;
+    }
 
+    public UserBoundary() {
         }
 
         public UserId getUserId() {
