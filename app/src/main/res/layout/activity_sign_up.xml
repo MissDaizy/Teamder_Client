@@ -93,27 +93,31 @@
                 android:textAlignment="textStart"
                 android:textColorHint="@color/white" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/signUp_BTN_signUpBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center"
-                android:text="Sign Up"
-                android:textSize="15dp">
-            </com.google.android.material.button.MaterialButton>
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:gravity="top">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/signUp_BTN_signUpBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="Sign Up"
+                android:textSize="15dp">
+            </com.google.android.material.button.MaterialButton>
+
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/signUp_TXT_signIn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center"
                 android:text="Already Have a User?"
                 android:textColor="@color/white"
                 android:textSize="15dp">

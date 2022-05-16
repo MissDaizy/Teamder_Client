@@ -48,7 +48,7 @@ public class CreateProfileActivity extends AppCompatActivity {
         String json = bundle.getString(getString(R.string.BUNDLE_NEW_USER_BOUNDARY_KEY));
 
         dataManager.setNewUserBoundary (new Gson ().fromJson(json, NewUserBoundary.class));
-        Log.d ("pttt", "userManager"+ dataManager.getUserBoundary ().getUsername ());
+        Log.d ("pttt", "userManager "+ dataManager.getUserBoundary ().getUsername ());
     }
 
     /**
@@ -70,6 +70,8 @@ public class CreateProfileActivity extends AppCompatActivity {
                 }
                 dataManager.setUserBoundary (response.body ());
                 Log.d ("pttt", "Success!!!, Message: "+ dataManager.getUserBoundary ().getUsername ());
+                Log.d ("pttt", "Success!!!, Message domain : "+ dataManager.getUserBoundary ().getUserId ().getDomain ());
+
             }
 
             @Override

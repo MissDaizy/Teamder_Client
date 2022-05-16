@@ -26,21 +26,26 @@ public class CreateProfileDescActivity extends AppCompatActivity {
         setContentView (R.layout.activity_create_profile_desc);
         dataManager =new DataManager ();
         findViews();
-        getUserBoundaryDetails();
+      //  getUserBoundaryDetails();
         setListeners();
     }
 
     private void getUserBoundaryDetails() {
         bundle = getIntent().getExtras();
         String json = bundle.getString(getString(R.string.BUNDLE_USER_BOUNDARY_KEY));
+        UserBoundary userBoundary=new Gson ().fromJson(json, UserBoundary.class);
 
-        dataManager.setUserBoundary (new Gson ().fromJson(json, UserBoundary.class));
-        Log.d ("pttt", "userManager"+ dataManager.getUserBoundary ().getUsername ());
+        dataManager.setUserBoundary (userBoundary);
+        Log.d ("pttt", "domain in create profile desc: "+ dataManager.getUserBoundary ().getUserId ().getDomain ());
     }
 
     private void setListeners() {
         createProfileDesc_BTN_next.setOnClickListener (view -> {
-            startCreateProfileInterestsActivity();
+            Intent intent = new Intent (this,CreateProfileInterestsActivity.class);
+            Bundle bundle =new Bundle ();
+            intent.putExtras(bundle);
+            startActivity (intent);
+          //  startCreateProfileInterestsActivity();
         });
 
     }

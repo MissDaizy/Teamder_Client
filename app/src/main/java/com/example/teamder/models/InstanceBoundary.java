@@ -1,10 +1,12 @@
 package com.example.teamder.models;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class InstanceBoundary {
-    private GeneralId activityId;
+    private GeneralId instanceId;
     private String type;
     private String name;
     private Boolean active;
@@ -13,15 +15,36 @@ public class InstanceBoundary {
     private Location location;
     private Map<String, Object> instanceAttributes;
 
+        //dataManager.setInstanceBoundary (new InstanceBoundary ("USER",name,userDomain,userEmail,userDesc,tags);
+
+    public InstanceBoundary(String type, String name, String domain,String email, String description, List tags) {
+        createdTimestamp=new Date ();
+        instanceId=new GeneralId ();
+        createdBy=new CreatedBy ();
+        location=new Location ();
+        location.setLat (32.11);
+        location.setLng (34.81);
+
+        instanceAttributes=new HashMap<String,Object> ();
+
+        instanceAttributes.put ("Tags",tags);
+        instanceAttributes.put ("User Description",description);
+        this.type=type;
+        instanceId=null;
+        this.createdBy.getUserId ().setDomain (domain);
+        this.createdBy.getUserId ().setEmail (email);
+        this.name=name;
+    }
+
     public InstanceBoundary() {
     }
 
     public GeneralId getActivityId() {
-        return activityId;
+        return instanceId;
     }
 
     public InstanceBoundary setActivityId(GeneralId activityId) {
-        this.activityId = activityId;
+        this.instanceId = activityId;
         return this;
     }
 
