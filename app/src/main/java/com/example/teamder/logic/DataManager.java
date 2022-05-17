@@ -3,6 +3,8 @@ package com.example.teamder.logic;
 import android.util.Log;
 
 import com.example.teamder.models.InstanceBoundary;
+import com.example.teamder.models.InstanceOfTypeGroup;
+import com.example.teamder.models.InstanceOfTypeUser;
 import com.example.teamder.models.NewUserBoundary;
 import com.example.teamder.models.UserBoundary;
 import com.example.teamder.models.UserId;
@@ -10,14 +12,17 @@ import com.example.teamder.models.UserId;
 public class DataManager {
     private NewUserBoundary newUserBoundary;
     private UserBoundary userBoundary;
-    private InstanceBoundary instanceBoundary;
+    private InstanceOfTypeUser instanceOfTypeUser ;
+    private InstanceOfTypeGroup instanceOfTypeGroup ;
 
     private IdConverter idConverter;
 
     public DataManager() {
         newUserBoundary = new NewUserBoundary ();
         userBoundary = new UserBoundary ();
-        instanceBoundary = new InstanceBoundary ();
+        instanceOfTypeUser = new InstanceOfTypeUser ();
+        instanceOfTypeGroup = new InstanceOfTypeGroup ();
+
         idConverter=new IdConverter ();
     }
 
@@ -46,12 +51,29 @@ public class DataManager {
         return userBoundary;
     }
 
-    public InstanceBoundary getInstanceBoundary() {
-        return instanceBoundary;
+    public InstanceOfTypeUser getInstanceOfTypeUser() {
+        return instanceOfTypeUser;
     }
 
-    public void setInstanceBoundary(InstanceBoundary instanceBoundary) {
-        this.instanceBoundary = instanceBoundary;
+    public void setInstanceOfTypeUser(InstanceOfTypeUser instanceOfTypeUser) {
+        this.instanceOfTypeUser = instanceOfTypeUser;
+    }
+
+    public InstanceOfTypeGroup getInstanceOfTypeGroup() {
+        return instanceOfTypeGroup;
+    }
+
+    public void setInstanceOfTypeGroup(InstanceOfTypeGroup instanceOfTypeGroup) {
+        this.instanceOfTypeGroup = instanceOfTypeGroup;
+    }
+
+    public void setIdConverter(IdConverter idConverter) {
+        this.idConverter = idConverter;
+    }
+
+
+    public IdConverter getIdConverter() {
+        return idConverter;
     }
 
     public String getUserDomainFromUserId(UserBoundary userBoundary) {
@@ -82,5 +104,27 @@ public class DataManager {
 
         return userId;
     }
+
+    public String getUserBoundaryRoleType() {
+        return userBoundary.getRole ();
+    }
+
+    public String getUserDomain() {
+        return userBoundary.getUserId ().getDomain ();
+    }
+
+    public String getUserEmail() {
+        return userBoundary.getUserId ().getEmail ();
+    }
+
+    public void updateUserRoleTypeData() {
+        if (userBoundary.getRole ().equals ("PLAYER")) {
+            userBoundary.setRole (RoleType.MANAGER.toString ());
+            Log.d ("pttt", "user role updated to manager ");
+        }
+        else if(userBoundary.getRole ().equals ("MANAGER"))
+            userBoundary.setRole (RoleType.PLAYER.toString ());
+    }
 }
+
 

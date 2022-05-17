@@ -1,8 +1,6 @@
 package com.example.teamder.models;
 
 public class UserBoundary {
-
-
         private UserId userId;
         private String role;
         private String username;

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.teamder.R;
 import com.example.teamder.logic.DataManager;
+import com.example.teamder.models.NewUserBoundary;
 import com.example.teamder.models.UserBoundary;
 import com.google.android.material.button.MaterialButton;
 import com.google.gson.Gson;
@@ -27,17 +28,14 @@ public class CreateProfileDescActivity extends AppCompatActivity {
         dataManager =new DataManager ();
 
         findViews();
-        getUserBoundaryDetails();
+        getNewUserBoundaryDetails();
         setListeners();
     }
 
-    private void getUserBoundaryDetails() {
+    private void getNewUserBoundaryDetails() {
         bundle = getIntent().getExtras();
-        String json = bundle.getString(getString(R.string.BUNDLE_USER_BOUNDARY_KEY));
-        dataManager.setUserBoundary (new Gson ().fromJson(json, UserBoundary.class));
-        //UserBoundary userBoundary=new Gson ().fromJson(json, UserBoundary.class);
-
-        Log.d ("pttt", "domain in create profile desc: "+ dataManager.getUserBoundary ().getUserId ().getDomain ());
+        String json = bundle.getString(getString(R.string.BUNDLE_NEW_USER_BOUNDARY_KEY));
+        dataManager.setNewUserBoundary (new Gson ().fromJson(json, NewUserBoundary.class));
     }
 
     private void setListeners() {
@@ -48,12 +46,12 @@ public class CreateProfileDescActivity extends AppCompatActivity {
     }
 
     private void startCreateProfileInterestsActivity() {
-        String json = new Gson ().toJson(dataManager.getUserBoundary ());
+        String json = new Gson ().toJson(dataManager.getNewUserBoundary ());
         String userDescription=createProfileDesc_TF_userDescription.getText ().toString ();
         Intent intent = new Intent (this,CreateProfileInterestsActivity.class);
         Bundle bundle =new Bundle ();
         bundle.putString(getString(R.string.BUNDLE_INSTANCE_BOUNDARY_KEY),userDescription);
-        bundle.putString(getString(R.string.BUNDLE_USER_BOUNDARY_KEY),json);
+        bundle.putString(getString(R.string.BUNDLE_NEW_USER_BOUNDARY_KEY),json);
         intent.putExtras(bundle);
         startActivity (intent);
     }

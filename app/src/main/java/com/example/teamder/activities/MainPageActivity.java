@@ -3,7 +3,7 @@ package com.example.teamder.activities;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.example.teamder.server.JsonPlaceHolderApi;
+import com.example.teamder.service.JsonApiUsers;
 import com.example.teamder.R;
 import com.example.teamder.models.UserBoundary;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -55,9 +55,9 @@ public class MainPageActivity extends AppCompatActivity {
                 .addConverterFactory (GsonConverterFactory.create ())
                 .build ();
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+        JsonApiUsers jsonApiUsers = retrofit.create(JsonApiUsers.class);
 
-        Call<UserBoundary> call = jsonPlaceHolderApi.getUserBoundary("2022b.diana.ukrainsky" ,"Vadim@gmail.com" );
+        Call<UserBoundary> call = jsonApiUsers.getUserBoundary("2022b.diana.ukrainsky" ,"Vadim@gmail.com" );
         call.enqueue(new Callback<UserBoundary>() {
             @Override
             public void onResponse(Call<UserBoundary> call, Response<UserBoundary> response) {
