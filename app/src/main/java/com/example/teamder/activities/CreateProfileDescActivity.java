@@ -17,35 +17,32 @@ public class CreateProfileDescActivity extends AppCompatActivity {
     private EditText createProfileDesc_TF_userDescription;
     private MaterialButton createProfileDesc_BTN_next;
 
-    DataManager dataManager;
-    Bundle bundle;
+    private DataManager dataManager;
+    private Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_create_profile_desc);
         dataManager =new DataManager ();
+
         findViews();
-      //  getUserBoundaryDetails();
+        getUserBoundaryDetails();
         setListeners();
     }
 
     private void getUserBoundaryDetails() {
         bundle = getIntent().getExtras();
         String json = bundle.getString(getString(R.string.BUNDLE_USER_BOUNDARY_KEY));
-        UserBoundary userBoundary=new Gson ().fromJson(json, UserBoundary.class);
+        dataManager.setUserBoundary (new Gson ().fromJson(json, UserBoundary.class));
+        //UserBoundary userBoundary=new Gson ().fromJson(json, UserBoundary.class);
 
-        dataManager.setUserBoundary (userBoundary);
         Log.d ("pttt", "domain in create profile desc: "+ dataManager.getUserBoundary ().getUserId ().getDomain ());
     }
 
     private void setListeners() {
         createProfileDesc_BTN_next.setOnClickListener (view -> {
-            Intent intent = new Intent (this,CreateProfileInterestsActivity.class);
-            Bundle bundle =new Bundle ();
-            intent.putExtras(bundle);
-            startActivity (intent);
-          //  startCreateProfileInterestsActivity();
+             startCreateProfileInterestsActivity();
         });
 
     }

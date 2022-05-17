@@ -18,6 +18,7 @@ public class DataManager {
         newUserBoundary = new NewUserBoundary ();
         userBoundary = new UserBoundary ();
         instanceBoundary = new InstanceBoundary ();
+        idConverter=new IdConverter ();
     }
 
     public void setNewUserBoundary(NewUserBoundary newUserBoundary) {
@@ -42,7 +43,7 @@ public class DataManager {
     }
 
     public UserBoundary getUserBoundary() {
-        return this.userBoundary;
+        return userBoundary;
     }
 
     public InstanceBoundary getInstanceBoundary() {

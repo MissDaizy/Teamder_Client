@@ -9,7 +9,7 @@ import android.widget.RadioButton;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.teamder.R;
-import com.example.teamder.logic.JsonPlaceHolderApi;
+import com.example.teamder.server.JsonPlaceHolderApi;
 import com.example.teamder.logic.DataManager;
 import com.example.teamder.models.NewUserBoundary;
 import com.example.teamder.models.UserBoundary;
@@ -29,57 +29,57 @@ public class CreateProfileActivity extends AppCompatActivity {
     private RadioButton createProfile_RadioBtn_male;
     private MaterialButton createProfile_BTN_next;
 
-    DataManager dataManager;
-    Bundle bundle;
+    private DataManager dataManager;
+    private Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_create_profile);
-        dataManager =new DataManager ();
+        dataManager = new DataManager ();
 
-        findViews();
-        getNewUserBoundaryDetails();
-        setListeners();
+        findViews ();
+        getNewUserBoundaryDetails ();
+        setListeners ();
     }
 
     private void getNewUserBoundaryDetails() {
-        bundle = getIntent().getExtras();
-        String json = bundle.getString(getString(R.string.BUNDLE_NEW_USER_BOUNDARY_KEY));
+        bundle = getIntent ().getExtras ();
+        String json = bundle.getString (getString (R.string.BUNDLE_NEW_USER_BOUNDARY_KEY));
 
-        dataManager.setNewUserBoundary (new Gson ().fromJson(json, NewUserBoundary.class));
-        Log.d ("pttt", "userManager "+ dataManager.getUserBoundary ().getUsername ());
+        dataManager.setNewUserBoundary (new Gson ().fromJson (json, NewUserBoundary.class));
     }
 
     /**
      * Creates new NewUserBoundary and retrieves from server UserBoundary
-     *    Input: New User Boundary (From this client)
-     *    Output: User Boundary (From server)
+     * Input: New User Boundary (From this client)
+     * Output: User Boundary (From server)
      */
-    private UserBoundary createUserBoundary() {
-        RetrofitService retrofitService=new RetrofitService ();
+    private void createUserBoundary() {
+        RetrofitService retrofitService = new RetrofitService ();
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofitService.getRetrofit ().create(JsonPlaceHolderApi.class);
-        Call<UserBoundary> call = jsonPlaceHolderApi.createUser(dataManager.getNewUserBoundary ());
-
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofitService.getRetrofit ().create (JsonPlaceHolderApi.class);
+        Call<UserBoundary> call = jsonPlaceHolderApi.createUser (dataManager.getNewUserBoundary ());
         call.enqueue (new Callback<UserBoundary> () {
             @Override
             public void onResponse(Call<UserBoundary> call, Response<UserBoundary> response) {
-                if(!response.isSuccessful()){
-                    Log.d ("pttt", ""+response.code());
+                if (!response.isSuccessful ()) {
+                    Log.d ("pttt", "" + response.code ());
                 }
                 dataManager.setUserBoundary (response.body ());
-                Log.d ("pttt", "Success!!!, Message: "+ dataManager.getUserBoundary ().getUsername ());
-                Log.d ("pttt", "Success!!!, Message domain : "+ dataManager.getUserBoundary ().getUserId ().getDomain ());
+                //  TODO: CHANGE NAME TO SOMETHING MEANINGFUL
+                goToCreateProfileDescActivity();
 
+                Log.d ("pttt", "Success!!!, Message: " + dataManager.getUserBoundary ().getUsername ());
+                Log.d ("pttt", "Success!!!, Message domain : " + dataManager.getUserBoundary ().getUserId ().getDomain ());
             }
 
             @Override
             public void onFailure(Call<UserBoundary> call, Throwable t) {
-                Log.d ("pttt", "Failure!!!, Message: "+t.getMessage ());
+                Log.d ("pttt", "Failure!!!, Message: " + t.getMessage ());
             }
         });
-    return dataManager.getUserBoundary ();
+        Log.d ("pttt", "Success!!!, afterrrrrr!: " + dataManager.getUserBoundary ().getUsername ());
     }
 
     private void setListeners() {
@@ -88,7 +88,21 @@ public class CreateProfileActivity extends AppCompatActivity {
         });
     }
 
-    private void startCreateProfileDescActivity() {
+    private void goToCreateProfileDescActivity() {
+        String json = new Gson ().toJson(dataManager.getUserBoundary ());
+//        Log.d ("pttt", "startCreateProfileActivity before moving to desc activity: domain : "+dataManager.getUserBoundary ().getUserId ().getDomain ());
+//        Log.d ("pttt", "startCreateProfileActivity before moving to desc activity: email : "+dataManager.getUserBoundary ().getUserId ().getEmail ());
+//        Log.d ("pttt", "startCreateProfileActivity before moving to desc activity: avatar : "+dataManager.getUserBoundary ().getAvatar ());
+//        Log.d ("pttt", "startCreateProfileActivity before moving to desc activity: role : "+dataManager.getUserBoundary ().getRole ());
+
+        Intent intent = new Intent (this,CreateProfileDescActivity.class);
+        Bundle bundle =new Bundle ();
+        bundle.putString(getString(R.string.BUNDLE_USER_BOUNDARY_KEY),json);
+        intent.putExtras(bundle);
+        startActivity (intent);
+    }
+
+        private void startCreateProfileDescActivity() {
         String userFirstName=createProfile_TF_firstName.getText().toString();
         String userLastName=createProfile_TF_lastName.getText ().toString ();
         String userPhoneNumber=createProfile_TF_phoneNumber.getText ().toString ();
@@ -96,16 +110,20 @@ public class CreateProfileActivity extends AppCompatActivity {
 
         dataManager.setNewUserBoundaryAvatarData("Client avatar path");
         dataManager.setNewUserBoundaryUsernameData(username);
-        //Phone number save:
-        //userManager.setNewUserBoundaryAvatarData("Client avatar path");
-        createUserBoundary();
-        String json = new Gson ().toJson(dataManager.getNewUserBoundary ());
 
-        Intent intent = new Intent (this,CreateProfileDescActivity.class);
-        Bundle bundle =new Bundle ();
-        bundle.putString(getString(R.string.BUNDLE_USER_BOUNDARY_KEY),json);
-        intent.putExtras(bundle);
-        startActivity (intent);
+        createUserBoundary();
+
+//            String json = new Gson ().toJson(dataManager.getUserBoundary ());
+////        Log.d ("pttt", "startCreateProfileActivity before moving to desc activity: domain : "+dataManager.getUserBoundary ().getUserId ().getDomain ());
+////        Log.d ("pttt", "startCreateProfileActivity before moving to desc activity: email : "+dataManager.getUserBoundary ().getUserId ().getEmail ());
+////        Log.d ("pttt", "startCreateProfileActivity before moving to desc activity: avatar : "+dataManager.getUserBoundary ().getAvatar ());
+////        Log.d ("pttt", "startCreateProfileActivity before moving to desc activity: role : "+dataManager.getUserBoundary ().getRole ());
+//
+//            Intent intent = new Intent (this,CreateProfileDescActivity.class);
+//            Bundle bundle =new Bundle ();
+//            bundle.putString(getString(R.string.BUNDLE_USER_BOUNDARY_KEY),json);
+//            intent.putExtras(bundle);
+//            startActivity (intent);
     }
 
     private void findViews() {
