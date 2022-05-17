@@ -19,7 +19,6 @@ import com.google.android.material.button.MaterialButton;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CreateProfileInterestsActivity extends AppCompatActivity {
     private MaterialButton createProfileInterests_BTN_finish;
@@ -89,7 +88,7 @@ public class CreateProfileInterestsActivity extends AppCompatActivity {
     private void startMainPageActivity() {
         getInstanceBoundaryDesc();
         createInstanceBoundaryOfTypeUser();
-        Intent intent=new Intent(this,MainPageActivity.class);
+        Intent intent=new Intent(this, MainPageActivity.class);
         startActivity (intent);
     }
 
