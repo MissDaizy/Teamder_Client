@@ -1,4 +1,4 @@
-package com.example.teamder.ui.main;
+package com.example.teamder.ui.Group;
 
 import android.content.Context;
 import android.util.AttributeSet;
