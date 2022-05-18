@@ -51,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
     private int findUser(String userEmail, String userPassword) {
         int exist = 1;
 
+
         /*
         TODO: search in data base if user exists
          */
