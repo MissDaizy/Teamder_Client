@@ -5,6 +5,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.teamder.logic.DataManager;
+import com.example.teamder.models.NewUserBoundary;
 import com.example.teamder.service.JsonApiUsers;
 import com.example.teamder.R;
 import com.example.teamder.models.UserBoundary;
@@ -19,6 +21,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.teamder.databinding.ActivityMainPageBinding;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
+import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,7 +34,7 @@ public class MainPageActivity extends AppCompatActivity {
     private final int ROWS = 3;
     private final int COLS = 3;
 
-    private TextView textView;
+    private MaterialTextView textView;
     private ImageView[][] groupsPictures;
     private MaterialTextView[][] groupsNames;
     private LinearLayout[][] groupsSections;
@@ -41,15 +44,19 @@ public class MainPageActivity extends AppCompatActivity {
     private TextView textViewResult;
     private MaterialButton button;
 
+    private DataManager dataManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
-
-
         binding = ActivityMainPageBinding.inflate (getLayoutInflater ());
         setContentView (binding.getRoot ());
+
+        dataManager=new DataManager ();
         findViews();
-        textView=findViewById (R.id.textView);
+        getUserBoundary();
+
+        textView=findViewById (R.id.fragmentHome_TXT_continue);
         BottomNavigationView navView = findViewById (R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -57,8 +64,10 @@ public class MainPageActivity extends AppCompatActivity {
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
                 .build ();
         NavController navController = Navigation.findNavController (this, R.id.nav_host_fragment_activity_main);
-        NavigationUI.setupActionBarWithNavController (this, navController, appBarConfiguration);
+        //NavigationUI.setupActionBarWithNavController (this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController (binding.navView, navController);
+
+        textView.setText ("Hey "+dataManager.getUserBoundary ().getUsername () +"\nLets find you a team!");
 
 
         Retrofit retrofit = new Retrofit.Builder ()
@@ -85,6 +94,14 @@ public class MainPageActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void getUserBoundary() {
+        Bundle bundle;
+        bundle = getIntent ().getExtras ();
+        String json = bundle.getString (getString (R.string.BUNDLE_USER_BOUNDARY_KEY));
+
+        dataManager.setUserBoundary (new Gson ().fromJson (json, UserBoundary.class));
     }
 
     private void findViews() {

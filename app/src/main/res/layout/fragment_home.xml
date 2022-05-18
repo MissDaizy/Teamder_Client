@@ -47,7 +47,8 @@
                 android:fontFamily="sans-serif-condensed-medium"
                 android:text="Hey *FirstName*\nLets find you a team!"
                 android:textColor="@color/white"
-                android:textSize="20dp"></com.google.android.material.textview.MaterialTextView>
+                android:textSize="20dp">
+            </com.google.android.material.textview.MaterialTextView>
 
             <ImageView
                 android:layout_width="50dp"
