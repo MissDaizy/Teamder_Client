@@ -1,6 +1,9 @@
 package com.example.teamder.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -12,6 +15,7 @@ import com.example.teamder.R;
 import com.example.teamder.models.UserBoundary;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -44,6 +48,7 @@ public class MainPageActivity extends AppCompatActivity {
     private TextView textViewResult;
     private MaterialButton button;
 
+
     private DataManager dataManager;
 
     @Override
@@ -54,7 +59,7 @@ public class MainPageActivity extends AppCompatActivity {
 
         dataManager=new DataManager ();
         findViews();
-        getUserBoundary();
+        //getUserBoundary();
 
         textView=findViewById (R.id.fragmentHome_TXT_continue);
         BottomNavigationView navView = findViewById (R.id.nav_view);
@@ -69,31 +74,32 @@ public class MainPageActivity extends AppCompatActivity {
 
         textView.setText ("Hey "+dataManager.getUserBoundary ().getUsername () +"\nLets find you a team!");
 
+    }
 
-        Retrofit retrofit = new Retrofit.Builder ()
-                .baseUrl ("http://192.168.68.113:8084/iob/")
-                .addConverterFactory (GsonConverterFactory.create ())
-                .build ();
 
-        JsonApiUsers jsonApiUsers = retrofit.create(JsonApiUsers.class);
+    //Add "Tool bar" - settings in the top of current Screen
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.home_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
-        Call<UserBoundary> call = jsonApiUsers.getUserBoundary("2022b.diana.ukrainsky" ,"Vadim@gmail.com" );
-        call.enqueue(new Callback<UserBoundary>() {
-            @Override
-            public void onResponse(Call<UserBoundary> call, Response<UserBoundary> response) {
-                if(!response.isSuccessful()){
-                    textView.setText(""+response.code());
-                }
-                textView.setText(response.body().getUserId ().getEmail ());
+    // Activate the menu
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.homeMenu_startProj: {
+                Intent intent = new Intent(MainPageActivity.this, CreateTeamGroup.class);
+                //Bundle bundle = new Bundle();
+                //intent.putExtras(bundle);
+                startActivity(intent);
+                break;
             }
 
-            @Override
-            public void onFailure(Call<UserBoundary> call, Throwable t) {
-                textView.setText(""+t.getMessage());
-            }
-        });
 
+        }
 
+        return super.onOptionsItemSelected(item);
     }
 
     private void getUserBoundary() {
