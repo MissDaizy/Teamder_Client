@@ -1,6 +1,8 @@
 package com.example.teamder.activities;
 
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.teamder.service.JsonApiUsers;
@@ -16,6 +18,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.teamder.databinding.ActivityMainPageBinding;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textview.MaterialTextView;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,7 +27,14 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainPageActivity extends AppCompatActivity {
+
+    private final int ROWS = 3;
+    private final int COLS = 3;
+
     private TextView textView;
+    private ImageView[][] groupsPictures;
+    private MaterialTextView[][] groupsNames;
+    private LinearLayout[][] groupsSections;
 
     private ActivityMainPageBinding binding;
 
@@ -38,6 +48,7 @@ public class MainPageActivity extends AppCompatActivity {
 
         binding = ActivityMainPageBinding.inflate (getLayoutInflater ());
         setContentView (binding.getRoot ());
+        findViews();
         textView=findViewById (R.id.textView);
         BottomNavigationView navView = findViewById (R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -74,6 +85,53 @@ public class MainPageActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void findViews() {
+        groupsNames = new MaterialTextView[][]{
+                {findViewById(R.id.fragmentHome_groupName00),
+                        findViewById(R.id.fragmentHome_groupName01),
+                        findViewById(R.id.fragmentHome_groupName02)
+                },
+                {findViewById(R.id.fragmentHome_groupName10),
+                        findViewById(R.id.fragmentHome_groupName11),
+                        findViewById(R.id.fragmentHome_groupName12),
+                },
+                {findViewById(R.id.fragmentHome_groupName20),
+                        findViewById(R.id.fragmentHome_groupName21),
+                        findViewById(R.id.fragmentHome_groupName22),
+                }
+        };
+
+        groupsPictures = new ImageView[][]{
+                {findViewById(R.id.fragmentHome_picture00),
+                        findViewById(R.id.fragmentHome_picture01),
+                        findViewById(R.id.fragmentHome_picture02)
+                },
+                {findViewById(R.id.fragmentHome_picture10),
+                        findViewById(R.id.fragmentHome_picture11),
+                        findViewById(R.id.fragmentHome_picture12),
+                },
+                {findViewById(R.id.fragmentHome_picture20),
+                        findViewById(R.id.fragmentHome_picture21),
+                        findViewById(R.id.fragmentHome_picture22),
+                }
+        };
+
+        groupsSections = new LinearLayout[][]{
+                {findViewById(R.id.fragmentHome_matrix00),
+                        findViewById(R.id.fragmentHome_matrix01),
+                        findViewById(R.id.fragmentHome_matrix02)
+                },
+                {findViewById(R.id.fragmentHome_matrix10),
+                        findViewById(R.id.fragmentHome_matrix11),
+                        findViewById(R.id.fragmentHome_matrix12),
+                },
+                {findViewById(R.id.fragmentHome_matrix20),
+                        findViewById(R.id.fragmentHome_matrix21),
+                        findViewById(R.id.fragmentHome_matrix22),
+                }
+        };
     }
 
 

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.CreateProfileActivity"
+    tools:context=".activities.NavigationScreen"
     android:background="#189AB4">
 
     <LinearLayout
@@ -102,7 +102,8 @@
                 android:textAlignment="textStart"
                 android:textColorHint="@color/white"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="20dp"
+                tools:ignore="RtlCompat" />
 
             <EditText
                 android:id="@+id/createProfile_TF_lastName"
@@ -114,7 +115,8 @@
                 android:textAlignment="textStart"
                 android:textColorHint="@color/white"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp"/>
+                android:layout_marginTop="30dp"
+                tools:ignore="RtlCompat" />
 
             <EditText
                 android:id="@+id/createProfile_TF_phoneNumber"
@@ -126,7 +128,8 @@
                 android:textAlignment="textStart"
                 android:textColorHint="@color/white"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp" />
+                android:layout_marginTop="30dp"
+                tools:ignore="RtlCompat" />
             </LinearLayout>
 
 

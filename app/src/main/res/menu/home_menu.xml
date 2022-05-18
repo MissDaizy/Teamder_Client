@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/homeMenu_myProf"
+        android:icon="@drawable/ic_baseline_edit_24"
+        app:showAsAction="always"
+        android:title="My Profile"/>
+
+    <item
+        android:id="@+id/homeMenu_myPref"
+        android:title="My Preferences"/>
+
+    <item
+        android:id="@+id/homeMenu_startProj"
+        android:title="Start Project"/>
+    <item
+        android:id="@+id/homeMenu_Settings"
+        android:title="Settings"/>
+
+
+</menu>

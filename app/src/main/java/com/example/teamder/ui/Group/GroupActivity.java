@@ -1,4 +1,4 @@
-package com.example.teamder.ui.main;
+package com.example.teamder.ui.Group;
 
 import android.os.Bundle;
 import android.widget.ImageView;
