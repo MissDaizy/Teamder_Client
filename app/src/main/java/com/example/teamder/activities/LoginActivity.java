@@ -10,8 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.teamder.R;
 import com.example.teamder.logic.DataManager;
+import com.example.teamder.models.InstanceBoundary;
 import com.example.teamder.models.UserBoundary;
 import com.example.teamder.retrofit.RetrofitService;
+import com.example.teamder.service.JsonApiInstances;
 import com.example.teamder.service.JsonApiUsers;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
@@ -82,6 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                     showMessage();
                 else {
                     dataManager.setUserBoundary (response.body ());
+                    //getInstanceOfTypeUser();
                     startMainActivity ();
                 }
             }
@@ -97,11 +100,34 @@ public class LoginActivity extends AppCompatActivity {
          */
     }
 
+//    private void getInstanceOfTypeUser() {
+//        RetrofitService retrofitService = new RetrofitService ();
+//
+//        JsonApiInstances jsonApiUsers = retrofitService.getRetrofit ().create (JsonApiInstances.class);
+//        Call<Void> call = jsonApiUsers.getInstance ("2022b.diana.ukrainsky" ,userEmail);
+//        call.enqueue(new Callback<UserBoundary> () {
+//            @Override
+//            public void onResponse(Call<UserBoundary> call, Response<UserBoundary> response) {
+//                if(!response.isSuccessful())
+//                    showMessage();
+//                else {
+//                    dataManager.setUserBoundary (response.body ());
+//                    getInstanceOfTypeUser();
+//                    startMainActivity ();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<UserBoundary> call, Throwable t) {
+//                Log.d ("pttt", "Failure!!!, Message: " + t.getMessage ());
+//            }
+//        });
+//
+//    }
 
     private void showMessage() {
         Toast.makeText(this, "User not exist, please sign up.", Toast.LENGTH_LONG).show();
     }
-
 
     private void findViews() {
         login_TF_userEmail=findViewById (R.id.login_TF_userEmail);
@@ -109,6 +135,4 @@ public class LoginActivity extends AppCompatActivity {
         login_TXT_signUp=findViewById (R.id.login_TXT_signUp);
         login_BTN_loginBtn=findViewById (R.id.login_BTN_loginBtn);
     }
-
-
 }

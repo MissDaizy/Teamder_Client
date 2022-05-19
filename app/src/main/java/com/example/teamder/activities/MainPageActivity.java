@@ -1,12 +1,20 @@
 package com.example.teamder.activities;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.teamder.logic.DataManager;
+import com.example.teamder.logic.RoleType;
+import com.example.teamder.models.InstanceOfTypeGroup;
+import com.example.teamder.models.InstanceOfTypeUser;
+import com.example.teamder.models.InstanceType;
 import com.example.teamder.models.NewUserBoundary;
+import com.example.teamder.models.UserId;
+import com.example.teamder.retrofit.RetrofitService;
+import com.example.teamder.service.JsonApiInstances;
 import com.example.teamder.service.JsonApiUsers;
 import com.example.teamder.R;
 import com.example.teamder.models.UserBoundary;
@@ -22,6 +30,10 @@ import com.example.teamder.databinding.ActivityMainPageBinding;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
 import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -68,33 +80,92 @@ public class MainPageActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController (binding.navView, navController);
 
         textView.setText ("Hey "+dataManager.getUserBoundary ().getUsername () +"\nLets find you a team!");
+        
+        /*
+        TODO:
+        Code for POST instance type group and after nastia finish button "Add Group",
+        move this to listener of that button.
+         */
+        updateUserRoleType();
 
 
-        Retrofit retrofit = new Retrofit.Builder ()
-                .baseUrl ("http://192.168.68.113:8084/iob/")
-                .addConverterFactory (GsonConverterFactory.create ())
-                .build ();
-
-        JsonApiUsers jsonApiUsers = retrofit.create(JsonApiUsers.class);
-
-        Call<UserBoundary> call = jsonApiUsers.getUserBoundary("2022b.diana.ukrainsky" ,"Vadim@gmail.com" );
-        call.enqueue(new Callback<UserBoundary>() {
-            @Override
-            public void onResponse(Call<UserBoundary> call, Response<UserBoundary> response) {
-                if(!response.isSuccessful()){
-                    textView.setText(""+response.code());
-                }
-                textView.setText(response.body().getUserId ().getEmail ());
-            }
-
-            @Override
-            public void onFailure(Call<UserBoundary> call, Throwable t) {
-                textView.setText(""+t.getMessage());
-            }
-        });
 
 
     }
+
+    private void createInstanceOfTypeGroup() {
+        //TODO: move this to data mangaer
+        String groupDescription ="HELLO!!";
+        String groupName="GROUP NAME";
+        UserId userId = dataManager.getUserBoundary ().getUserId ();
+        //String name = dataManager.getUserIdFromUserBoundary ();
+
+
+        //TODO: function for this & put strings in R string
+        //TODO: Add couple of tags and not only one(spinner by default adds only one), switch to another list
+        ArrayList<String> tags = new ArrayList<> ();
+        tags.add ("Arts");
+        tags.add ("Electronics");
+        tags.add ("Programming");
+        tags.add ("Music");
+
+        // TODO: CHECK WHICH TYPE OF INSTANCE IS IT
+        // public InstanceOfTypeUser(String name, String type, UserId userId,String description, ArrayList<String> tags) {
+        dataManager.setInstanceOfTypeGroup (new InstanceOfTypeGroup (groupName, InstanceType.GROUP.toString (), userId, groupDescription, tags));
+        RetrofitService retrofitService = new RetrofitService ();
+
+        JsonApiInstances jsonApiInstances = retrofitService.getRetrofit ().create (JsonApiInstances.class);
+        Call<InstanceOfTypeGroup> call = jsonApiInstances.createInstanceGroup (dataManager.getInstanceOfTypeGroup ());
+
+        call.enqueue (new Callback<InstanceOfTypeGroup> () {
+            @Override
+            public void onResponse(Call<InstanceOfTypeGroup> call, Response<InstanceOfTypeGroup> response) {
+                if (!response.isSuccessful ()) {
+                    Log.d ("pttt", "" + response.code ());
+                }
+                Log.d ("pttt", "Success!!!, Created instance of type user");
+                dataManager.setInstanceOfTypeGroup (response.body ());
+                updateUserRoleType();
+            }
+
+            @Override
+            public void onFailure(Call<InstanceOfTypeGroup> call, Throwable t) {
+                Log.d ("pttt", "Failure!!!, Message: " + t.getMessage ());
+            }
+        });
+    }
+
+    private void updateUserRoleType() {
+        String userDomain = dataManager.getUserDomain ();
+        String userEmail = dataManager.getUserEmail ();
+
+        dataManager.updateUserRoleTypeData ();
+
+        RetrofitService retrofitService = new RetrofitService ();
+
+        JsonApiUsers jsonApiUsers = retrofitService.getRetrofit ().create (JsonApiUsers.class);
+
+        Call<Void> call = jsonApiUsers.updateUser (userDomain, userEmail, dataManager.getUserBoundary ());
+        call.enqueue (new Callback<Void> () {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful ()) {
+                    Log.d ("pttt", "" + response.code ());
+                }
+                if(dataManager.getUserBoundaryRoleType ().equals (RoleType.MANAGER.toString ())) {
+                    Log.d ("pttt", "Success!!! user role updated to manager");
+                    createInstanceOfTypeGroup ();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.d ("pttt", "Failure!!!, Message: " + t.getMessage ());
+            }
+        });
+
+    }
+
 
     private void getUserBoundary() {
         Bundle bundle;

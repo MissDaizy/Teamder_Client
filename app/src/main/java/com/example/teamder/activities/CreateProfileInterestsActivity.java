@@ -124,7 +124,7 @@ public class CreateProfileInterestsActivity extends AppCompatActivity {
         RetrofitService retrofitService = new RetrofitService ();
 
         JsonApiInstances jsonApiInstances = retrofitService.getRetrofit ().create (JsonApiInstances.class);
-        Call<InstanceOfTypeUser> call = jsonApiInstances.createInstance (dataManager.getInstanceOfTypeUser ());
+        Call<InstanceOfTypeUser> call = jsonApiInstances.createInstanceUser (dataManager.getInstanceOfTypeUser ());
 
         call.enqueue (new Callback<InstanceOfTypeUser> () {
             @Override
@@ -204,7 +204,6 @@ public class CreateProfileInterestsActivity extends AppCompatActivity {
                 Log.d ("pttt", "Failure!!!, Message: " + t.getMessage ());
             }
         });
-
     }
 
 
