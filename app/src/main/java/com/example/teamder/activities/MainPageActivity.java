@@ -102,6 +102,8 @@ public class MainPageActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+
     private void getUserBoundary() {
         Bundle bundle;
         bundle = getIntent ().getExtras ();

@@ -12,4 +12,21 @@
     <string name="BUNDLE_USER_BOUNDARY_KEY">USER_BOUNDARY</string>
     <string name="BUNDLE_INSTANCE_BOUNDARY_KEY">INSTANCE_BOUNDARY</string>
     <string name="button_add_group">Add Group</string>
+    <string name="createTeamGroupNext_numberOfMembersPicker">DynamicNumberPicker</string>
+   <string-array name="topics">
+        <item>Choose Topic</item>
+        <item>Art</item>
+        <item>Fitness</item>
+        <item>Weddings</item>
+        <item>Programming</item>
+        <item>Music</item>
+        <item>Inspiration</item>
+        <item>Meditation</item>
+        <item>Running</item>
+        <item>Traveling</item>
+        <item>Photography</item>
+    </string-array>
+
+
+
 </resources>
