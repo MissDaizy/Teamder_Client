@@ -38,15 +38,15 @@ public class CreateTeamGroupNext extends AppCompatActivity implements NumberPick
     private AlertDialog.Builder tagsBuilder;
     private final CharSequence[] tagsList =
             {"Drawing", "sculpture", "Soldering",
-            "Book Readers", "Business",
-            "aerobic", "Anaerobic",
-            "Photographers", "Catering", "Halls", "Make Up", "Hair Stylist",
-            "Java", "Python", "C", "React.js",
-            "DJ", "Classic Music", "Rock Music",
-            "Meditation", "Yoga", "Breathing Meditation",
-            "Morning Runners", "Evening Runners",
-            "Mountaineering", "Stream Trip",
-            "Nature Photography", "Animal Photography", "Couple Photography", "Portrait Photography"};
+                    "Book Readers", "Business",
+                    "aerobic", "Anaerobic",
+                    "Photographers", "Catering", "Halls", "Make Up", "Hair Stylist",
+                    "Java", "Python", "C", "React.js",
+                    "DJ", "Classic Music", "Rock Music",
+                    "Meditation", "Yoga", "Breathing Meditation",
+                    "Morning Runners", "Evening Runners",
+                    "Mountaineering", "Stream Trip",
+                    "Nature Photography", "Animal Photography", "Couple Photography", "Portrait Photography"};
     private final ArrayList selectItems = new ArrayList();
     private TextView createTeamGroupNext_TXT_tagsView;
 
@@ -124,15 +124,15 @@ public class CreateTeamGroupNext extends AppCompatActivity implements NumberPick
     private void printChoosenTags() {
         // Show Tags in TextView
         tagsBuilder.setPositiveButton("Selected Items", new DialogInterface.OnClickListener(){
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    StringBuilder sb = new StringBuilder();
-                    for (Object tagsList:selectItems){
-                        sb.append(tagsList.toString() + "\n");
-                    }
-                    createTeamGroupNext_TXT_tagsView.setText(sb.toString());
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                StringBuilder sb = new StringBuilder();
+                for (Object tagsList:selectItems){
+                    sb.append(tagsList.toString() + "\n");
                 }
-            });
+                createTeamGroupNext_TXT_tagsView.setText(sb.toString());
+            }
+        });
     }
 
     private void createTeamGroupButten() {
@@ -167,7 +167,6 @@ public class CreateTeamGroupNext extends AppCompatActivity implements NumberPick
         listOfTopics.add("Traveling");
         listOfTopics.add("Weddings");
     }
-
   */
 
     private void setNumberPicker() {
@@ -178,7 +177,6 @@ public class CreateTeamGroupNext extends AppCompatActivity implements NumberPick
 /*        createTeamGroupNext_TXT_numOfMembers = new NumberPicker(this);
         //   LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         //  numberPicker.setLayoutParams(layoutParams);
-
         createTeamGroupNext_TXT_numOfMembers.setMinValue(0);
         createTeamGroupNext_TXT_numOfMembers.setMaxValue(10);
         createTeamGroupNext_TXT_numOfMembers.setWrapSelectorWheel(true);
@@ -188,10 +186,7 @@ public class CreateTeamGroupNext extends AppCompatActivity implements NumberPick
                 String text = "Changed from " + oldVal + " to " + newVal;
                 Toast.makeText(CreateTeamGroupNext.this, text, Toast.LENGTH_SHORT).show();
             }
-
-
         });
-
  */
     }
 
@@ -232,7 +227,6 @@ public class CreateTeamGroupNext extends AppCompatActivity implements NumberPick
         tagsArray[currentNumberOfTags] = text;
         currentNumberOfTags++;
         showSelectedTags();
-
  */
 
     }

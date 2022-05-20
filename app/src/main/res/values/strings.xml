@@ -11,11 +11,10 @@
     <string name="BUNDLE_NEW_USER_BOUNDARY_KEY">NEW_USER_BOUNDARY</string>
     <string name="BUNDLE_USER_BOUNDARY_KEY">USER_BOUNDARY</string>
     <string name="BUNDLE_INSTANCE_BOUNDARY_KEY">INSTANCE_BOUNDARY</string>
-    <string name="button_add_group">Add Group</string>
+    <string name="button_all_group">All Groups</string>
+    <string name="button_manager_group">Manager</string>
+    <string name="button_member_group">Member</string>
     <string name="createTeamGroupNext_numberOfMembersPicker">DynamicNumberPicker</string>
-    <string name="title_all_groups">All Groups</string>
-    <string name="title_groups_manage">Manage</string>
-    <string name="view_groups_member">Member</string>
     <string-array name="topics">
         <item>Choose Topic</item>
         <item>Art</item>
@@ -29,7 +28,9 @@
         <item>Traveling</item>
         <item>Photography</item>
     </string-array>
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="button_add_group">Add Group</string>
 
 
 </resources>
