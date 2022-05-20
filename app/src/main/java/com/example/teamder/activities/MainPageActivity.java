@@ -20,6 +20,7 @@ import com.example.teamder.R;
 import com.example.teamder.models.UserBoundary;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -56,6 +57,7 @@ public class MainPageActivity extends AppCompatActivity {
     private TextView textViewResult;
     private MaterialButton button;
 
+
     private DataManager dataManager;
 
     @Override
@@ -80,7 +82,7 @@ public class MainPageActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController (binding.navView, navController);
 
         textView.setText ("Hey "+dataManager.getUserBoundary ().getUsername () +"\nLets find you a team!");
-        
+
         /*
         TODO:
         Code for POST instance type group and after nastia finish button "Add Group",
@@ -164,7 +166,10 @@ public class MainPageActivity extends AppCompatActivity {
             }
         });
 
+        return super.onOptionsItemSelected(item);
     }
+
+
 
 
     private void getUserBoundary() {

@@ -8,7 +8,6 @@
 
 
     <application
-        android:screenOrientation="portrait"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -21,11 +20,41 @@
         android:usesCleartextTraffic="true">
 
 
+       <activity
+            android:name=".activities.ManageMenu"
+            android:exported="true">
+
+        </activity>
+
+        <activity
+            android:name=".activities.ViewAllGroups"
+            android:exported="true">
+
+        </activity>
+
+
+        <activity android:name=".activities.CreateTeamGroup"
+            android:exported="true">
+
+        </activity>
+
+        <activity android:name=".activities.EditProfileActivity"
+            android:exported="true">
+
+        </activity>
+
+        <activity
+            android:name=".activities.CreateTeamGroupNext"
+            android:exported="true">
+
+        </activity>
+
         <activity
             android:name=".activities.MainPageActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:usesCleartextTraffic="true">
+
         </activity>
 
         <activity

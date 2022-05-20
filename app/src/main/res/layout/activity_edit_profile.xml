@@ -114,13 +114,16 @@
                 android:textStyle="bold"/>
 
             <EditText
-                android:layout_width="200dp"
-                android:layout_height="90dp"
+                android:id="@+id/editProfile_TF_Description"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:ems="10"
                 android:text="Set Desc."
-                android:textColor="@color/white"/>
-
-
+                android:textColor="@color/black"
+                android:backgroundTint="@color/white"
+                android:background="@color/white"/>
 
         </LinearLayout>
 
@@ -133,11 +136,11 @@
             android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/createProfile_BTN_next"
+                android:id="@+id/editProfile_BTN_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
-                android:text="Next"
+                android:text="Apply"
                 android:textSize="20sp"></com.google.android.material.button.MaterialButton>
         </LinearLayout>
     </LinearLayout>
