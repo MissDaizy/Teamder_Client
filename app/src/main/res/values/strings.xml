@@ -13,7 +13,10 @@
     <string name="BUNDLE_INSTANCE_BOUNDARY_KEY">INSTANCE_BOUNDARY</string>
     <string name="button_add_group">Add Group</string>
     <string name="createTeamGroupNext_numberOfMembersPicker">DynamicNumberPicker</string>
-   <string-array name="topics">
+    <string name="title_all_groups">All Groups</string>
+    <string name="title_groups_manage">Manage</string>
+    <string name="view_groups_member">Member</string>
+    <string-array name="topics">
         <item>Choose Topic</item>
         <item>Art</item>
         <item>Fitness</item>

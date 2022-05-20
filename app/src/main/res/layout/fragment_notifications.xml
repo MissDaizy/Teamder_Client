@@ -35,9 +35,22 @@
             <com.google.android.material.button.MaterialButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="@string/button_add_group"
                 android:drawableLeft="@drawable/ic_add" />
-        </LinearLayout>
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/nav_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="0dp"
+                android:background="?android:attr/windowBackground"
+                android:layout_alignParentBottom="true"
+                app:menu="@menu/botton_group_view" />
+
+
+</LinearLayout>
     </LinearLayout>
 </RelativeLayout>
 
