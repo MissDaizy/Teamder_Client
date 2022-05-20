@@ -5,7 +5,7 @@
 
 
     <item
-        android:id="@+id/homeMenu_myProf"
+        android:id="@+id/homeMenu_myProfile"
         android:icon="@drawable/ic_baseline_edit_24"
         app:showAsAction="always"
         android:title="My Profile"/>

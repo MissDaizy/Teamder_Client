@@ -43,5 +43,4 @@ public class CreateTeamGroup extends AppCompatActivity {
         createTeamGroup_TXT_setProjectDescription = findViewById(R.id.createTeamGroup_TXT_setProjectDescription);
         createTeamGroup_BTN_next = findViewById(R.id.createTeamGroup_BTN_next);
     }
-
 }

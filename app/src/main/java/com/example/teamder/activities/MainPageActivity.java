@@ -1,7 +1,10 @@
 package com.example.teamder.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -89,10 +92,34 @@ public class MainPageActivity extends AppCompatActivity {
         move this to listener of that button.
          */
         updateUserRoleType();
+    }
 
+    //Add "Tool bar" - settings in the top of current Screen
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.home_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    // Activate the menu
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.homeMenu_startProj: {
+                Intent intent = new Intent(MainPageActivity.this, CreateTeamGroup.class);
+                startActivity(intent);
+                break;
+            }
 
+            case R.id.homeMenu_myProfile: {
+                Intent intent = new Intent(MainPageActivity.this, EditProfileActivity.class);
+                startActivity(intent);
+                break;
+            }
 
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void createInstanceOfTypeGroup() {
@@ -166,7 +193,6 @@ public class MainPageActivity extends AppCompatActivity {
             }
         });
 
-        return super.onOptionsItemSelected(item);
     }
 
 
