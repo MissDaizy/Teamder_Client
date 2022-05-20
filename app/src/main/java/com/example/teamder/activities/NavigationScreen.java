@@ -18,23 +18,4 @@ public class NavigationScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_home);
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.home_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        switch(item.getItemId()){
-            case R.id.homeMenu_myProf:
-                Intent intent = new Intent (this,EditProfileActivity.class);
-                startActivity (intent);
-
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }
