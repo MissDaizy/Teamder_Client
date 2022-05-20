@@ -25,21 +25,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="30dp"
-                android:text="Great !\nAlmost finished"
+                android:text="Editing *Group Name*"
                 android:textColor="@color/white"
-                android:textSize="40dp"></com.google.android.material.textview.MaterialTextView>
+                android:textSize="30sp"></com.google.android.material.textview.MaterialTextView>
 
 
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/ShowNumbers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="30dp"
-            android:text="Number"
-            android:textSize="10sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -54,9 +45,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:text="Pick number of members: "
+                android:text="Change number of members: "
                 android:textColor="@color/white"
-                android:textSize="25dp"></com.google.android.material.textview.MaterialTextView>
+                android:textSize="25sp"></com.google.android.material.textview.MaterialTextView>
 
 
             <NumberPicker
@@ -69,70 +60,56 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:gravity="start"
-            android:orientation="horizontal">
-
+            android:orientation="vertical">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/createTeamGroupNext_TXT_topic"
+                android:id="@+id/createTeamGroup_TXT_titleProjectName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:text="Main Topic: "
+                android:layout_marginStart="16dp"
+                android:text="Change Project Name:"
                 android:textColor="@color/white"
                 android:textSize="25dp"></com.google.android.material.textview.MaterialTextView>
 
-         <Spinner
-                android:id="@+id/createTeamGroupNext_SPN_tags"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTeamGroup_TXT_editProjectName"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"/>
+                android:layout_margin="16dp"
+                android:background="@color/white"
+                android:text="Project Name"
+                android:textSize="25dp">
+
+            </com.google.android.material.textfield.TextInputEditText>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:gravity="start"
             android:orientation="vertical">
 
-            <LinearLayout
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/editTeamGroup_TXT_titleProjectDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_marginStart="16dp"
+                android:text="Edit Project Description:"
+                android:textColor="@color/white"
+                android:textSize="25dp"></com.google.android.material.textview.MaterialTextView>
 
-                <Button
-                    android:id="@+id/createTeamGroupNext_BTN_ShowTags"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:backgroundTint="@color/white"
-                    android:text="Choose Tags"
-                    android:textSize="14sp"
-                    android:textColor="@color/black" />
-
-                <Button
-                    android:id="@+id/createTeamGroupNext_BTN_Clear"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:textSize="11sp"
-                    android:layout_gravity="center"
-                    android:backgroundTint="@color/white"
-                    android:text="Clear"
-                    android:textColor="@color/black" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/createTeamGroupNext_TXT_tagsView"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTeamGroup_TXT_editDescription"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
+                android:layout_height="150dp"
+                android:layout_margin="16dp"
                 android:background="@color/white"
+                android:text="Tell others about your project"
+                android:textSize="20dp">
 
-                />
+            </com.google.android.material.textfield.TextInputEditText>
         </LinearLayout>
 
         <LinearLayout
@@ -142,11 +119,11 @@
             android:orientation="vertical">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/createTeamGroupNext_BTN_openGroup"
+                android:id="@+id/editTeamGroupNext_BTN_applyChanges"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
-                android:text="Open Group"
+                android:text="Apply"
                 android:textColor="@color/black">
 
             </com.google.android.material.button.MaterialButton>
