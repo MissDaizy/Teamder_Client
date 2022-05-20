@@ -60,7 +60,6 @@ public class MainPageActivity extends AppCompatActivity {
     private TextView textViewResult;
     private MaterialButton button;
 
-    private String username;
 
     private DataManager dataManager;
 
@@ -69,14 +68,12 @@ public class MainPageActivity extends AppCompatActivity {
         super.onCreate (savedInstanceState);
         binding = ActivityMainPageBinding.inflate (getLayoutInflater ());
         setContentView (binding.getRoot ());
-        dataManager=new DataManager ();
 
+        dataManager=new DataManager ();
         findViews();
         getUserBoundary();
-        Log.d ("pttt", "onCreate: ");
-        textView=findViewById (R.id.fragmentHome_TXT_continue);
-        textView.setText ("Hey "+dataManager.getUserBoundary ().getUsername () +"\nLets find you a team!");
 
+        textView=findViewById (R.id.fragmentHome_TXT_continue);
         BottomNavigationView navView = findViewById (R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -87,6 +84,7 @@ public class MainPageActivity extends AppCompatActivity {
         //NavigationUI.setupActionBarWithNavController (this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController (binding.navView, navController);
 
+        textView.setText ("Hey "+dataManager.getUserBoundary ().getUsername () +"\nLets find you a team!");
 
         /*
         TODO:

@@ -20,7 +20,7 @@ public class DataManager {
     public DataManager() {
         newUserBoundary = new NewUserBoundary ();
         userBoundary = new UserBoundary ();
-        instanceOfTypeUser = InstanceOfTypeUser.getInstance ();
+        instanceOfTypeUser = new InstanceOfTypeUser ();
         instanceOfTypeGroup = new InstanceOfTypeGroup ();
 
         idConverter=new IdConverter ();

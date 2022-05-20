@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 public class InstanceOfTypeUser extends InstanceBoundary {
-    private static InstanceOfTypeUser single_user_instance = null;
-
     private HashMap<String, Object> instanceAttributes;
     // List of group id's  of all groups the user in: [groupId1,groupId2....]
     private List<String> GroupsList;
@@ -31,7 +29,7 @@ public class InstanceOfTypeUser extends InstanceBoundary {
         instanceAttributes.put ("GroupsManaging",GroupsManagingList);
     }
 
-    private InstanceOfTypeUser() {
+    public InstanceOfTypeUser() {
     }
 
     public List<String> getGroupsList() {
@@ -50,13 +48,5 @@ public class InstanceOfTypeUser extends InstanceBoundary {
     public InstanceOfTypeUser setGroupsManagingList(List<String> groupsManagingList) {
         GroupsManagingList = groupsManagingList;
         return this;
-    }
-
-    public static InstanceOfTypeUser getInstance()
-    {
-        if (single_user_instance == null)
-            single_user_instance = new InstanceOfTypeUser();
-
-        return single_user_instance;
     }
 }
