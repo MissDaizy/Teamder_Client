@@ -11,13 +11,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.teamder.R;
 import com.example.teamder.logic.DataManager;
 import com.example.teamder.models.InstanceBoundary;
+import com.example.teamder.models.InstanceOfTypeUser;
 import com.example.teamder.models.UserBoundary;
 import com.example.teamder.retrofit.RetrofitService;
+import com.example.teamder.service.JsonApiEnhanced;
 import com.example.teamder.service.JsonApiInstances;
 import com.example.teamder.service.JsonApiUsers;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
 import com.google.gson.Gson;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -63,11 +67,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void startMainActivity() {
-        String json = new Gson ().toJson (dataManager.getUserBoundary ());
-
+        String userBoundaryJson = new Gson ().toJson (dataManager.getUserBoundary ());
+        String instanceTypeUserJson = new Gson ().toJson (dataManager.getInstanceOfTypeUser ());
         Intent intent = new Intent (this, MainPageActivity.class);
         Bundle bundle = new Bundle ();
-        bundle.putString (getString (R.string.BUNDLE_USER_BOUNDARY_KEY), json);
+        bundle.putString (getString (R.string.BUNDLE_USER_BOUNDARY_KEY), userBoundaryJson);
+        bundle.putString (getString (R.string.BUNDLE_INSTANCE_USER_BOUNDARY_KEY), instanceTypeUserJson);
         intent.putExtras (bundle);
         startActivity (intent);
     }
@@ -84,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                     showMessage();
                 else {
                     dataManager.setUserBoundary (response.body ());
-                    //getInstanceOfTypeUser();
+                    getInstanceOfTypeUser();
                     startMainActivity ();
                 }
             }
@@ -100,30 +105,28 @@ public class LoginActivity extends AppCompatActivity {
          */
     }
 
-//    private void getInstanceOfTypeUser() {
-//        RetrofitService retrofitService = new RetrofitService ();
-//
-//        JsonApiInstances jsonApiUsers = retrofitService.getRetrofit ().create (JsonApiInstances.class);
-//        Call<Void> call = jsonApiUsers.getInstance ("2022b.diana.ukrainsky" ,userEmail);
-//        call.enqueue(new Callback<UserBoundary> () {
-//            @Override
-//            public void onResponse(Call<UserBoundary> call, Response<UserBoundary> response) {
-//                if(!response.isSuccessful())
-//                    showMessage();
-//                else {
-//                    dataManager.setUserBoundary (response.body ());
-//                    getInstanceOfTypeUser();
-//                    startMainActivity ();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<UserBoundary> call, Throwable t) {
-//                Log.d ("pttt", "Failure!!!, Message: " + t.getMessage ());
-//            }
-//        });
-//
-//    }
+    private void getInstanceOfTypeUser() {
+        String name=dataManager.getUserIdFromUserBoundary ();
+        RetrofitService retrofitService = new RetrofitService ();
+
+        JsonApiEnhanced jsonApiEnhanced = retrofitService.getRetrofit ().create (JsonApiEnhanced.class);
+        Call<List<InstanceOfTypeUser>> call = jsonApiEnhanced.getInstanceByName (name,dataManager.getUserDomain (),dataManager.getUserEmail (),10,0);
+
+        call.enqueue (new Callback<List<InstanceOfTypeUser>> () {
+            @Override
+            public void onResponse(Call<List<InstanceOfTypeUser>> call, Response<List<InstanceOfTypeUser>> response) {
+                if(!response.isSuccessful ()) {
+                    Log.d ("pttt", "" + response.code ());
+                }
+                dataManager.setInstanceOfTypeUser (response.body ().get (0));
+            }
+
+            @Override
+            public void onFailure(Call<List<InstanceOfTypeUser>> call, Throwable t) {
+                Log.d ("pttt", "Failure!!!, Message: " + t.getMessage ());
+            }
+        });
+    }
 
     private void showMessage() {
         Toast.makeText(this, "User not exist, please sign up.", Toast.LENGTH_LONG).show();

@@ -29,7 +29,7 @@ public class NavigationScreen extends Activity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch(item.getItemId()){
-            case R.id.homeMenu_myProf:
+            case R.id.homeMenu_myProfile:
                 Intent intent = new Intent (this,EditProfileActivity.class);
                 startActivity (intent);
 
