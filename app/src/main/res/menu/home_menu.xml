@@ -5,14 +5,13 @@
 
 
     <item
-        android:id="@+id/homeMenu_myProf"
-        android:icon="@drawable/ic_baseline_edit_24"
+        android:id="@+id/homeMenu_myProfile"
         app:showAsAction="always"
         android:title="My Profile"/>
 
     <item
-        android:id="@+id/homeMenu_myPref"
-        android:title="My Preferences"/>
+        android:id="@+id/homeMenu_myPreferences"
+        android:title="Manage Preferences"/>
 
     <item
         android:id="@+id/homeMenu_startProj"

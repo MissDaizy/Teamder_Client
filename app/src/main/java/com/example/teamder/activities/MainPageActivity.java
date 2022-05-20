@@ -90,12 +90,15 @@ public class MainPageActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.homeMenu_startProj: {
                 Intent intent = new Intent(MainPageActivity.this, CreateTeamGroup.class);
-                //Bundle bundle = new Bundle();
-                //intent.putExtras(bundle);
                 startActivity(intent);
                 break;
             }
 
+            case R.id.homeMenu_myProfile: {
+                Intent intent = new Intent(MainPageActivity.this, ViewProfile.class);
+                startActivity(intent);
+                break;
+            }
 
         }
 
