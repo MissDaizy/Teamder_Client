@@ -15,31 +15,33 @@ public class InstanceOfTypeGroup extends InstanceBoundary {
 		"Tags": ["tag1","tag2",...]
     }
     */
-    private Map<String, Object> instanceGroupAttributes;
+    private HashMap<String, Object> instanceAttributes;
     // List of users id's  of all members in group: ["userid1","userid2",...]
     private List<String> members;
     // List of users id's  of all pending members in group: ["userid1","userid2",...]
     private List<String> pendingMembers;
 
-    public InstanceOfTypeGroup(String description, ArrayList<String> tags) {
-        super ();
-        instanceGroupAttributes = new HashMap<String, Object> ();
+    public InstanceOfTypeGroup(String name, String type, UserId userId,String Description, ArrayList<String> tags) {
+        super (name, type, userId);
+        instanceAttributes = new HashMap<String, Object> ();
         members= new ArrayList<String> ();
         pendingMembers = new ArrayList<String> ();
 
-        instanceGroupAttributes.put ("Tags", tags);
-        instanceGroupAttributes.put ("Group Description", description);
+        instanceAttributes.put ("Description", Description);
+        instanceAttributes.put ("Members", pendingMembers);
+        instanceAttributes.put ("PendingMembers", pendingMembers);
+        instanceAttributes.put ("Tags", tags);
     }
 
     public InstanceOfTypeGroup() {
     }
 
-    public Map<String, Object> getInstanceGroupAttributes() {
-        return instanceGroupAttributes;
+    public HashMap<String, Object> getInstanceGroupAttributes() {
+        return instanceAttributes;
     }
 
-    public void setInstanceGroupAttributes(Map<String, Object> instanceGroupAttributes) {
-        this.instanceGroupAttributes = instanceGroupAttributes;
+    public void setInstanceGroupAttributes(HashMap<String, Object> instanceGroupAttributes) {
+        this.instanceAttributes = instanceGroupAttributes;
     }
 
     public List<String> getMembers() {
@@ -58,3 +60,5 @@ public class InstanceOfTypeGroup extends InstanceBoundary {
         this.pendingMembers = pendingMembers;
     }
 }
+
+

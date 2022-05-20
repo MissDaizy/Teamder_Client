@@ -1,6 +1,7 @@
 package com.example.teamder.service;
 
 import com.example.teamder.models.InstanceBoundary;
+import com.example.teamder.models.InstanceOfTypeGroup;
 import com.example.teamder.models.InstanceOfTypeUser;
 import com.example.teamder.models.UserBoundary;
 
@@ -15,7 +16,10 @@ import retrofit2.http.Path;
 
 public interface JsonApiInstances {
     @POST("instances")
-    Call<InstanceOfTypeUser> createInstance(@Body InstanceOfTypeUser instanceBoundary);
+    Call<InstanceOfTypeUser> createInstanceUser(@Body InstanceOfTypeUser instanceBoundary);
+
+    @POST("instances")
+    Call<InstanceOfTypeGroup> createInstanceGroup(@Body InstanceOfTypeGroup instanceBoundary);
 
     @PUT("instances/{instanceDomain}/{instanceId}")
     Call<Void> updateInstance(@Path(value="instanceDomain") String instanceDomain, @Path(value="instanceId") String instanceId,

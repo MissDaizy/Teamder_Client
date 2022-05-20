@@ -107,7 +107,13 @@ public class CreateProfileInterestsActivity extends AppCompatActivity {
     }
 
     private void startMainPageActivity() {
+        String userBoundaryJson = new Gson ().toJson(dataManager.getUserBoundary ());
+        String instanceBoundaryJson = new Gson ().toJson(dataManager.getInstanceOfTypeUser ());
         Intent intent = new Intent (this, MainPageActivity.class);
+        Bundle bundle =new Bundle ();
+        bundle.putString(getString(R.string.BUNDLE_USER_BOUNDARY_KEY),userBoundaryJson);
+        bundle.putString(getString(R.string.BUNDLE_USER_INSTANCE_BOUNDARY_KEY),instanceBoundaryJson);
+        intent.putExtras(bundle);
         startActivity (intent);
     }
 
@@ -124,7 +130,7 @@ public class CreateProfileInterestsActivity extends AppCompatActivity {
         RetrofitService retrofitService = new RetrofitService ();
 
         JsonApiInstances jsonApiInstances = retrofitService.getRetrofit ().create (JsonApiInstances.class);
-        Call<InstanceOfTypeUser> call = jsonApiInstances.createInstance (dataManager.getInstanceOfTypeUser ());
+        Call<InstanceOfTypeUser> call = jsonApiInstances.createInstanceUser (dataManager.getInstanceOfTypeUser ());
 
         call.enqueue (new Callback<InstanceOfTypeUser> () {
             @Override
@@ -196,7 +202,9 @@ public class CreateProfileInterestsActivity extends AppCompatActivity {
                     Log.d ("pttt", "Success!!! user role updated to manager");
                     createInstanceBoundaryOfTypeUser ();
                 }
-                startMainPageActivity ();
+                else {
+                    startMainPageActivity ();
+                }
             }
 
             @Override
@@ -204,7 +212,6 @@ public class CreateProfileInterestsActivity extends AppCompatActivity {
                 Log.d ("pttt", "Failure!!!, Message: " + t.getMessage ());
             }
         });
-
     }
 
 

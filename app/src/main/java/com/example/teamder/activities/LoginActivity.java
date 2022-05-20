@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent (this, MainPageActivity.class);
         Bundle bundle = new Bundle ();
         bundle.putString (getString (R.string.BUNDLE_USER_BOUNDARY_KEY), userBoundaryJson);
-        bundle.putString (getString (R.string.BUNDLE_INSTANCE_USER_BOUNDARY_KEY), instanceTypeUserJson);
+        bundle.putString (getString (R.string.BUNDLE_USER_INSTANCE_BOUNDARY_KEY), instanceTypeUserJson);
         intent.putExtras (bundle);
         startActivity (intent);
     }
