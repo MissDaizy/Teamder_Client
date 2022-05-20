@@ -8,9 +8,6 @@
     android:layout_height="match_parent"
     android:background="#189AB4">
 
-<!--    <include layout="@layout/menu_view_in_app"/> -->
-
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="match_parent"

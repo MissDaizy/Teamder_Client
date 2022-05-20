@@ -15,33 +15,31 @@ public class InstanceOfTypeGroup extends InstanceBoundary {
 		"Tags": ["tag1","tag2",...]
     }
     */
-    private HashMap<String, Object> instanceAttributes;
+    private Map<String, Object> instanceGroupAttributes;
     // List of users id's  of all members in group: ["userid1","userid2",...]
     private List<String> members;
     // List of users id's  of all pending members in group: ["userid1","userid2",...]
     private List<String> pendingMembers;
 
-    public InstanceOfTypeGroup(String name, String type, UserId userId,String Description, ArrayList<String> tags) {
-        super (name, type, userId);
-        instanceAttributes = new HashMap<String, Object> ();
+    public InstanceOfTypeGroup(String description, ArrayList<String> tags) {
+        super ();
+        instanceGroupAttributes = new HashMap<String, Object> ();
         members= new ArrayList<String> ();
         pendingMembers = new ArrayList<String> ();
 
-        instanceAttributes.put ("Description", Description);
-        instanceAttributes.put ("Members", pendingMembers);
-        instanceAttributes.put ("PendingMembers", pendingMembers);
-        instanceAttributes.put ("Tags", tags);
+        instanceGroupAttributes.put ("Tags", tags);
+        instanceGroupAttributes.put ("Group Description", description);
     }
 
     public InstanceOfTypeGroup() {
     }
 
-    public HashMap<String, Object> getInstanceGroupAttributes() {
-        return instanceAttributes;
+    public Map<String, Object> getInstanceGroupAttributes() {
+        return instanceGroupAttributes;
     }
 
-    public void setInstanceGroupAttributes(HashMap<String, Object> instanceGroupAttributes) {
-        this.instanceAttributes = instanceGroupAttributes;
+    public void setInstanceGroupAttributes(Map<String, Object> instanceGroupAttributes) {
+        this.instanceGroupAttributes = instanceGroupAttributes;
     }
 
     public List<String> getMembers() {

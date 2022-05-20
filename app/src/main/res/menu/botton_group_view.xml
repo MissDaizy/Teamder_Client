@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/view_all_group"
+        android:title="@string/title_all_groups" />
+
+    <item
+        android:id="@+id/view_groups_you_manage"
+        android:title="@string/title_groups_manage" />
+
+    <item
+        android:id="@+id/view_groups_as_member"
+        android:title="@string/view_groups_member" />
+
+</menu>

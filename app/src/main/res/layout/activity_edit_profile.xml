@@ -54,11 +54,11 @@
                 android:gravity="center"
                 android:orientation="vertical">
                 <EditText
-                    android:id="@+id/editProfile_TF_firstName"
+                    android:id="@+id/editProfile_TF_Name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="First Name"
+                    android:hint="Name"
                     android:inputType="textPersonName"
                     android:textAlignment="textStart"
                     android:textColorHint="@color/white"
@@ -67,11 +67,11 @@
                     tools:ignore="RtlCompat" />
 
                 <EditText
-                    android:id="@+id/editProfile_TF_lastName"
+                    android:id="@+id/editProfile_TF_phoneNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="Last Name"
+                    android:hint="Phone Number"
                     android:inputType="textPersonName"
                     android:textAlignment="textStart"
                     android:textColorHint="@color/white"
@@ -79,31 +79,8 @@
                     android:layout_marginTop="30dp"
                     tools:ignore="RtlCompat" />
 
-                <EditText
-                    android:id="@+id/editProfile_TF_phoneNumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="Phone Number"
-                    android:inputType="number"
-                    android:textAlignment="textStart"
-                    android:textColorHint="@color/white"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="30dp"
-                    tools:ignore="RtlCompat" />
 
-                <EditText
-                    android:id="@+id/editProfile_TF_birthday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="Birthday Date"
-                    android:inputType="number"
-                    android:textAlignment="textStart"
-                    android:textColorHint="@color/white"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="30dp"
-                    tools:ignore="RtlCompat" />
+
             </LinearLayout>
 
             <TextView

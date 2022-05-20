@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.teamder.R;
 import com.example.teamder.models.InstanceOfTypeGroup;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
 
 import java.util.ArrayList;
@@ -58,13 +59,15 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.MyViewHolder
 
         AppCompatImageView list_group_photo;
         MaterialTextView list_LBL_name, liqueur_LBL_topic;
+        MaterialButton list_BTN_viewGroup;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             list_group_photo=itemView.findViewById(R.id.list_group_photo);
             list_LBL_name=itemView.findViewById(R.id.list_LBL_name);
-            liqueur_LBL_topic=itemView.findViewById(R.id.liqueur_LBL_topic);
+            liqueur_LBL_topic=itemView.findViewById(R.id.list_LBL_topic);
+            list_BTN_viewGroup=itemView.findViewById(R.id.list_BTN_viewGroup);
         }
     }
 }

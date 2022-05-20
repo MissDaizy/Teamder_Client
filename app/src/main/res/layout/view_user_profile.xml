@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.ViewProfile"
+    android:background="#189AB4">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/ViewProfile_TXT_logoTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="Teamder"
+                android:textColor="@color/white"
+                android:textSize="40dp"></com.google.android.material.textview.MaterialTextView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/ViewProfile_TXT_logoSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="Where dreams of teams come true"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
+
+            <ImageView
+                android:id="@+id/ViewProfile_IMG_logo"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:paddingStart="16dp"
+                android:src="@drawable/ic_teamder_logo"></ImageView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:gravity="start"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Email:"
+                    android:paddingStart="30dp"
+                    android:textAlignment="textStart"
+                    android:textColorHint="@color/white" />
+
+                <TextView
+                    android:id="@+id/ViewProfile_TXT_userEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="_user email_"
+                    android:paddingStart="30dp"
+                    android:textAlignment="textStart"
+                    android:textColorHint="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:gravity="start"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Name:"
+                    android:paddingStart="30dp"
+                    android:textAlignment="textStart"
+                    android:textColorHint="@color/white" />
+
+                <TextView
+                    android:id="@+id/ViewProfile_TXT_userName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="_user name_"
+                    android:paddingStart="30dp"
+                    android:textAlignment="textStart"
+                    android:textColorHint="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:gravity="start"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Phone Number:"
+                    android:paddingStart="30dp"
+                    android:textAlignment="textStart"
+                    android:textColorHint="@color/white" />
+
+                <TextView
+                    android:id="@+id/ViewProfile_TXT_PhoneNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="_Phone Number_"
+                    android:paddingStart="30dp"
+                    android:textAlignment="textStart"
+                    android:textColorHint="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:gravity="start"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="About:"
+                    android:paddingStart="30dp"
+                    android:textAlignment="textStart"
+                    android:textColorHint="@color/white" />
+
+                <TextView
+                    android:id="@+id/ViewProfile_TXT_ProfileDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp"
+                    android:background="@color/white"
+                    android:ems="10"
+                    android:hint="_user desc_"
+                    android:paddingStart="30dp"
+                    android:textAlignment="textStart"
+                    android:textColorHint="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:gravity="start"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="About:"
+                    android:paddingStart="30dp"
+                    android:textAlignment="textStart"
+                    android:textColorHint="@color/white" />
+
+                <TextView
+                    android:id="@+id/ViewProfile_TXT_interestsTags"
+                    android:layout_width="wrap_content"
+                    android:layout_height="90dp"
+                    android:background="@color/white"
+                    android:ems="10"
+                    android:hint="_user interests tags_"
+                    android:paddingStart="30dp"
+                    android:textAlignment="textStart"
+                    android:textColorHint="@color/black" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:orientation="vertical">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/ViewProfile_BTN_editBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/white"
+                android:text="Edit"
+                android:textColor="@color/black"
+                android:textSize="15dp"></com.google.android.material.button.MaterialButton>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

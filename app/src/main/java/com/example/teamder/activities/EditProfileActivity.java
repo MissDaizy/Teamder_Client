@@ -12,8 +12,7 @@ import com.google.android.material.button.MaterialButton;
 
 public class EditProfileActivity extends AppCompatActivity {
 
-    private EditText editProfile_TF_firstName;
-    private EditText editProfile_TF_lastName;
+    private EditText editProfile_TF_Name;
     private EditText editProfile_TF_phoneNumber;
     private EditText editProfile_TF_Description;
     private MaterialButton editProfile_BTN_next;
@@ -36,8 +35,7 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void findViews() {
-        editProfile_TF_firstName = findViewById(R.id.editProfile_TF_firstName);
-        editProfile_TF_lastName = findViewById(R.id.editProfile_TF_lastName);
+        editProfile_TF_Name = findViewById(R.id.editProfile_TF_Name);
         editProfile_TF_phoneNumber = findViewById(R.id.editProfile_TF_phoneNumber);
         editProfile_TF_Description = findViewById(R.id.editProfile_TF_Description);
         editProfile_BTN_next = findViewById(R.id.editProfile_BTN_next);

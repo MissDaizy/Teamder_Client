@@ -7,6 +7,9 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment"
     android:background="#189AB4">
+<!--
+    <include layout="@layout/menu_view_in_app"/>
+-->
 
     <LinearLayout
         android:layout_width="match_parent"

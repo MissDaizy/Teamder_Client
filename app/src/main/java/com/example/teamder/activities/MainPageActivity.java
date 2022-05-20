@@ -69,8 +69,8 @@ public class MainPageActivity extends AppCompatActivity {
         super.onCreate (savedInstanceState);
         binding = ActivityMainPageBinding.inflate (getLayoutInflater ());
         setContentView (binding.getRoot ());
-        dataManager=new DataManager ();
 
+        dataManager=new DataManager ();
         findViews();
         getUserBoundary();
         Log.d ("pttt", "onCreate: ");
