@@ -12,4 +12,5 @@
     <string name="BUNDLE_USER_BOUNDARY_KEY">USER_BOUNDARY</string>
     <string name="BUNDLE_INSTANCE_BOUNDARY_KEY">INSTANCE_BOUNDARY</string>
     <string name="button_add_group">Add Group</string>
+    <string name="BUNDLE_INSTANCE_USER_BOUNDARY_KEY">INSTANCE_BOUNDARY_USER</string>
 </resources>

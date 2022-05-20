@@ -170,9 +170,11 @@ public class MainPageActivity extends AppCompatActivity {
     private void getUserBoundary() {
         Bundle bundle;
         bundle = getIntent ().getExtras ();
-        String json = bundle.getString (getString (R.string.BUNDLE_USER_BOUNDARY_KEY));
+        String userBoundaryJson = bundle.getString (getString (R.string.BUNDLE_USER_BOUNDARY_KEY));
+        String instanceBoundaryJson = bundle.getString (getString (R.string.BUNDLE_INSTANCE_USER_BOUNDARY_KEY));
 
-        dataManager.setUserBoundary (new Gson ().fromJson (json, UserBoundary.class));
+        dataManager.setUserBoundary (new Gson ().fromJson (userBoundaryJson, UserBoundary.class));
+        dataManager.setInstanceOfTypeUser (new Gson ().fromJson (instanceBoundaryJson, InstanceOfTypeUser.class));
     }
 
     private void findViews() {

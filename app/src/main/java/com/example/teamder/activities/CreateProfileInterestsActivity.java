@@ -107,7 +107,13 @@ public class CreateProfileInterestsActivity extends AppCompatActivity {
     }
 
     private void startMainPageActivity() {
+        String userBoundaryJson = new Gson ().toJson(dataManager.getUserBoundary ());
+        String instanceBoundaryJson = new Gson ().toJson(dataManager.getInstanceOfTypeUser ());
         Intent intent = new Intent (this, MainPageActivity.class);
+        Bundle bundle =new Bundle ();
+        bundle.putString(getString(R.string.BUNDLE_USER_BOUNDARY_KEY),userBoundaryJson);
+        bundle.putString(getString(R.string.BUNDLE_INSTANCE_USER_BOUNDARY_KEY),instanceBoundaryJson);
+        intent.putExtras(bundle);
         startActivity (intent);
     }
 
@@ -196,7 +202,9 @@ public class CreateProfileInterestsActivity extends AppCompatActivity {
                     Log.d ("pttt", "Success!!! user role updated to manager");
                     createInstanceBoundaryOfTypeUser ();
                 }
+                else {
                 startMainPageActivity ();
+                }
             }
 
             @Override
