@@ -33,6 +33,26 @@ public class InstanceOfTypeUser extends InstanceBoundary {
     public InstanceOfTypeUser() {
     }
 
+    @Override
+    public void setDescription(String descriptionField) {
+        instanceAttributes.put ("User Description",descriptionField);
+    }
+
+//    public void setGroupsList(List<String> groupsList) {
+//        GroupsList = groupsList;
+//    }
+
+//    public void setGroupsManagingList(List<String> groupsManagingList) {
+//        GroupsManagingList = groupsManagingList;
+//    }
+
+//    public void setInstanceAttributes(HashMap<String, Object> instanceAttributes) {
+//        this.instanceAttributes = instanceAttributes;
+//    }
+
+    public void setPhoneNumber(String updatedPhoneNum) {
+        instanceAttributes.put ("Phone Number",updatedPhoneNum);
+    }
 
     public List<String> getGroupsList() {
         return GroupsList;
@@ -50,17 +70,13 @@ public class InstanceOfTypeUser extends InstanceBoundary {
         return "No Phone Number";
     }
 
-    public InstanceOfTypeUser setGroupsList(List<String> groupsList) {
-        GroupsList = groupsList;
-        return this;
-    }
-
     public List<String> getGroupsManagingList() {
         return GroupsManagingList;
     }
 
-    public InstanceOfTypeUser setGroupsManagingList(List<String> groupsManagingList) {
-        GroupsManagingList = groupsManagingList;
-        return this;
+
+    public HashMap<String, Object> getInstanceAttributes() {
+        return instanceAttributes;
     }
+
 }

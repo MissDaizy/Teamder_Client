@@ -145,7 +145,6 @@ public class CreateProfileInterestsActivity extends AppCompatActivity {
                 dataManager.setInstanceOfTypeUser (response.body ());
                 Log.d ("pttt", "description"+dataManager.getUserDescription ());
                 updateUserRoleType();
-
             }
 
             @Override

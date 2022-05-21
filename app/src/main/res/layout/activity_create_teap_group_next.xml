@@ -15,7 +15,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="2"
             android:gravity="start"
             android:orientation="vertical">
 
@@ -27,7 +28,7 @@
                 android:layout_marginTop="30dp"
                 android:text="Great !\nAlmost finished"
                 android:textColor="@color/white"
-                android:textSize="40dp"></com.google.android.material.textview.MaterialTextView>
+                android:textSize="30dp"></com.google.android.material.textview.MaterialTextView>
 
 
         </LinearLayout>
@@ -43,7 +44,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="2"
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:orientation="horizontal">
@@ -56,7 +58,7 @@
                 android:layout_marginStart="30dp"
                 android:text="Pick number of members: "
                 android:textColor="@color/white"
-                android:textSize="25dp"></com.google.android.material.textview.MaterialTextView>
+                android:textSize="20dp"></com.google.android.material.textview.MaterialTextView>
 
 
             <NumberPicker
@@ -68,8 +70,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:gravity="start"
             android:orientation="horizontal">
 
@@ -81,18 +83,19 @@
                 android:layout_marginStart="30dp"
                 android:text="Main Topic: "
                 android:textColor="@color/white"
-                android:textSize="25dp"></com.google.android.material.textview.MaterialTextView>
+                android:textSize="20dp"></com.google.android.material.textview.MaterialTextView>
 
-         <Spinner
+            <Spinner
                 android:id="@+id/createTeamGroupNext_SPN_tags"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/white"/>
+                android:background="@color/white" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="3"
             android:gravity="start"
             android:orientation="vertical">
 
@@ -109,25 +112,26 @@
                     android:layout_gravity="center"
                     android:backgroundTint="@color/white"
                     android:text="Choose Tags"
-                    android:textSize="14sp"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
                 <Button
                     android:id="@+id/createTeamGroupNext_BTN_Clear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:textSize="11sp"
                     android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
                     android:backgroundTint="@color/white"
                     android:text="Clear"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="11sp" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/createTeamGroupNext_TXT_tagsView"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
+                android:minHeight="150dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
                 android:background="@color/white"
@@ -137,7 +141,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
 

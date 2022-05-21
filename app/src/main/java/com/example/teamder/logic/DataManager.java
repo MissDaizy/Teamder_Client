@@ -56,6 +56,7 @@ public class DataManager {
     }
 
     public void setInstanceOfTypeUser(InstanceOfTypeUser instanceOfTypeUser) {
+        this.instanceOfTypeUser.setCreatedTimestamp (null);
         this.instanceOfTypeUser = instanceOfTypeUser;
     }
 
@@ -136,6 +137,18 @@ public class DataManager {
         }
         else if(userBoundary.getRole ().equals ("MANAGER"))
             userBoundary.setRole (RoleType.PLAYER.toString ());
+    }
+
+    public void updateUsername(String usernameField) {
+        userBoundary.setUsername (usernameField);
+    }
+
+    public void updatePhoneNumber(String phoneNumField) {
+        instanceOfTypeUser.setPhoneNumber (phoneNumField);
+    }
+
+    public void updateDescription(String descriptionField) {
+        instanceOfTypeUser.setDescription(descriptionField);
     }
 }
 

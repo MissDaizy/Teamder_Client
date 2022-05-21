@@ -78,15 +78,15 @@ public abstract class InstanceBoundary {
     }
 
     public void setCreatedTimestamp(Date createdTimestamp) {
-        this.createdTimestamp = createdTimestamp;
+        this.createdTimestamp = null;
     }
 
     public CreatedBy getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(CreatedBy createdBy) {
-        this.createdBy = createdBy;
+    public void setCreatedBy(UserId userId) {
+        this.createdBy.setUserId (userId);
     }
 
     public Location getLocation() {
@@ -98,5 +98,13 @@ public abstract class InstanceBoundary {
     }
 
 
+    public abstract void setDescription(String descriptionField);
 
+    public GeneralId getInstanceId() {
+        return instanceId;
+    }
+
+    public void setInstanceId(GeneralId instanceId) {
+        this.instanceId = instanceId;
+    }
 }

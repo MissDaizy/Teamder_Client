@@ -43,6 +43,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainPageActivity extends AppCompatActivity {
+    private Bundle bundle;
+
     private final int ROWS = 3;
     private final int COLS = 3;
 
@@ -67,9 +69,13 @@ public class MainPageActivity extends AppCompatActivity {
         super.onCreate (savedInstanceState);
         binding = ActivityMainPageBinding.inflate (getLayoutInflater ());
         setContentView (binding.getRoot ());
+
         dataManager = new DataManager ();
+        bundle =new Bundle ();
+
         findViews ();
         getUserBoundary ();
+
         Log.d ("pttt", "onCreate: ");
         textView = findViewById (R.id.fragmentHome_TXT_continue);
         textView.setText ("Hey " + dataManager.getUserBoundary ().getUsername () + "\nLets find you a team!");
@@ -93,11 +99,6 @@ public class MainPageActivity extends AppCompatActivity {
         move this to listener of that button.
          */
         //updateUserRoleType ();
-    }
-    private static Intent getIntent(Context context, Class<?> cls) {
-        Intent intent = new Intent(context, cls);
-        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        return intent;
     }
 
     private void setNavigationItemListener() {
@@ -132,71 +133,32 @@ public class MainPageActivity extends AppCompatActivity {
     // Activate the menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        putInBundle();
         switch (item.getItemId()){
             case R.id.homeMenu_startProj: {
                 Intent intent = new Intent(MainPageActivity.this, CreateTeamGroup.class);
-                startActivity(intent);
-                break;
-            }
-
-            case R.id.homeMenu_myProfile: {
-                String userBoundaryJson = new Gson ().toJson(dataManager.getUserBoundary ());
-                String instanceBoundaryJson = new Gson ().toJson(dataManager.getInstanceOfTypeUser ());
-                Intent intent = new Intent(MainPageActivity.this, EditProfileActivity.class);
-                Bundle bundle =new Bundle ();
-                bundle.putString(getString(R.string.BUNDLE_USER_BOUNDARY_KEY),userBoundaryJson);
-                bundle.putString(getString(R.string.BUNDLE_USER_INSTANCE_BOUNDARY_KEY),instanceBoundaryJson);
                 intent.putExtras(bundle);
                 startActivity(intent);
                 break;
             }
 
+            case R.id.homeMenu_myProfile: {
+                Intent intent = new Intent(MainPageActivity.this, EditProfileActivity.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+                break;
+            }
         }
-
         return super.onOptionsItemSelected(item);
     }
 
-    private void createInstanceOfTypeGroup() {
-        //TODO: move this to data mangaer
-        String groupDescription ="HELLO!!";
-        String groupName="GROUP NAME";
-        UserId userId = dataManager.getUserBoundary ().getUserId ();
-        //String name = dataManager.getUserIdFromUserBoundary ();
-
-
-        //TODO: function for this & put strings in R string
-        //TODO: Add couple of tags and not only one(spinner by default adds only one), switch to another list
-        ArrayList<String> tags = new ArrayList<> ();
-        tags.add ("Arts");
-        tags.add ("Electronics");
-        tags.add ("Programming");
-        tags.add ("Music");
-
-        // TODO: CHECK WHICH TYPE OF INSTANCE IS IT
-        // public InstanceOfTypeUser(String name, String type, UserId userId,String description, ArrayList<String> tags) {
-        dataManager.setInstanceOfTypeGroup (new InstanceOfTypeGroup (groupName, InstanceType.GROUP.toString (), userId, groupDescription, tags));
-        RetrofitService retrofitService = new RetrofitService ();
-
-        JsonApiInstances jsonApiInstances = retrofitService.getRetrofit ().create (JsonApiInstances.class);
-        Call<InstanceOfTypeGroup> call = jsonApiInstances.createInstanceGroup (dataManager.getInstanceOfTypeGroup ());
-
-        call.enqueue (new Callback<InstanceOfTypeGroup> () {
-            @Override
-            public void onResponse(Call<InstanceOfTypeGroup> call, Response<InstanceOfTypeGroup> response) {
-                if (!response.isSuccessful ()) {
-                    Log.d ("pttt", "" + response.code ());
-                }
-                Log.d ("pttt", "Success!!!, Created instance of type user");
-                dataManager.setInstanceOfTypeGroup (response.body ());
-                updateUserRoleType();
-            }
-
-            @Override
-            public void onFailure(Call<InstanceOfTypeGroup> call, Throwable t) {
-                Log.d ("pttt", "Failure!!!, Message: " + t.getMessage ());
-            }
-        });
+    private void putInBundle() {
+        String userBoundaryJson = new Gson ().toJson(dataManager.getUserBoundary ());
+        String instanceBoundaryJson = new Gson ().toJson(dataManager.getInstanceOfTypeUser ());
+        bundle.putString(getString(R.string.BUNDLE_USER_BOUNDARY_KEY),userBoundaryJson);
+        bundle.putString(getString(R.string.BUNDLE_USER_INSTANCE_BOUNDARY_KEY),instanceBoundaryJson);
     }
+
 
     private void updateUserRoleType() {
         String userDomain = dataManager.getUserDomain ();
@@ -217,7 +179,7 @@ public class MainPageActivity extends AppCompatActivity {
                 }
                 if(dataManager.getUserBoundaryRoleType ().equals (RoleType.MANAGER.toString ())) {
                     Log.d ("pttt", "Success!!! user role updated to manager");
-                    createInstanceOfTypeGroup ();
+                    //createInstanceOfTypeGroup ();
                 }
             }
 
@@ -230,17 +192,15 @@ public class MainPageActivity extends AppCompatActivity {
     }
 
 
-
-
-
     private void getUserBoundary() {
-        Bundle bundle;
         bundle = getIntent ().getExtras ();
         String userBoundaryJson = bundle.getString (getString (R.string.BUNDLE_USER_BOUNDARY_KEY));
         String instanceBoundaryJson = bundle.getString (getString (R.string.BUNDLE_USER_INSTANCE_BOUNDARY_KEY));
 
-        dataManager.setUserBoundary (new Gson ().fromJson (userBoundaryJson, UserBoundary.class));
+        dataManager.setUserBoundary ((new Gson ().fromJson (userBoundaryJson, UserBoundary.class)));
         dataManager.setInstanceOfTypeUser (new Gson ().fromJson (instanceBoundaryJson, InstanceOfTypeUser.class));
+        Log.d ("pttt", "description in main page :"+dataManager.getUserDescription ());
+
     }
 
     private void findViews() {
