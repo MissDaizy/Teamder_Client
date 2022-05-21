@@ -36,9 +36,11 @@ public class InstanceOfTypeGroup extends InstanceBoundary {
     public InstanceOfTypeGroup() {
     }
 
+
     public HashMap<String, Object> getInstanceGroupAttributes() {
         return instanceAttributes;
     }
+
 
     public void setInstanceGroupAttributes(HashMap<String, Object> instanceGroupAttributes) {
         this.instanceAttributes = instanceGroupAttributes;

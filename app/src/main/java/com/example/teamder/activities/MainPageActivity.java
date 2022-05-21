@@ -1,5 +1,6 @@
 package com.example.teamder.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,20 +11,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.teamder.logic.DataManager;
-import com.example.teamder.logic.RoleType;
+import com.example.teamder.models.RoleType;
 import com.example.teamder.models.InstanceOfTypeGroup;
 import com.example.teamder.models.InstanceOfTypeUser;
 import com.example.teamder.models.InstanceType;
-import com.example.teamder.models.NewUserBoundary;
 import com.example.teamder.models.UserId;
 import com.example.teamder.retrofit.RetrofitService;
 import com.example.teamder.service.JsonApiInstances;
 import com.example.teamder.service.JsonApiUsers;
 import com.example.teamder.R;
 import com.example.teamder.models.UserBoundary;
+import com.example.teamder.ui.dashboard.DashboardFragment;
+import com.example.teamder.ui.notifications.NotificationsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -36,19 +37,16 @@ import com.google.android.material.textview.MaterialTextView;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainPageActivity extends AppCompatActivity {
-
     private final int ROWS = 3;
     private final int COLS = 3;
+
+    BottomNavigationView navView;
 
     private MaterialTextView textView;
     private ImageView[][] groupsPictures;
@@ -69,15 +67,16 @@ public class MainPageActivity extends AppCompatActivity {
         super.onCreate (savedInstanceState);
         binding = ActivityMainPageBinding.inflate (getLayoutInflater ());
         setContentView (binding.getRoot ());
-
-        dataManager=new DataManager ();
-        findViews();
-        getUserBoundary();
+        dataManager = new DataManager ();
+        findViews ();
+        getUserBoundary ();
         Log.d ("pttt", "onCreate: ");
-        textView=findViewById (R.id.fragmentHome_TXT_continue);
-        textView.setText ("Hey "+dataManager.getUserBoundary ().getUsername () +"\nLets find you a team!");
+        textView = findViewById (R.id.fragmentHome_TXT_continue);
+        textView.setText ("Hey " + dataManager.getUserBoundary ().getUsername () + "\nLets find you a team!");
 
-        BottomNavigationView navView = findViewById (R.id.nav_view);
+        navView = findViewById (R.id.nav_view);
+        setNavigationItemListener ();
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder (
@@ -93,8 +92,35 @@ public class MainPageActivity extends AppCompatActivity {
         Code for POST instance type group and after nastia finish button "Add Group",
         move this to listener of that button.
          */
-        updateUserRoleType();
+        //updateUserRoleType ();
     }
+    private static Intent getIntent(Context context, Class<?> cls) {
+        Intent intent = new Intent(context, cls);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        return intent;
+    }
+
+    private void setNavigationItemListener() {
+        navView.setOnItemSelectedListener (item -> {
+            switch (item.getItemId ()) {
+                case R.id.navigation_dashboard: {
+                    Intent intent = new Intent (MainPageActivity.this, DashboardFragment.class);
+                    startActivity (intent);
+                    break;
+                }
+
+                case R.id.navigation_notifications: {
+                    Intent intent = new Intent (MainPageActivity.this, NotificationsFragment.class);
+                    startActivity (intent);
+                    break;
+                }
+            }
+            return true;
+        });
+    }
+
+
+
 
     //Add "Tool bar" - settings in the top of current Screen
     @Override
@@ -114,7 +140,13 @@ public class MainPageActivity extends AppCompatActivity {
             }
 
             case R.id.homeMenu_myProfile: {
+                String userBoundaryJson = new Gson ().toJson(dataManager.getUserBoundary ());
+                String instanceBoundaryJson = new Gson ().toJson(dataManager.getInstanceOfTypeUser ());
                 Intent intent = new Intent(MainPageActivity.this, EditProfileActivity.class);
+                Bundle bundle =new Bundle ();
+                bundle.putString(getString(R.string.BUNDLE_USER_BOUNDARY_KEY),userBoundaryJson);
+                bundle.putString(getString(R.string.BUNDLE_USER_INSTANCE_BOUNDARY_KEY),instanceBoundaryJson);
+                intent.putExtras(bundle);
                 startActivity(intent);
                 break;
             }

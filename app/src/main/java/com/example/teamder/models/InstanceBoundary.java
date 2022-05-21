@@ -96,4 +96,7 @@ public abstract class InstanceBoundary {
     public void setLocation(Location location) {
         this.location = location;
     }
+
+
+
 }

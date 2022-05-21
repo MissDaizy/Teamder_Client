@@ -1,4 +1,4 @@
-package com.example.teamder.logic;
+package com.example.teamder.models;
 
 public enum RoleType {
     PLAYER,

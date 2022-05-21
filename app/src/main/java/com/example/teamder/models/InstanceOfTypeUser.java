@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 public class InstanceOfTypeUser extends InstanceBoundary {
-    private static InstanceOfTypeUser single_user_instance = null;
-
     private HashMap<String, Object> instanceAttributes;
     // List of group id's  of all groups the user in: [groupId1,groupId2....]
     private List<String> GroupsList;
@@ -18,7 +16,7 @@ public class InstanceOfTypeUser extends InstanceBoundary {
     */
     private List<String> GroupsManagingList;
 
-    public InstanceOfTypeUser(String name, String type, UserId userId,String description, ArrayList<String> tags) {
+    public InstanceOfTypeUser(String name, String type, UserId userId,String description, ArrayList<String> tags,String phoneNum) {
         super (name, type, userId);
         Log.d ("pttt", "In instance of type user constructor");
         instanceAttributes = new HashMap<String, Object> ();
@@ -29,13 +27,27 @@ public class InstanceOfTypeUser extends InstanceBoundary {
         instanceAttributes.put ("User Description", description);
         instanceAttributes.put ("Groups",GroupsList);
         instanceAttributes.put ("GroupsManaging",GroupsManagingList);
+        instanceAttributes.put ("Phone Number",phoneNum);
     }
 
-    private InstanceOfTypeUser() {
+    public InstanceOfTypeUser() {
     }
+
 
     public List<String> getGroupsList() {
         return GroupsList;
+    }
+
+    public String getInstanceDescription() {
+        if(instanceAttributes.containsKey ("User Description"))
+            return instanceAttributes.get ("User Description").toString ();
+        return "No Description";
+    }
+
+    public String getPhoneNumber() {
+        if(instanceAttributes.containsKey ("Phone Number"))
+            return instanceAttributes.get ("Phone Number").toString ();
+        return "No Phone Number";
     }
 
     public InstanceOfTypeUser setGroupsList(List<String> groupsList) {
@@ -50,13 +62,5 @@ public class InstanceOfTypeUser extends InstanceBoundary {
     public InstanceOfTypeUser setGroupsManagingList(List<String> groupsManagingList) {
         GroupsManagingList = groupsManagingList;
         return this;
-    }
-
-    public static InstanceOfTypeUser getInstance()
-    {
-        if (single_user_instance == null)
-            single_user_instance = new InstanceOfTypeUser();
-
-        return single_user_instance;
     }
 }

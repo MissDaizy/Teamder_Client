@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.teamder.R;
 import com.example.teamder.logic.DataManager;
-import com.example.teamder.logic.RoleType;
+import com.example.teamder.models.RoleType;
 import com.example.teamder.models.InstanceOfTypeUser;
 import com.example.teamder.models.InstanceType;
 import com.example.teamder.models.NewUserBoundary;
@@ -119,13 +119,16 @@ public class CreateProfileInterestsActivity extends AppCompatActivity {
 
     private void createInstanceBoundaryOfTypeUser() {
         //TODO: move this to data mangaer
+        bundle = getIntent ().getExtras ();
+        String phoneNumber = bundle.getString (getString (R.string.BUNDLE_USER_PHONE_NUM_KEY));
         String name = dataManager.getUserIdFromUserBoundary ();
         UserId userId = dataManager.getUserBoundary ().getUserId ();
+
 
         //TODO: CHECK WHICH TYPE OF INSTANCE IS IT
         // public InstanceOfTypeUser(String name, String type, UserId userId,String description, ArrayList<String> tags) {
 
-        dataManager.setInstanceOfTypeUser (new InstanceOfTypeUser (name, InstanceType.USER.toString (), userId, userDesc, tags));
+        dataManager.setInstanceOfTypeUser (new InstanceOfTypeUser (name, InstanceType.USER.toString (), userId, userDesc, tags,phoneNumber));
 
         RetrofitService retrofitService = new RetrofitService ();
 
@@ -140,6 +143,7 @@ public class CreateProfileInterestsActivity extends AppCompatActivity {
                 }
                 Log.d ("pttt", "Success!!!, Created instance of type user");
                 dataManager.setInstanceOfTypeUser (response.body ());
+                Log.d ("pttt", "description"+dataManager.getUserDescription ());
                 updateUserRoleType();
 
             }

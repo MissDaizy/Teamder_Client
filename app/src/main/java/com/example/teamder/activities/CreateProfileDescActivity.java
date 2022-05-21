@@ -32,6 +32,7 @@ public class CreateProfileDescActivity extends AppCompatActivity {
         setListeners();
     }
 
+
     private void getNewUserBoundaryDetails() {
         bundle = getIntent().getExtras();
         String json = bundle.getString(getString(R.string.BUNDLE_NEW_USER_BOUNDARY_KEY));
@@ -48,10 +49,13 @@ public class CreateProfileDescActivity extends AppCompatActivity {
     private void startCreateProfileInterestsActivity() {
         String json = new Gson ().toJson(dataManager.getNewUserBoundary ());
         String userDescription=createProfileDesc_TF_userDescription.getText ().toString ();
+        bundle = getIntent().getExtras();
+        String phoneNumber = bundle.getString(getString(R.string.BUNDLE_USER_PHONE_NUM_KEY));
         Intent intent = new Intent (this,CreateProfileInterestsActivity.class);
         Bundle bundle =new Bundle ();
         bundle.putString(getString(R.string.BUNDLE_INSTANCE_BOUNDARY_KEY),userDescription);
         bundle.putString(getString(R.string.BUNDLE_NEW_USER_BOUNDARY_KEY),json);
+        bundle.putString(getString(R.string.BUNDLE_USER_PHONE_NUM_KEY),phoneNumber);
         intent.putExtras(bundle);
         startActivity (intent);
     }

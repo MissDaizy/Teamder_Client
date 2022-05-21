@@ -8,7 +8,7 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.teamder.R;
-import com.example.teamder.logic.RoleType;
+import com.example.teamder.models.RoleType;
 import com.example.teamder.models.NewUserBoundary;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;

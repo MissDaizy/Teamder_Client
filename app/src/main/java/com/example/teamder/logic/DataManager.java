@@ -2,10 +2,10 @@ package com.example.teamder.logic;
 
 import android.util.Log;
 
-import com.example.teamder.models.InstanceBoundary;
 import com.example.teamder.models.InstanceOfTypeGroup;
 import com.example.teamder.models.InstanceOfTypeUser;
 import com.example.teamder.models.NewUserBoundary;
+import com.example.teamder.models.RoleType;
 import com.example.teamder.models.UserBoundary;
 import com.example.teamder.models.UserId;
 
@@ -20,7 +20,7 @@ public class DataManager {
     public DataManager() {
         newUserBoundary = new NewUserBoundary ();
         userBoundary = new UserBoundary ();
-        instanceOfTypeUser = InstanceOfTypeUser.getInstance ();
+        instanceOfTypeUser = new InstanceOfTypeUser ();
         instanceOfTypeGroup = new InstanceOfTypeGroup ();
 
         idConverter=new IdConverter ();
@@ -115,6 +115,18 @@ public class DataManager {
 
     public String getUserEmail() {
         return userBoundary.getUserId ().getEmail ();
+    }
+
+    public String getUsername() {
+        return userBoundary.getUsername ();
+    }
+
+    public String getUserDescription() {
+        return instanceOfTypeUser.getInstanceDescription ();
+    }
+
+    public String getPhoneNumber() {
+        return instanceOfTypeUser.getPhoneNumber ();
     }
 
     public void updateUserRoleTypeData() {

@@ -72,6 +72,8 @@ public class CreateProfileActivity extends AppCompatActivity {
         Intent intent = new Intent (this, CreateProfileDescActivity.class);
         Bundle bundle = new Bundle ();
         bundle.putString (getString (R.string.BUNDLE_NEW_USER_BOUNDARY_KEY), json);
+        bundle.putString (getString (R.string.BUNDLE_USER_PHONE_NUM_KEY), userPhoneNumber);
+
         intent.putExtras (bundle);
         startActivity (intent);
 

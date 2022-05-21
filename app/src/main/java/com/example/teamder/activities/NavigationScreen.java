@@ -18,4 +18,6 @@ public class NavigationScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_home);
     }
+
+
 }
