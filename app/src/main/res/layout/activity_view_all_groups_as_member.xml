@@ -8,7 +8,7 @@
     android:background="#189AB4">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/groupsAsManager_LST_items"
+        android:id="@+id/groupsAsMember_LST_items"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"

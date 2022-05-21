@@ -217,7 +217,7 @@ public class CreateTeamGroupNext extends AppCompatActivity implements NumberPick
     }
 
     private void startViewAllGroupsActivity() {
-        Intent intent=new Intent (this,ViewAllGroups.class);
+        Intent intent=new Intent (this, ViewAllGroupsActivity.class);
         startActivity (intent);
     }
 

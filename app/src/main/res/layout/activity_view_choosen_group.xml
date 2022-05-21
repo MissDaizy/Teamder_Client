@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#189AB4"
-    tools:context=".activities.ViewTheGroup">
+    tools:context=".activities.ViewChosenGroup">
 
 
     <LinearLayout

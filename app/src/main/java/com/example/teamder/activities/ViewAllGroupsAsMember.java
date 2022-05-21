@@ -3,10 +3,26 @@ package com.example.teamder.activities;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.teamder.R;
+import com.example.teamder.models.InstanceOfTypeGroup;
+
+import java.util.ArrayList;
 
 public class ViewAllGroupsAsMember extends AppCompatActivity {
+
+    // Connecting to the RecyclerView
+    // that in the layout: activity_view_all_groups
+    private RecyclerView groupsAsMember_LST_items;
+
+    // Local variable of all groups from DB
+    private ArrayList<InstanceOfTypeGroup> allGroups = new ArrayList<>();
+
+    // Array af all group images from drawable package
+    // TODO: delete if not used :)
+    ArrayOfGroupsPictures groupImages;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -21,6 +37,6 @@ public class ViewAllGroupsAsMember extends AppCompatActivity {
     }
 
     private void findViews() {
-
+        groupsAsMember_LST_items = findViewById(R.id.groupsAsMember_LST_items);
     }
 }

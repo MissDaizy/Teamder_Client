@@ -64,6 +64,10 @@ public class MainPageActivity extends AppCompatActivity {
 
     private DataManager dataManager;
 
+
+    ///////////////////////here is group fragment view values..
+    private MaterialButton groups_addGroup;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -74,14 +78,13 @@ public class MainPageActivity extends AppCompatActivity {
         bundle =new Bundle ();
 
         findViews ();
-        getUserBoundary ();
+ //       getUserBoundary ();
 
         Log.d ("pttt", "onCreate: ");
         textView = findViewById (R.id.fragmentHome_TXT_continue);
         textView.setText ("Hey " + dataManager.getUserBoundary ().getUsername () + "\nLets find you a team!");
 
         navView = findViewById (R.id.nav_view);
-        setNavigationItemListener ();
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -100,28 +103,6 @@ public class MainPageActivity extends AppCompatActivity {
          */
         //updateUserRoleType ();
     }
-
-    private void setNavigationItemListener() {
-        navView.setOnItemSelectedListener (item -> {
-            switch (item.getItemId ()) {
-                case R.id.navigation_dashboard: {
-                    Intent intent = new Intent (MainPageActivity.this, DashboardFragment.class);
-                    startActivity (intent);
-                    break;
-                }
-
-                case R.id.navigation_notifications: {
-                    Intent intent = new Intent (MainPageActivity.this, NotificationsFragment.class);
-                    startActivity (intent);
-                    break;
-                }
-            }
-            return true;
-        });
-    }
-
-
-
 
     //Add "Tool bar" - settings in the top of current Screen
     @Override
@@ -204,6 +185,10 @@ public class MainPageActivity extends AppCompatActivity {
     }
 
     private void findViews() {
+        ////////////////////the groups page
+        groups_addGroup = findViewById(R.id.groups_addGroup);
+
+        ////////////////////the home page
         groupsNames = new MaterialTextView[][]{
                 {findViewById(R.id.fragmentHome_groupName00),
                         findViewById(R.id.fragmentHome_groupName01),

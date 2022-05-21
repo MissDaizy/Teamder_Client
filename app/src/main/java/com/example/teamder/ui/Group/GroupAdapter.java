@@ -43,7 +43,6 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.MyViewHolder
         holder.list_LBL_name.(allGroups.get(position).getName());
         same for:
         list_group_photo & liqueur_LBL_topic
-
          */
     }
 
@@ -57,22 +56,18 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.MyViewHolder
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         //similar to on create method, Grabbing the views
 
-        AppCompatImageView list_group_photo;
-        MaterialTextView list_LBL_name, liqueur_LBL_topic;
-        MaterialButton list_BTN_viewGroup;
+        AppCompatImageView list_group_groupImage;
+        MaterialTextView list_LBL_groupName;
+        MaterialTextView liqueur_LBL_groupTopic;
+        MaterialButton list_BTN_viewGroupBTN;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            list_group_photo=itemView.findViewById(R.id.list_group_photo);
-            list_LBL_name=itemView.findViewById(R.id.list_LBL_name);
-            liqueur_LBL_topic=itemView.findViewById(R.id.list_LBL_topic);
-            list_BTN_viewGroup=itemView.findViewById(R.id.list_BTN_viewGroup);
+            list_group_groupImage=itemView.findViewById(R.id.list_group_groupImage);
+            list_LBL_groupName=itemView.findViewById(R.id.list_LBL_groupName);
+            liqueur_LBL_groupTopic=itemView.findViewById(R.id.liqueur_LBL_groupTopic);
+            list_BTN_viewGroupBTN=itemView.findViewById(R.id.list_BTN_viewGroupBTN);
         }
     }
 }
-
-
-
-
-
