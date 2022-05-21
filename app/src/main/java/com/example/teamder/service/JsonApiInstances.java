@@ -13,6 +13,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface JsonApiInstances {
     @POST("instances")
@@ -22,11 +23,20 @@ public interface JsonApiInstances {
     Call<InstanceOfTypeGroup> createInstanceGroup(@Body InstanceOfTypeGroup instanceBoundary);
 
     @PUT("instances/{instanceDomain}/{instanceId}")
-    Call<Void> updateInstance(@Path(value="instanceDomain") String instanceDomain, @Path(value="instanceId") String instanceId,
-                                                @Body InstanceBoundary instanceBoundary);
+    Call<Void> updateInstanceTypeUser(@Path(value="instanceDomain") String instanceDomain, @Path(value="instanceId") String instanceId,
+                                                @Query (value="userDomain") String userDomain, @Query (value="userEmail") String userEmail,
+                                                @Body InstanceOfTypeUser instanceOfTypeUser);
+
+    @PUT("instances/{instanceDomain}/{instanceId}")
+    Call<Void> updateInstanceTypeGroup(@Path(value="instanceDomain") String instanceDomain, @Path(value="instanceId") String instanceId,
+                                      @Query (value="userDomain") String userDomain, @Query (value="userEmail") String userEmail,
+                                      @Body InstanceOfTypeGroup instanceOfTypeGroup);
 
     @GET("instances/{instanceDomain}/{instanceId}")
-    Call<InstanceBoundary> getInstance(@Path(value="instanceDomain") String instanceDomain, @Path(value="instanceId") String instanceId);
+    Call<InstanceOfTypeUser> getInstanceTypeUser(@Path(value="instanceDomain") String instanceDomain, @Path(value="instanceId") String instanceId);
+
+    @GET("instances/{instanceDomain}/{instanceId}")
+    Call<InstanceOfTypeGroup> getInstanceTypeGroup(@Path(value="instanceDomain") String instanceDomain, @Path(value="instanceId") String instanceId);
 
     @GET("instances")
     Call<List<InstanceBoundary>> getAllInstances();

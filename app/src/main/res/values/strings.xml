@@ -36,6 +36,8 @@
     <string name="view_groups_member">Member</string>
     <string name="BUNDLE_USER_INSTANCE_BOUNDARY_KEY">USER_INTANCE_BOUNDARY</string>
     <string name="BUNDLE_USER_PHONE_NUM_KEY">USER_PHONE_NUMBER</string>
+    <string name="BUNDLE_GROUP_NAME_KEY">GROUP_NAME</string>
+    <string name="BUNDLE_GROUP_DESCRIPTION_KEY">GROUP_DESCRIPTION</string>
 
 
 </resources>

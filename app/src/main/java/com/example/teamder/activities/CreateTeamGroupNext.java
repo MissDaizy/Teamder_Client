@@ -1,7 +1,9 @@
 package com.example.teamder.activities;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,10 +17,25 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.teamder.R;
+import com.example.teamder.logic.DataManager;
+import com.example.teamder.models.InstanceOfTypeGroup;
+import com.example.teamder.models.InstanceOfTypeUser;
+import com.example.teamder.models.InstanceType;
+import com.example.teamder.models.RoleType;
+import com.example.teamder.models.UserBoundary;
+import com.example.teamder.models.UserId;
+import com.example.teamder.retrofit.RetrofitService;
+import com.example.teamder.service.JsonApiInstances;
+import com.example.teamder.service.JsonApiUsers;
 import com.google.android.material.button.MaterialButton;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CreateTeamGroupNext extends AppCompatActivity implements NumberPicker.OnValueChangeListener, AdapterView.OnItemSelectedListener {
 
@@ -53,14 +70,38 @@ public class CreateTeamGroupNext extends AppCompatActivity implements NumberPick
     // Open group
     private MaterialButton createTeamGroupNext_BTN_openGroup;
 
+    private Bundle bundle;
+    private DataManager dataManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView (R.layout.activity_create_teap_group_next);
 
+        dataManager=new DataManager ();
+        bundle=new Bundle ();
+
+        getUserBoundary();
+        //getGroupDetails();
+
         findViews();
         setViews();
+    }
 
+    private void getUserBoundary() {
+        bundle = getIntent ().getExtras ();
+        String userBoundaryJson = bundle.getString (getString (R.string.BUNDLE_USER_BOUNDARY_KEY));
+        String instanceBoundaryJson = bundle.getString (getString (R.string.BUNDLE_USER_INSTANCE_BOUNDARY_KEY));
+
+        dataManager.setUserBoundary ((new Gson ().fromJson (userBoundaryJson, UserBoundary.class)));
+        dataManager.setInstanceOfTypeUser (new Gson ().fromJson (instanceBoundaryJson, InstanceOfTypeUser.class));
+        Log.d ("pttt", "description in main page :"+dataManager.getUserDescription ());
+    }
+
+    private void getGroupDetails() {
+        bundle=getIntent ().getExtras ();
+        String groupName=bundle.getString (getString(R.string.BUNDLE_GROUP_NAME_KEY));
+        String groupDescription=bundle.getString (getString (R.string.BUNDLE_GROUP_DESCRIPTION_KEY));
     }
 
     private void setViews() {
@@ -137,9 +178,91 @@ public class CreateTeamGroupNext extends AppCompatActivity implements NumberPick
 
     private void createTeamGroupButten() {
         createTeamGroupNext_BTN_openGroup.setOnClickListener(view -> {
+            updateUserRoleType();
             //TODO:new intent, when is going after.
             //TODO: DIANCHIK's <spring:POST>
         });
+    }
+
+    private void updateUserRoleType() {
+        String userDomain = dataManager.getUserDomain ();
+        String userEmail = dataManager.getUserEmail ();
+
+        dataManager.updateUserRoleTypeData ();
+
+        RetrofitService retrofitService = new RetrofitService ();
+
+        JsonApiUsers jsonApiUsers = retrofitService.getRetrofit ().create (JsonApiUsers.class);
+
+        Call<Void> call = jsonApiUsers.updateUser (userDomain, userEmail, dataManager.getUserBoundary ());
+        call.enqueue (new Callback<Void> () {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful ()) {
+                    Log.d ("pttt", "" + response.code ());
+                }
+                if(dataManager.getUserBoundaryRoleType ().equals (RoleType.MANAGER.toString ())) {
+                    Log.d ("pttt", "Success!!! user role updated to manager");
+                    createInstanceOfTypeGroup ();
+                }
+                else
+                    startViewAllGroupsActivity();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.d ("pttt", "Failure!!!, Message: " + t.getMessage ());
+            }
+        });
+    }
+
+    private void startViewAllGroupsActivity() {
+        Intent intent=new Intent (this,ViewAllGroups.class);
+        startActivity (intent);
+    }
+
+    private void createInstanceOfTypeGroup() {
+            /*
+        Get group attributes from bundle in previous activity(CreateTeamGroup)
+         */
+        bundle=getIntent ().getExtras ();
+        String groupName=bundle.getString (getString(R.string.BUNDLE_GROUP_NAME_KEY));
+        String groupDescription=bundle.getString (getString (R.string.BUNDLE_GROUP_DESCRIPTION_KEY));
+
+        /*
+        Get group attributes from this activity
+         */
+        int numOfMembers=createTeamGroupNext_TXT_numOfMembers.getValue ();
+        String name = dataManager.getUserIdFromUserBoundary ();
+        UserId userId = dataManager.getUserBoundary ().getUserId ();
+        ArrayList<String> selectedItemsList=new ArrayList<> ();
+        selectedItemsList=selectItems;
+
+        // TODO: CHECK WHICH TYPE OF INSTANCE IS IT
+
+        dataManager.setInstanceOfTypeGroup (new InstanceOfTypeGroup (groupName, InstanceType.GROUP.toString (), userId, groupDescription, selectedItemsList,numOfMembers));
+        RetrofitService retrofitService = new RetrofitService ();
+
+        JsonApiInstances jsonApiInstances = retrofitService.getRetrofit ().create (JsonApiInstances.class);
+        Call<InstanceOfTypeGroup> call = jsonApiInstances.createInstanceGroup (dataManager.getInstanceOfTypeGroup ());
+
+        call.enqueue (new Callback<InstanceOfTypeGroup> () {
+            @Override
+            public void onResponse(Call<InstanceOfTypeGroup> call, Response<InstanceOfTypeGroup> response) {
+                if (!response.isSuccessful ()) {
+                    Log.d ("pttt", "" + response.code ());
+                }
+                Log.d ("pttt", "Success!!!, Created instance of type user");
+                dataManager.setInstanceOfTypeGroup (response.body ());
+                updateUserRoleType ();
+            }
+
+            @Override
+            public void onFailure(Call<InstanceOfTypeGroup> call, Throwable t) {
+                Log.d ("pttt", "Failure!!!, Message: " + t.getMessage ());
+            }
+        });
+
     }
 
     private void setTopicSpinner() {

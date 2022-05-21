@@ -55,14 +55,6 @@ public class LoginActivity extends AppCompatActivity {
         login_BTN_loginBtn.setOnClickListener(view -> {
             findUser(login_TF_userEmail.getText().toString(),
                     login_TF_userPassword.getText().toString());
-
-//            if(login == 1){
-//                startMainActivity();
-//            }
-//            else{
-//                Toast.makeText(this, "User not exist, please sign up.", Toast.LENGTH_LONG).show();
-//            }
-
         });
     }
 
@@ -90,7 +82,6 @@ public class LoginActivity extends AppCompatActivity {
                 else {
                     dataManager.setUserBoundary (response.body ());
                     getInstanceOfTypeUser();
-                    startMainActivity ();
                 }
             }
 
@@ -119,6 +110,8 @@ public class LoginActivity extends AppCompatActivity {
                     Log.d ("pttt", "" + response.code ());
                 }
                 dataManager.setInstanceOfTypeUser (response.body ().get (0));
+                Log.d ("pttt", "description :"+dataManager.getUserDescription ());
+                startMainActivity ();
             }
 
             @Override

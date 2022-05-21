@@ -21,7 +21,7 @@ public class InstanceOfTypeGroup extends InstanceBoundary {
     // List of users id's  of all pending members in group: ["userid1","userid2",...]
     private List<String> pendingMembers;
 
-    public InstanceOfTypeGroup(String name, String type, UserId userId,String Description, ArrayList<String> tags) {
+    public InstanceOfTypeGroup(String name, String type, UserId userId,String Description, ArrayList<String> tags,int numOfMembers) {
         super (name, type, userId);
         instanceAttributes = new HashMap<String, Object> ();
         members= new ArrayList<String> ();
@@ -34,6 +34,11 @@ public class InstanceOfTypeGroup extends InstanceBoundary {
     }
 
     public InstanceOfTypeGroup() {
+    }
+
+    @Override
+    public void setDescription(String descriptionField) {
+        instanceAttributes.put ("Description",descriptionField);
     }
 
 

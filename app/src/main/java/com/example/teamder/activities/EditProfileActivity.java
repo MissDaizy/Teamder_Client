@@ -12,12 +12,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.teamder.R;
 import com.example.teamder.logic.DataManager;
 import com.example.teamder.models.InstanceOfTypeUser;
+import com.example.teamder.models.RoleType;
 import com.example.teamder.models.UserBoundary;
+import com.example.teamder.retrofit.RetrofitService;
+import com.example.teamder.service.JsonApiInstances;
+import com.example.teamder.service.JsonApiUsers;
 import com.google.android.material.button.MaterialButton;
 import com.google.gson.Gson;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class EditProfileActivity extends AppCompatActivity {
-    Bundle bundle;
+    private Bundle bundle;
 
     private EditText editProfile_TF_Name;
     private EditText editProfile_TF_phoneNumber;
@@ -33,13 +41,12 @@ public class EditProfileActivity extends AppCompatActivity {
         dataManager = new DataManager ();
 
         findViews ();
-        setListeners ();
         getUserBoundary ();
         getUserInstance ();
         initFields ();
+        setListeners ();
+
     }
-
-
 
     private void initFields() {
         editProfile_TF_Name.setText (dataManager.getUsername ());
@@ -63,23 +70,120 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private void setListeners() {
         editProfile_BTN_next.setOnClickListener (view -> {
-//            Intent intent = getIntent(getApplicationContext (), MainPageActivity.class);
-//            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            String userBoundaryJson = new Gson ().toJson(dataManager.getUserBoundary ());
-            String instanceBoundaryJson = new Gson ().toJson(dataManager.getInstanceOfTypeUser ());
-            Intent intent = new Intent (this, MainPageActivity.class);
-            Bundle bundle =new Bundle ();
-            bundle.putString(getString(R.string.BUNDLE_USER_BOUNDARY_KEY),userBoundaryJson);
-            bundle.putString(getString(R.string.BUNDLE_USER_INSTANCE_BOUNDARY_KEY),instanceBoundaryJson);
-            intent.putExtras(bundle);
-            startActivity (intent);
+            updateUserRoleType ();
         });
     }
-    private static Intent getIntent(Context context, Class<?> cls) {
-        Intent intent = new Intent(context, cls);
-        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        return intent;
+
+    private void updateUserRoleType() {
+        String userDomain = dataManager.getUserDomain ();
+        String userEmail = dataManager.getUserEmail ();
+
+        dataManager.updateUserRoleTypeData ();
+
+        RetrofitService retrofitService = new RetrofitService ();
+
+        JsonApiUsers jsonApiUsers = retrofitService.getRetrofit ().create (JsonApiUsers.class);
+
+        Call<Void> call = jsonApiUsers.updateUser (userDomain, userEmail, dataManager.getUserBoundary ());
+        call.enqueue (new Callback<Void> () {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful ()) {
+                    Log.d ("pttt", "" + response.code ());
+                }
+                if (dataManager.getUserBoundaryRoleType ().equals (RoleType.MANAGER.toString ())) {
+                    Log.d ("pttt", "Success!!! user role updated to manager");
+                    updateUser ();
+                } else {
+                    startMainPageActivity ();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.d ("pttt", "Failure!!!, Message: " + t.getMessage ());
+            }
+        });
     }
+
+    private void updateUser() {
+        String usernameField = editProfile_TF_Name.getText ().toString ();
+        String userDomain = dataManager.getUserDomain ();
+        String userEmail = dataManager.getUserEmail ();
+
+        dataManager.updateUsername (usernameField);
+
+        RetrofitService retrofitService = new RetrofitService ();
+
+        JsonApiUsers jsonApiUsers = retrofitService.getRetrofit ().create (JsonApiUsers.class);
+
+        Call<Void> call = jsonApiUsers.updateUser (userDomain, userEmail, dataManager.getUserBoundary ());
+        call.enqueue (new Callback<Void> () {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful ()) {
+                    Log.d ("pttt", "" + response.code ());
+                }
+                Log.d ("pttt", "Success!!! user role updated to player");
+                updateUserInstance ();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.d ("pttt", "Failure!!!, Message: " + t.getMessage ());
+            }
+        });
+    }
+
+    private void updateUserInstance() {
+        String phoneNumField = editProfile_TF_phoneNumber.getText ().toString ();
+        String descriptionField = editProfile_TF_Description.getText ().toString ();
+
+        String instanceDomain = dataManager.getInstanceOfTypeUser ().getInstanceId ().getDomain ();
+        String instanceId = dataManager.getInstanceOfTypeUser ().getInstanceId ().getId ();
+        String userDomain = dataManager.getUserDomain ();
+        String userEmail = dataManager.getUserEmail ();
+
+        dataManager.updatePhoneNumber (phoneNumField);
+        dataManager.updateDescription (descriptionField);
+
+        RetrofitService retrofitService = new RetrofitService ();
+
+        JsonApiInstances jsonApiInstances = retrofitService.getRetrofit ().create (JsonApiInstances.class);
+        dataManager.getInstanceOfTypeUser ().setCreatedTimestamp (null);
+        Call<Void> call = jsonApiInstances.updateInstanceTypeUser (instanceDomain, instanceId, userDomain, userEmail, dataManager.getInstanceOfTypeUser ());
+
+        call.enqueue (new Callback<Void> () {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful ()) {
+                    Log.d ("pttt", "" + response.code ());
+                }
+                Log.d ("pttt", "Success!!! desceiption and phone updated");
+                updateUserRoleType ();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.d ("pttt", "Failure!!!, Message: " + t.getMessage ());
+
+            }
+        });
+
+
+    }
+
+    private void startMainPageActivity() {
+        String userBoundaryJson = new Gson ().toJson (dataManager.getUserBoundary ());
+        String instanceBoundaryJson = new Gson ().toJson (dataManager.getInstanceOfTypeUser ());
+        Intent intent = new Intent (this, MainPageActivity.class);
+        Bundle bundle = new Bundle ();
+        bundle.putString (getString (R.string.BUNDLE_USER_BOUNDARY_KEY), userBoundaryJson);
+        bundle.putString (getString (R.string.BUNDLE_USER_INSTANCE_BOUNDARY_KEY), instanceBoundaryJson);
+        intent.putExtras (bundle);
+        startActivity (intent);
+    }
+
     private void findViews() {
         editProfile_TF_Name = findViewById (R.id.editProfile_TF_Name);
         editProfile_TF_phoneNumber = findViewById (R.id.editProfile_TF_phoneNumber);
