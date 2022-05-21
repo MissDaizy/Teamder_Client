@@ -17,19 +17,21 @@ public class InstanceOfTypeGroup extends InstanceBoundary {
     */
     private HashMap<String, Object> instanceAttributes;
     // List of users id's  of all members in group: ["userid1","userid2",...]
-    private List<String> members;
+    private List<UserId> members;
     // List of users id's  of all pending members in group: ["userid1","userid2",...]
-    private List<String> pendingMembers;
+    private List<UserId> pendingMembers;
 
     public InstanceOfTypeGroup(String name, String type, UserId userId,String Description, ArrayList<String> tags,int numOfMembers) {
         super (name, type, userId);
         instanceAttributes = new HashMap<String, Object> ();
-        members= new ArrayList<String> ();
-        pendingMembers = new ArrayList<String> ();
+        members= new ArrayList<UserId> ();
+        pendingMembers = new ArrayList<UserId> ();
+        members.add (userId);
 
         instanceAttributes.put ("Description", Description);
         instanceAttributes.put ("Members", pendingMembers);
         instanceAttributes.put ("PendingMembers", pendingMembers);
+        instanceAttributes.put ("Number Of Members", numOfMembers);
         instanceAttributes.put ("Tags", tags);
     }
 
@@ -51,19 +53,19 @@ public class InstanceOfTypeGroup extends InstanceBoundary {
         this.instanceAttributes = instanceGroupAttributes;
     }
 
-    public List<String> getMembers() {
+    public List<UserId> getMembers() {
         return members;
     }
 
-    public void setMembers(List<String> members) {
+    public void setMembers(List<UserId> members) {
         this.members = members;
     }
 
-    public List<String> getPendingMembers() {
+    public List<UserId> getPendingMembers() {
         return pendingMembers;
     }
 
-    public void setPendingMembers(List<String> pendingMembers) {
+    public void setPendingMembers(List<UserId> pendingMembers) {
         this.pendingMembers = pendingMembers;
     }
 }
