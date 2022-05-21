@@ -96,9 +96,9 @@
                 <EditText
                     android:id="@+id/createProfile_TF_firstName"
                     android:layout_width="wrap_content"
-                    android:layout_height="25dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="30dp"
                     android:ems="10"
                     android:hint="First Name"
                     android:inputType="textPersonName"
@@ -106,79 +106,36 @@
                     android:textColorHint="@color/white"
                     tools:ignore="RtlCompat" />
 
-            <EditText
-                android:id="@+id/createProfile_TF_lastName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Last Name"
-                android:inputType="textPersonName"
-                android:textAlignment="textStart"
-                android:textColorHint="@color/white"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                tools:ignore="RtlCompat" />
+                <EditText
+                    android:id="@+id/createProfile_TF_lastName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Last Name"
+                    android:inputType="textPersonName"
+                    android:textAlignment="textStart"
+                    android:textColorHint="@color/white"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
+                    tools:ignore="RtlCompat" />
 
-            <EditText
-                android:id="@+id/createProfile_TF_phoneNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Phone Number"
-                android:inputType="number"
-                android:textAlignment="textStart"
-                android:textColorHint="@color/white"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                tools:ignore="RtlCompat" />
+                <EditText
+                    android:id="@+id/createProfile_TF_phoneNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Phone Number"
+                    android:inputType="number"
+                    android:textAlignment="textStart"
+                    android:textColorHint="@color/white"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
+                    tools:ignore="RtlCompat" />
             </LinearLayout>
 
 
         </LinearLayout>
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:layout_weight="1"-->
-<!--            android:orientation="horizontal">-->
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_weight="1"-->
-<!--                android:gravity="center"-->
-<!--                android:orientation="horizontal">-->
-
-<!--                <RadioButton-->
-<!--                    android:id="@+id/createProfile_RadioBtn_female"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_gravity="start"-->
-<!--                    android:text="Female"-->
-<!--                    android:textColor="@color/white" />-->
-<!--            </LinearLayout>-->
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_weight="1"-->
-<!--                android:gravity="center"-->
-<!--                android:orientation="horizontal">-->
-
-<!--                <RadioButton-->
-<!--                    android:id="@+id/createProfile_RadioBtn_male"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_gravity="start"-->
-<!--                    android:text="Male"-->
-<!--                    android:textColor="@color/white"-->
-
-<!--                    />-->
-
-<!--            </LinearLayout>-->
-
-
-<!--        </LinearLayout>-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -195,23 +152,5 @@
                 android:textSize="20sp"></com.google.android.material.button.MaterialButton>
         </LinearLayout>
     </LinearLayout>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </RelativeLayout>
