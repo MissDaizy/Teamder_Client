@@ -17,19 +17,19 @@ public class InstanceOfTypeGroup extends InstanceBoundary {
     */
     private HashMap<String, Object> instanceAttributes;
     // List of users id's  of all members in group: ["userid1","userid2",...]
-    private List<UserId> members;
+    private ArrayList<String> members;
     // List of users id's  of all pending members in group: ["userid1","userid2",...]
-    private List<UserId> pendingMembers;
+    private ArrayList<String> pendingMembers;
 
-    public InstanceOfTypeGroup(String name, String type, UserId userId,String Description, ArrayList<String> tags,int numOfMembers) {
-        super (name, type, userId);
+    public InstanceOfTypeGroup(String name,String groupName, String type, UserId userId,String Description, ArrayList<String> tags,int numOfMembers) {
+        super (groupName, type, userId);
         instanceAttributes = new HashMap<String, Object> ();
-        members= new ArrayList<UserId> ();
-        pendingMembers = new ArrayList<UserId> ();
-        members.add (userId);
+        members= new ArrayList<String> ();
+        pendingMembers = new ArrayList<String> ();
+        members.add (name);
 
         instanceAttributes.put ("Description", Description);
-        instanceAttributes.put ("Members", pendingMembers);
+        instanceAttributes.put ("Members", members);
         instanceAttributes.put ("PendingMembers", pendingMembers);
         instanceAttributes.put ("Number Of Members", numOfMembers);
         instanceAttributes.put ("Tags", tags);
@@ -53,19 +53,19 @@ public class InstanceOfTypeGroup extends InstanceBoundary {
         this.instanceAttributes = instanceGroupAttributes;
     }
 
-    public List<UserId> getMembers() {
+    public ArrayList<String> getMembers() {
         return members;
     }
 
-    public void setMembers(List<UserId> members) {
+    public void setMembers(ArrayList<String> members) {
         this.members = members;
     }
 
-    public List<UserId> getPendingMembers() {
+    public ArrayList<String> getPendingMembers() {
         return pendingMembers;
     }
 
-    public void setPendingMembers(List<UserId> pendingMembers) {
+    public void setPendingMembers(ArrayList<String> pendingMembers) {
         this.pendingMembers = pendingMembers;
     }
 }
