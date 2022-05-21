@@ -18,4 +18,4 @@
         tools:listitem="@layout/list_group_row" />
 
 
-    ></RelativeLayout>
+    </RelativeLayout>

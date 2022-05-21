@@ -240,7 +240,7 @@ public class CreateTeamGroupNext extends AppCompatActivity implements NumberPick
 
         // TODO: CHECK WHICH TYPE OF INSTANCE IS IT
 
-        dataManager.setInstanceOfTypeGroup (new InstanceOfTypeGroup (groupName, InstanceType.GROUP.toString (), userId, groupDescription, selectedItemsList,numOfMembers));
+        dataManager.setInstanceOfTypeGroup (new InstanceOfTypeGroup (name,groupName, InstanceType.GROUP.toString (), userId, groupDescription, selectedItemsList,numOfMembers));
         RetrofitService retrofitService = new RetrofitService ();
 
         JsonApiInstances jsonApiInstances = retrofitService.getRetrofit ().create (JsonApiInstances.class);
@@ -254,7 +254,7 @@ public class CreateTeamGroupNext extends AppCompatActivity implements NumberPick
                 }
                 Log.d ("pttt", "Success!!!, Created instance of type user");
                 dataManager.setInstanceOfTypeGroup (response.body ());
-                updateUserRoleType ();
+                updateUserLists();
             }
 
             @Override
@@ -263,6 +263,39 @@ public class CreateTeamGroupNext extends AppCompatActivity implements NumberPick
             }
         });
 
+    }
+
+    private void updateUserLists() {
+        String instanceDomain = dataManager.getInstanceOfTypeUser ().getInstanceId ().getDomain ();
+        String instanceId = dataManager.getInstanceOfTypeUser ().getInstanceId ().getId ();
+
+        String userDomain = dataManager.getUserDomain ();
+        String userEmail = dataManager.getUserEmail ();
+
+        dataManager.updateUserListsAfterGroupCreationData ();
+
+        RetrofitService retrofitService = new RetrofitService ();
+
+        JsonApiInstances jsonApiInstances = retrofitService.getRetrofit ().create (JsonApiInstances.class);
+        dataManager.getInstanceOfTypeUser ().setCreatedTimestamp (null);
+        Call<Void> call = jsonApiInstances.updateInstanceTypeUser (instanceDomain, instanceId, userDomain, userEmail, dataManager.getInstanceOfTypeUser ());
+
+        call.enqueue (new Callback<Void> () {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful ()) {
+                    Log.d ("pttt", "" + response.code ());
+                }
+                Log.d ("pttt", "Success!!! desceiption and phone updated");
+                updateUserRoleType ();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.d ("pttt", "Failure!!!, Message: " + t.getMessage ());
+
+            }
+        });
     }
 
     private void setTopicSpinner() {

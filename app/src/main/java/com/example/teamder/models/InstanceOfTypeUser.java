@@ -10,11 +10,11 @@ import java.util.Map;
 public class InstanceOfTypeUser extends InstanceBoundary {
     private HashMap<String, Object> instanceAttributes;
     // List of group id's  of all groups the user in: [groupId1,groupId2....]
-    private List<String> GroupsList;
+    private ArrayList<String> GroupsList;
     /* List of group id's  of the groups the user manages: [groupId1,groupId2....]
     GroupId  is the id of instance returned from POST request
     */
-    private List<String> GroupsManagingList;
+    private ArrayList<String> GroupsManagingList;
 
     public InstanceOfTypeUser(String name, String type, UserId userId,String description, ArrayList<String> tags,String phoneNum) {
         super (name, type, userId);
@@ -38,17 +38,17 @@ public class InstanceOfTypeUser extends InstanceBoundary {
         instanceAttributes.put ("User Description",descriptionField);
     }
 
-//    public void setGroupsList(List<String> groupsList) {
-//        GroupsList = groupsList;
-//    }
+    public void setGroupsList(ArrayList<String> groupsList) {
+        GroupsList = groupsList;
+    }
 
-//    public void setGroupsManagingList(List<String> groupsManagingList) {
-//        GroupsManagingList = groupsManagingList;
-//    }
+    public void setGroupsManagingList(ArrayList<String> groupsManagingList) {
+        GroupsManagingList = groupsManagingList;
+    }
 
-//    public void setInstanceAttributes(HashMap<String, Object> instanceAttributes) {
-//        this.instanceAttributes = instanceAttributes;
-//    }
+    public void setInstanceAttributes(HashMap<String, Object> instanceAttributes) {
+        this.instanceAttributes = instanceAttributes;
+    }
 
     public void setPhoneNumber(String updatedPhoneNum) {
         instanceAttributes.put ("Phone Number",updatedPhoneNum);
@@ -79,4 +79,11 @@ public class InstanceOfTypeUser extends InstanceBoundary {
         return instanceAttributes;
     }
 
+    public void addGroupToUsersList(GeneralId instanceId) {
+        List<GeneralId> groupsList=(ArrayList<GeneralId>) instanceAttributes.get ("Groups");
+        List<GeneralId> groupsManaging=(ArrayList<GeneralId>) instanceAttributes.get ("GroupsManaging");
+
+        instanceAttributes.put ("Groups",groupsList);
+        instanceAttributes.put ("GroupsManaging",groupsManaging);
+    }
 }
