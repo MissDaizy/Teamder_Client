@@ -36,27 +36,28 @@ import retrofit2.Response;
 public class MainPageActivity extends AppCompatActivity {
     private Bundle bundle;
 
-    //for exit with back
+    // For exit with back
     private int counterBack;
 
+    // For the view of 'swipe" zone
     private final int ROWS = 3;
     private final int COLS = 3;
-
-    BottomNavigationView navView;
-
     private MaterialTextView textView;
     private ImageView[][] groupsPictures;
     private MaterialTextView[][] groupsNames;
     private LinearLayout[][] groupsSections;
 
+    // Android's
+    BottomNavigationView navView;
     private ActivityMainPageBinding binding;
+
+    // To integrate with DB
+    private DataManager dataManager;
+
 
     private TextView textViewResult;
     private MaterialButton button;
-
     private String username;
-
-    private DataManager dataManager;
 
 
     ///////////////////////here is group fragment view values..
@@ -72,7 +73,7 @@ public class MainPageActivity extends AppCompatActivity {
         bundle =new Bundle ();
 
         findViews ();
-    //    getUserBoundary ();
+    //TODO back    getUserBoundary ();
 
         Log.d ("pttt", "onCreate: ");
         textView = findViewById (R.id.fragmentHome_TXT_continue);
@@ -142,13 +143,13 @@ public class MainPageActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //setup the user
     private void putInBundle() {
         String userBoundaryJson = new Gson ().toJson(dataManager.getUserBoundary ());
         String instanceBoundaryJson = new Gson ().toJson(dataManager.getInstanceOfTypeUser ());
         bundle.putString(getString(R.string.BUNDLE_USER_BOUNDARY_KEY),userBoundaryJson);
         bundle.putString(getString(R.string.BUNDLE_USER_INSTANCE_BOUNDARY_KEY),instanceBoundaryJson);
     }
-
 
     private void updateUserRoleType() {
         String userDomain = dataManager.getUserDomain ();
@@ -180,7 +181,6 @@ public class MainPageActivity extends AppCompatActivity {
         });
 
     }
-
 
     private void getUserBoundary() {
         bundle = getIntent ().getExtras ();

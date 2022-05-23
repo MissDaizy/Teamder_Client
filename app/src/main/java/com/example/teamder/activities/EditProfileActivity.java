@@ -42,9 +42,10 @@ public class EditProfileActivity extends AppCompatActivity {
         dataManager = new DataManager ();
 
         findViews ();
-    //    getUserBoundary ();
-    //    getUserInstance ();
-    //    initFields ();
+//TODO: back
+//        getUserBoundary ();
+//        getUserInstance ();
+//        initFields ();
         setListeners ();
 
     }

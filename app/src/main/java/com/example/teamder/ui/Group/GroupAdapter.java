@@ -21,9 +21,11 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.AppViewHolde
     List<InstanceOfTypeGroup> listOfGroups = new ArrayList<>();
 
     private LayoutInflater layoutInflater;
+    private OnNoteListener recyclerOnNoteListener;
 
-    public GroupAdapter(List<InstanceOfTypeGroup> _data){
+    public GroupAdapter(List<InstanceOfTypeGroup> _data, OnNoteListener onNoteListener){
         listOfGroups = _data;
+        this.recyclerOnNoteListener = onNoteListener;
     }
 
     @NonNull
@@ -37,7 +39,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.AppViewHolde
         //this value is passed to the view holder and getGroupsAmount
         // group is used to create the uis for the given array
         View view = layoutInflater.inflate(R.layout.list_group_row, parent, false);
-        return new AppViewHolder(view);
+        return new AppViewHolder(view, recyclerOnNoteListener);
     }
 
     @Override
@@ -56,22 +58,33 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.AppViewHolde
         return 15;
     }
 
-    public class AppViewHolder extends RecyclerView.ViewHolder{
+    public class AppViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         AppCompatImageView list_group_groupImage;
         MaterialTextView list_LBL_groupName;
         MaterialTextView liqueur_LBL_groupTopic;
         MaterialButton list_BTN_viewGroupBTN;
+        OnNoteListener onNoteListener;
 
 
-        public AppViewHolder(@NonNull View itemView) {
+        public AppViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
             super(itemView);
             list_group_groupImage=itemView.findViewById(R.id.list_group_groupImage);
             list_LBL_groupName=itemView.findViewById(R.id.list_LBL_groupName);
             liqueur_LBL_groupTopic=itemView.findViewById(R.id.liqueur_LBL_groupTopic);
             list_BTN_viewGroupBTN=itemView.findViewById(R.id.list_BTN_viewGroupBTN);
 
+            this.onNoteListener = onNoteListener;
+            itemView.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View v) {
+            onNoteListener.onNoteClick(getAbsoluteAdapterPosition());
+        }
+    }
+
+    public interface OnNoteListener{
+        void onNoteClick(int position);
     }
 }

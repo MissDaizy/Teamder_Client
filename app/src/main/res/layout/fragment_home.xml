@@ -18,8 +18,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:layout_weight="2"
             android:gravity="center">
 
             <TextView
@@ -37,9 +37,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:layout_marginTop="16dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -62,7 +62,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="11"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -81,9 +83,8 @@
 
 
             <LinearLayout
-                android:layout_width="200dp"
+                android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:layout_marginTop="16dp"
                 android:layout_weight="1"
                 android:background="#B6F4F4"
                 android:orientation="vertical">
@@ -198,7 +199,7 @@
 
                     <LinearLayout
                         android:id="@+id/fragmentHome_matrix10"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="#1895B4"
@@ -227,7 +228,7 @@
 
                     <LinearLayout
                         android:id="@+id/fragmentHome_matrix11"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="#1890B4"
@@ -256,7 +257,7 @@
 
                     <LinearLayout
                         android:id="@+id/fragmentHome_matrix12"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="#1895B4"
@@ -295,7 +296,7 @@
 
                     <LinearLayout
                         android:id="@+id/fragmentHome_matrix20"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="#1890B4"
@@ -325,7 +326,7 @@
 
                     <LinearLayout
                         android:id="@+id/fragmentHome_matrix21"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="#1895B4"
@@ -354,7 +355,7 @@
 
                     <LinearLayout
                         android:id="@+id/fragmentHome_matrix22"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="#1890B4"
@@ -402,11 +403,10 @@
 
         </LinearLayout>
 
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:layout_weight="5"
             android:gravity="center"
             android:orientation="vertical">
 

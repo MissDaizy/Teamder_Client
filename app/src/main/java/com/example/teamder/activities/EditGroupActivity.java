@@ -3,6 +3,8 @@ package com.example.teamder.activities;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.NumberPicker;
 
 import androidx.annotation.Nullable;
@@ -16,6 +18,7 @@ import com.google.android.material.textview.MaterialTextView;
 
 public class EditGroupActivity extends AppCompatActivity {
 
+    private ImageView editGroup_IMG_Close;
     private MaterialTextView createTeamGroupNext_TXT_groupName;
     private NumberPicker createTeamGroupNext_numberOfMembersPicker;
     private TextInputEditText editGroup_TXT_editProjectName;
@@ -34,6 +37,18 @@ public class EditGroupActivity extends AppCompatActivity {
     }
 
     private void setListeners() {
+
+        editGroup_BTN_applyChanges.setOnClickListener(v->{
+            //TODO: go to "Group" page view
+        });
+
+        editGroup_IMG_Close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: go to "chosen group" view
+            }
+        });
+
         editGroup_BTN_ShowTags.setOnClickListener(v -> {
             //set the spinner
 
@@ -45,8 +60,8 @@ public class EditGroupActivity extends AppCompatActivity {
             //TODO: DIANCHIK: save on DB
 
             //return to show this group with changes
-            Intent intent = new Intent (this, ViewChosenGroupActivity.class);
-            startActivity (intent);
+//            Intent intent = new Intent (this, ViewChosenGroupActivity.class);
+//            startActivity (intent);
         });
     }
 
@@ -63,5 +78,6 @@ public class EditGroupActivity extends AppCompatActivity {
         editGroup_BTN_ShowTags.findViewById(R.id.editGroup_BTN_ShowTags);
         editGroup_TXT_showTags.findViewById(R.id.editGroup_TXT_showTags);
         editGroup_BTN_applyChanges.findViewById(R.id.editGroup_BTN_applyChanges);
+        editGroup_IMG_Close.findViewById(R.id.editGroup_IMG_Close);
     }
 }

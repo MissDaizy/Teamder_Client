@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.teamder.R;
+import com.example.teamder.ui.Group.GroupAdapter;
 import com.example.teamder.ui.notifications.NotificationsFragment;
 import com.google.android.material.button.MaterialButton;
 
@@ -21,7 +22,8 @@ public class ViewAllMyTeamsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_all_my_teams);
+        //TODO: check
+        setContentView(R.layout.fragment_notifications);
         if(savedInstanceState != null){
 
             // load the fragment NotificationFragment to the @+od/container
@@ -31,10 +33,14 @@ public class ViewAllMyTeamsActivity extends AppCompatActivity {
                     NotificationsFragment.newInstance()).commitNow();
         }
 
-        findViews();
-        setListeners();
+//TODO: delete?...
+//        findViews();
+//        setListeners();
     }
 
+
+
+/*
     private void findViews() {
 
         list_BTN_viewGroupBTN = findViewById(R.id.list_BTN_viewGroupBTN);
@@ -59,4 +65,6 @@ public class ViewAllMyTeamsActivity extends AppCompatActivity {
 
 
     }
+
+ */
 }
