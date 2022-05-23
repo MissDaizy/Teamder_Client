@@ -53,12 +53,13 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         login_BTN_loginBtn.setOnClickListener(view -> {
-            findUser(login_TF_userEmail.getText().toString(),
+
+             findUser(login_TF_userEmail.getText().toString(),
                     login_TF_userPassword.getText().toString());
         });
     }
-
     private void startMainActivity() {
+
         String userBoundaryJson = new Gson ().toJson (dataManager.getUserBoundary ());
         String instanceTypeUserJson = new Gson ().toJson (dataManager.getInstanceOfTypeUser ());
         Intent intent = new Intent (this, MainPageActivity.class);

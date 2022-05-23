@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -37,7 +38,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CreateTeamGroupNext extends AppCompatActivity implements NumberPicker.OnValueChangeListener, AdapterView.OnItemSelectedListener {
+public class CreateGroupNextActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener, AdapterView.OnItemSelectedListener {
 
     // Number of members in group
     private NumberPicker createTeamGroupNext_TXT_numOfMembers;
@@ -76,7 +77,7 @@ public class CreateTeamGroupNext extends AppCompatActivity implements NumberPick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView (R.layout.activity_create_teap_group_next);
+        setContentView (R.layout.activity_create_group_next);
 
         dataManager=new DataManager ();
         bundle=new Bundle ();
@@ -178,6 +179,7 @@ public class CreateTeamGroupNext extends AppCompatActivity implements NumberPick
 
     private void createTeamGroupButten() {
         createTeamGroupNext_BTN_openGroup.setOnClickListener(view -> {
+
             updateUserRoleType();
             //TODO:new intent, when is going after.
             //TODO: DIANCHIK's <spring:POST>
@@ -217,7 +219,7 @@ public class CreateTeamGroupNext extends AppCompatActivity implements NumberPick
     }
 
     private void startViewAllGroupsActivity() {
-        Intent intent=new Intent (this, ViewAllGroupsActivity.class);
+        Intent intent=new Intent (this,ViewAllMyTeamsActivity.class);
         startActivity (intent);
     }
 
@@ -308,52 +310,23 @@ public class CreateTeamGroupNext extends AppCompatActivity implements NumberPick
         createTeamGroupNext_SPN_topics.setAdapter(topicAddapter);
         createTeamGroupNext_SPN_topics.setOnItemSelectedListener(this);
     }
-//delete
- /*   private void setTheCategories() {
-        listOfTopics = new ArrayList<>();
-        listOfTopics.add(0, "Choose Topic");
-        listOfTopics.add("Art");
-        listOfTopics.add("Fitness");
-        listOfTopics.add("Inspiration");
-        listOfTopics.add("Photography");
-        listOfTopics.add("Programming");
-        listOfTopics.add("Meditation");
-        listOfTopics.add("Music");
-        listOfTopics.add("Running");
-        listOfTopics.add("Traveling");
-        listOfTopics.add("Weddings");
-    }
-  */
+
 
     private void setNumberPicker() {
+        createTeamGroupNext_TXT_numOfMembers.setMinValue(0);
         createTeamGroupNext_TXT_numOfMembers.setMaxValue(100);
-        createTeamGroupNext_TXT_numOfMembers.setMinValue(0);
         createTeamGroupNext_TXT_numOfMembers.setOnValueChangedListener(this);
-//delete
-/*        createTeamGroupNext_TXT_numOfMembers = new NumberPicker(this);
-        //   LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        //  numberPicker.setLayoutParams(layoutParams);
-        createTeamGroupNext_TXT_numOfMembers.setMinValue(0);
-        createTeamGroupNext_TXT_numOfMembers.setMaxValue(10);
-        createTeamGroupNext_TXT_numOfMembers.setWrapSelectorWheel(true);
-        createTeamGroupNext_TXT_numOfMembers.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                String text = "Changed from " + oldVal + " to " + newVal;
-                Toast.makeText(CreateTeamGroupNext.this, text, Toast.LENGTH_SHORT).show();
-            }
-        });
- */
+
     }
 
     private void findViews() {
         showNumbers = findViewById(R.id.ShowNumbers);
         createTeamGroupNext_TXT_numOfMembers = findViewById(R.id.createTeamGroupNext_numberOfMembersPicker);
-        createTeamGroupNext_SPN_topics = findViewById(R.id.createTeamGroupNext_SPN_tags);
-        createTeamGroupNext_TXT_tagsView = findViewById(R.id.createTeamGroupNext_TXT_tagsView);
-        createTeamGroupNext_BTN_openGroup  = findViewById(R.id.createTeamGroupNext_BTN_openGroup);
-        createTeamGroupNext_BTN_ShowTags = findViewById(R.id.createTeamGroupNext_BTN_ShowTags);
-        createTeamGroupNext_BTN_Clear = findViewById(R.id.createTeamGroupNext_BTN_Clear);
+        createTeamGroupNext_SPN_topics = findViewById(R.id.createGroupNext_SPN_tags);
+        createTeamGroupNext_TXT_tagsView = findViewById(R.id.createGroupNext_TXT_tagsView);
+        createTeamGroupNext_BTN_openGroup  = findViewById(R.id.createGroupNext_BTN_openGroup);
+        createTeamGroupNext_BTN_ShowTags = findViewById(R.id.createGroupNext_BTN_ShowTags);
+        createTeamGroupNext_BTN_Clear = findViewById(R.id.createGroupNext_BTN_Clear);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.example.teamder.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,19 +9,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.teamder.databinding.ActivityMainPageBinding;
 import com.example.teamder.logic.DataManager;
 import com.example.teamder.models.RoleType;
-import com.example.teamder.models.InstanceOfTypeGroup;
 import com.example.teamder.models.InstanceOfTypeUser;
-import com.example.teamder.models.InstanceType;
-import com.example.teamder.models.UserId;
 import com.example.teamder.retrofit.RetrofitService;
-import com.example.teamder.service.JsonApiInstances;
 import com.example.teamder.service.JsonApiUsers;
 import com.example.teamder.R;
 import com.example.teamder.models.UserBoundary;
-import com.example.teamder.ui.dashboard.DashboardFragment;
-import com.example.teamder.ui.notifications.NotificationsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,12 +25,9 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.teamder.databinding.ActivityMainPageBinding;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
 import com.google.gson.Gson;
-
-import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,6 +35,9 @@ import retrofit2.Response;
 
 public class MainPageActivity extends AppCompatActivity {
     private Bundle bundle;
+
+    //for exit with back
+    private int counterBack;
 
     private final int ROWS = 3;
     private final int COLS = 3;
@@ -78,7 +72,7 @@ public class MainPageActivity extends AppCompatActivity {
         bundle =new Bundle ();
 
         findViews ();
- //       getUserBoundary ();
+    //    getUserBoundary ();
 
         Log.d ("pttt", "onCreate: ");
         textView = findViewById (R.id.fragmentHome_TXT_continue);
@@ -104,6 +98,15 @@ public class MainPageActivity extends AppCompatActivity {
         //updateUserRoleType ();
     }
 
+// TODO: delete... it is bad here .. only stay for case i need this again.
+//    private void setListeners() {
+//        //add new group
+//        groups_addGroup.setOnClickListener(v -> {
+//            Intent intent = new Intent (this, CreateGroupActivity.class);
+//            startActivity (intent);
+//        });
+//    }
+
     //Add "Tool bar" - settings in the top of current Screen
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -117,17 +120,23 @@ public class MainPageActivity extends AppCompatActivity {
         putInBundle();
         switch (item.getItemId()){
             case R.id.homeMenu_startProj: {
-                Intent intent = new Intent(MainPageActivity.this, CreateTeamGroup.class);
+                Intent intent = new Intent(MainPageActivity.this, CreateGroupActivity.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
                 break;
             }
 
             case R.id.homeMenu_myProfile: {
-                Intent intent = new Intent(MainPageActivity.this, EditProfileActivity.class);
+                Intent intent = new Intent(MainPageActivity.this, ViewProfileActivity.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
                 break;
+            }
+
+            case R.id.homeMenu_logout: {
+                Intent intent = new Intent(MainPageActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
         }
         return super.onOptionsItemSelected(item);
@@ -235,5 +244,22 @@ public class MainPageActivity extends AppCompatActivity {
         };
     }
 
+    // To go back "OUT" from app with phone
+    @Override
+    public void onBackPressed() {
+        counterBack++;
+        if(counterBack == 2){
+            //super.onBackPressed();
+            goToHomeScreen();
+        }
+    }
 
+    // "BACK" main page activity
+    public void goToHomeScreen() {
+        counterBack=0;
+        Intent startMain = new Intent(Intent.ACTION_MAIN);
+        startMain.addCategory(Intent.CATEGORY_HOME);
+        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(startMain);
+    }
 }

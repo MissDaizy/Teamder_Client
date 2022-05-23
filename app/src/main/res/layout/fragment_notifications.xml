@@ -1,74 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:background="#189AB4"
     tools:context=".ui.notifications.NotificationsFragment">
 
-    <LinearLayout
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
+
+           <com.google.android.material.button.MaterialButton
+               android:id="@+id/groups_addGroup"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center"
+               android:drawableLeft="@drawable/ic_add"
+               android:text="@string/button_add_group"
+               android:textColor="@color/black"
+               android:backgroundTint="@color/white"/>
+
+       </LinearLayout>
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal">
+           <com.google.android.material.button.MaterialButton
+               android:id="@+id/groups_all"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               android:backgroundTint="@color/white"
+               android:textColor="@color/black"
+               android:layout_gravity="center"
+               android:text="@string/button_all_group" />
+           <com.google.android.material.button.MaterialButton
+               android:id="@+id/groups_manager"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               android:backgroundTint="@color/white"
+               android:textColor="@color/black"
+               android:layout_gravity="center"
+               android:text="@string/button_manager_group" />
+
+           <com.google.android.material.button.MaterialButton
+               android:id="@+id/group_member"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               android:backgroundTint="@color/white"
+               android:textColor="@color/black"
+               android:layout_gravity="center"
+               android:text="@string/button_member_group" />
+       </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listOfGroups"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/groups_addGroup"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:drawableLeft="@drawable/ic_add"
-                android:text="@string/button_add_group"
-                android:textColor="@color/black"
-                android:backgroundTint="@color/white"/>
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="1"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:listitem="@layout/list_group_row" />
 
 
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="@color/white"
-                android:textColor="@color/black"
-                android:layout_gravity="center"
-                android:text="@string/button_all_group" />
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="@color/white"
-                android:textColor="@color/black"
-                android:layout_gravity="center"
-                android:text="@string/button_manager_group" />
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="@color/white"
-                android:textColor="@color/black"
-                android:layout_gravity="center"
-                android:text="@string/button_member_group" />
-        </LinearLayout>
-
-
-
-    </LinearLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
 

@@ -1,9 +1,10 @@
 package com.example.teamder.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.EditText;
 
 import androidx.annotation.Nullable;
@@ -30,7 +31,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private EditText editProfile_TF_Name;
     private EditText editProfile_TF_phoneNumber;
     private EditText editProfile_TF_Description;
-    private MaterialButton editProfile_BTN_next;
+    private MaterialButton editProfile_BTN_applyChanges;
 
     private DataManager dataManager;
 
@@ -41,9 +42,9 @@ public class EditProfileActivity extends AppCompatActivity {
         dataManager = new DataManager ();
 
         findViews ();
-        getUserBoundary ();
-        getUserInstance ();
-        initFields ();
+    //    getUserBoundary ();
+    //    getUserInstance ();
+    //    initFields ();
         setListeners ();
 
     }
@@ -69,9 +70,11 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void setListeners() {
-        editProfile_BTN_next.setOnClickListener (view -> {
+        editProfile_BTN_applyChanges.setOnClickListener (view -> {
             updateUserRoleType ();
+
         });
+
     }
 
     private void updateUserRoleType() {
@@ -188,6 +191,6 @@ public class EditProfileActivity extends AppCompatActivity {
         editProfile_TF_Name = findViewById (R.id.editProfile_TF_Name);
         editProfile_TF_phoneNumber = findViewById (R.id.editProfile_TF_phoneNumber);
         editProfile_TF_Description = findViewById (R.id.editProfile_TF_Description);
-        editProfile_BTN_next = findViewById (R.id.editProfile_BTN_next);
+        editProfile_BTN_applyChanges = findViewById (R.id.editProfile_BTN_applyChanges);
     }
 }

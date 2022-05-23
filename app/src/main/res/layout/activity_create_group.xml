@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#189AB4"
-    tools:context=".activities.CreateTeamGroup"
+    tools:context=".activities.CreateGroupActivity"
     >
 
     <LinearLayout
@@ -30,7 +30,7 @@
             </ImageView>
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/createTeamGroup_TXT_uploadPhoto"
+                android:id="@+id/createGroup_TXT_uploadPhoto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Upload Photo"
@@ -48,7 +48,7 @@
             android:orientation="vertical">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/createTeamGroup_TXT_titleProjectName"
+                android:id="@+id/createGroup_TXT_titleProjectName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -57,7 +57,7 @@
                 android:textSize="25dp"></com.google.android.material.textview.MaterialTextView>
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/createTeamGroup_TXT_setProjectName"
+                android:id="@+id/createGroup_TXT_setProjectName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
@@ -77,7 +77,7 @@
             android:orientation="vertical">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/createTeamGroup_TXT_titleProjectDescription"
+                android:id="@+id/createGroup_TXT_titleProjectDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -86,7 +86,7 @@
                 android:textSize="25dp"></com.google.android.material.textview.MaterialTextView>
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/createTeamGroup_TXT_setProjectDescription"
+                android:id="@+id/createGroup_TXT_setProjectDescription"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_margin="16dp"
@@ -104,7 +104,7 @@
             android:orientation="vertical">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/createTeamGroup_BTN_next"
+                android:id="@+id/createGroup_BTN_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Next">

@@ -1,6 +1,5 @@
 package com.example.teamder.ui.Group;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,59 +14,64 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
+public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.AppViewHolder> {
 
-public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.MyViewHolder> {
+    List<InstanceOfTypeGroup> listOfGroups = new ArrayList<>();
 
-    Context context;
-    ArrayList<InstanceOfTypeGroup> allGroups;
+    private LayoutInflater layoutInflater;
 
-    public GroupAdapter(Context context, ArrayList<InstanceOfTypeGroup> allGroups){
-
+    public GroupAdapter(List<InstanceOfTypeGroup> _data){
+        listOfGroups = _data;
     }
 
     @NonNull
     @Override
-    public GroupAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Here : giving look to the rows
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.list_group_row, parent, false);
-        return new GroupAdapter.MyViewHolder(view);
+    public AppViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        //onCreateViewHolder = what we will see in the recycler view
+
+
+        layoutInflater = LayoutInflater.from(parent.getContext());
+
+        //this value is passed to the view holder and getGroupsAmount
+        // group is used to create the uis for the given array
+        View view = layoutInflater.inflate(R.layout.list_group_row, parent, false);
+        return new AppViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull GroupAdapter.MyViewHolder holder, int position) {
-        // what data to update in each views (16:13)
+    public void onBindViewHolder(@NonNull AppViewHolder holder, int position) {
         /*
-        TODO: DIANCHIK's
-        holder.list_LBL_name.(allGroups.get(position).getName());
-        same for:
-        list_group_photo & liqueur_LBL_topic
+        TODO DIANCHIK's: when connecting to DB:
+        String groupName = listOfGroups[position].getGroupName();
+        holder.list_LBL_groupName.setText(groupName);
+
          */
     }
 
     @Override
     public int getItemCount() {
-        //the recycler view >> number of items to display
-
-        return allGroups.size();
+        //TODO DIANCHIK: //return listOfGroups.length;
+        return 15;
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
-        //similar to on create method, Grabbing the views
+    public class AppViewHolder extends RecyclerView.ViewHolder{
 
         AppCompatImageView list_group_groupImage;
         MaterialTextView list_LBL_groupName;
         MaterialTextView liqueur_LBL_groupTopic;
         MaterialButton list_BTN_viewGroupBTN;
 
-        public MyViewHolder(@NonNull View itemView) {
-            super(itemView);
 
+        public AppViewHolder(@NonNull View itemView) {
+            super(itemView);
             list_group_groupImage=itemView.findViewById(R.id.list_group_groupImage);
             list_LBL_groupName=itemView.findViewById(R.id.list_LBL_groupName);
             liqueur_LBL_groupTopic=itemView.findViewById(R.id.liqueur_LBL_groupTopic);
             list_BTN_viewGroupBTN=itemView.findViewById(R.id.list_BTN_viewGroupBTN);
+
         }
+
     }
 }

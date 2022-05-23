@@ -10,15 +10,19 @@
         android:title="My Profile"/>
 
     <item
+        android:id="@+id/homeMenu_logout"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_exit"
+        android:title="Logout" />
+
+    <item
         android:id="@+id/homeMenu_myPreferences"
-        android:title="Manage Preferences"/>
+        android:title="Manage Interests Preferences"/>
 
     <item
         android:id="@+id/homeMenu_startProj"
         android:title="Start Project"/>
-    <item
-        android:id="@+id/homeMenu_Settings"
-        android:title="Settings"/>
+
 
 
 </menu>
