@@ -10,13 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.teamder.R;
 import com.example.teamder.logic.DataManager;
-import com.example.teamder.models.InstanceBoundary;
 import com.example.teamder.models.InstanceOfTypeUser;
 import com.example.teamder.models.UserBoundary;
 import com.example.teamder.retrofit.RetrofitService;
-import com.example.teamder.service.ApiCallback;
 import com.example.teamder.service.JsonApiEnhanced;
-import com.example.teamder.service.JsonApiInstances;
 import com.example.teamder.service.JsonApiUsers;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
@@ -33,9 +30,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText login_TF_userPassword;
     private MaterialTextView login_TXT_signUp;
     private MaterialButton login_BTN_loginBtn;
-
-    private String userEmail;
-    private String userPassword;
 
     private DataManager dataManager;
 
@@ -67,55 +61,8 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void doRequest(final ApiCallback callback) {
-        RetrofitService retrofitService = new RetrofitService ();
-
-        JsonApiUsers jsonApiUsers = retrofitService.getRetrofit ().create (JsonApiUsers.class);
-        Call<UserBoundary> call = jsonApiUsers.getUserBoundary ("2022b.diana.ukrainsky", userEmail);
-        call.enqueue (new Callback<UserBoundary> () {
-            // If success
-            @Override
-            public void onResponse(Call<UserBoundary> call, Response<UserBoundary> response) {
-                if (!response.isSuccessful ()) {
-                    Log.d ("pttt", "" + response.code ());
-                    showMessage();
-                }
-                else {
-                    UserBoundary userBoundary = response.body ();
-                    callback.onSuccess (userBoundary); // pass the list
-                }
-            }
-
-            // If failed
-            @Override
-            public void onFailure(Call<UserBoundary> call, Throwable t) {
-                // Log error here since request failed
-                Log.e ("pttt", t.toString ());
-            }
-        });
-    }
-
-
-    public void onResume() {
-        super.onResume ();
-        doRequest (new ApiCallback () {
-            @Override
-            public void onSuccess(UserBoundary userBoundary) {
-                dataManager.setUserBoundary (userBoundary);
-                getInstanceOfTypeUser();
-                startMainActivity ();
-            }
-        });
-    }
-
     private void startSplashActivity() {
-//        String userEmail=login_TF_userEmail.getText().toString();
-//        String userPassword= login_TF_userPassword.getText().toString();
         Intent splashIntent = new Intent (this, SplashActivity.class);
-//        Bundle bundle = new Bundle ();
-//        bundle.putString (getString (R.string.BUNDLE_USER_EMAIL_LOGIN_KEY), userEmail);
-//        bundle.putString (getString (R.string.BUNDLE_USER_PASSWORD_LOGIN_KEY), userPassword);
-//        splashIntent.putExtras (bundle);
         startActivity (splashIntent);
     }
 
@@ -123,11 +70,11 @@ public class LoginActivity extends AppCompatActivity {
         String userBoundaryJson = new Gson ().toJson (dataManager.getUserBoundary ());
         String instanceTypeUserJson = new Gson ().toJson (dataManager.getInstanceOfTypeUser ());
         Intent intent = new Intent (this, MainPageActivity.class);
-        Intent splashIntent = new Intent (this, SplashActivity.class);
         Bundle bundle = new Bundle ();
         bundle.putString (getString (R.string.BUNDLE_USER_BOUNDARY_KEY), userBoundaryJson);
         bundle.putString (getString (R.string.BUNDLE_USER_INSTANCE_BOUNDARY_KEY), instanceTypeUserJson);
         intent.putExtras (bundle);
+        SplashActivity.singleSplashActivity.finish();
 
         startActivity (intent);
     }
@@ -142,8 +89,10 @@ public class LoginActivity extends AppCompatActivity {
         call.enqueue(new Callback<UserBoundary> () {
             @Override
             public void onResponse(Call<UserBoundary> call, Response<UserBoundary> response) {
-                if(!response.isSuccessful())
-                    showMessage();
+                if(!response.isSuccessful()) {
+                    showMessage ();
+                    SplashActivity.singleSplashActivity.finish();
+                }
                 else {
                     dataManager.setUserBoundary (response.body ());
                     getInstanceOfTypeUser();

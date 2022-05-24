@@ -1,5 +1,6 @@
 package com.example.teamder.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +16,8 @@ import com.google.android.material.button.MaterialButton;
 import com.google.gson.Gson;
 
 public class CreateProfileDescActivity extends AppCompatActivity {
+    public static Activity singleCreateProfileDescActivity;
+
     private EditText createProfileDesc_TF_userDescription;
     private MaterialButton createProfileDesc_BTN_next;
 
@@ -24,7 +27,9 @@ public class CreateProfileDescActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
+        singleCreateProfileDescActivity =this;
         setContentView (R.layout.activity_create_profile_desc);
+
         dataManager =new DataManager ();
 
         findViews();

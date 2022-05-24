@@ -166,8 +166,8 @@ public class DataManager {
         instanceOfTypeUser.getInstanceAttributes ().put ("GroupsManaging",groupsManaging);
     }
 
-    public String getUserTags() {
-        return instanceOfTypeUser.getInstanceAttributes ().get ("Tags").toString ();
+    public ArrayList<String> getUserTagsList() {
+        return (ArrayList<String>)instanceOfTypeUser.getInstanceAttributes ().get ("Tags");
     }
 }
 

@@ -1,5 +1,6 @@
 package com.example.teamder.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,7 +21,6 @@ import com.example.teamder.models.NewUserBoundary;
 import com.example.teamder.models.UserBoundary;
 import com.example.teamder.models.UserId;
 import com.example.teamder.retrofit.RetrofitService;
-import com.example.teamder.service.ApiCallback;
 import com.example.teamder.service.JsonApiInstances;
 import com.example.teamder.service.JsonApiUsers;
 import com.google.android.material.button.MaterialButton;
@@ -34,6 +34,8 @@ import retrofit2.Response;
 
 //TODO: put all server methods in package server
 public class CreateProfileInterestsActivity extends AppCompatActivity {
+    public static Activity singleCreateProfileInterestsActivity;
+
     private MaterialButton createProfileInterests_BTN_finish;
     private Spinner createProfileDesc_SPIN_spinnerTags;
 
@@ -47,6 +49,8 @@ public class CreateProfileInterestsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_create_profile_interests);
+        singleCreateProfileInterestsActivity=this;
+
         dataManager = new DataManager ();
 
         findViews ();
@@ -115,6 +119,12 @@ public class CreateProfileInterestsActivity extends AppCompatActivity {
         bundle.putString(getString(R.string.BUNDLE_USER_BOUNDARY_KEY),userBoundaryJson);
         bundle.putString(getString(R.string.BUNDLE_USER_INSTANCE_BOUNDARY_KEY),instanceBoundaryJson);
         intent.putExtras(bundle);
+        //Finish all Sign Up process activities so can't go back to them:
+        SplashActivity.singleSplashActivity.finish();
+        SignUpActivity.singleSignUpActivity.finish ();
+        CreateProfileActivity.singleCreateProfileActivity.finish ();
+        CreateProfileDescActivity.singleCreateProfileDescActivity.finish ();
+        CreateProfileInterestsActivity.singleCreateProfileInterestsActivity.finish ();
         startActivity (intent);
     }
 

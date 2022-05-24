@@ -3,8 +3,6 @@ package com.example.teamder.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.EditText;
 
 import androidx.annotation.Nullable;
@@ -175,8 +173,6 @@ public class EditProfileActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     private void startMainPageActivity() {
@@ -187,6 +183,7 @@ public class EditProfileActivity extends AppCompatActivity {
         bundle.putString (getString (R.string.BUNDLE_USER_BOUNDARY_KEY), userBoundaryJson);
         bundle.putString (getString (R.string.BUNDLE_USER_INSTANCE_BOUNDARY_KEY), instanceBoundaryJson);
         intent.putExtras (bundle);
+        SplashActivity.singleSplashActivity.finish();
         startActivity (intent);
     }
 

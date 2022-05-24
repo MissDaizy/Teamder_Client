@@ -82,7 +82,6 @@ public class CreateGroupNextActivity extends AppCompatActivity implements Number
         bundle=new Bundle ();
 
         getUserBoundary();
-        //getGroupDetails();
 
         findViews();
         setViews();
@@ -96,12 +95,6 @@ public class CreateGroupNextActivity extends AppCompatActivity implements Number
         dataManager.setUserBoundary ((new Gson ().fromJson (userBoundaryJson, UserBoundary.class)));
         dataManager.setInstanceOfTypeUser (new Gson ().fromJson (instanceBoundaryJson, InstanceOfTypeUser.class));
         Log.d ("pttt", "description in main page :"+dataManager.getUserDescription ());
-    }
-
-    private void getGroupDetails() {
-        bundle=getIntent ().getExtras ();
-        String groupName=bundle.getString (getString(R.string.BUNDLE_GROUP_NAME_KEY));
-        String groupDescription=bundle.getString (getString (R.string.BUNDLE_GROUP_DESCRIPTION_KEY));
     }
 
     private void setViews() {
@@ -218,11 +211,6 @@ public class CreateGroupNextActivity extends AppCompatActivity implements Number
         });
     }
 
-    private void startViewAllGroupsActivity() {
-        Intent intent=new Intent (this,ViewAllMyTeamsActivity.class);
-        startActivity (intent);
-    }
-
     private void createInstanceOfTypeGroup() {
             /*
         Get group attributes from bundle in previous activity(CreateTeamGroup)
@@ -266,6 +254,9 @@ public class CreateGroupNextActivity extends AppCompatActivity implements Number
         });
     }
 
+    /**
+     * Update user lists: Groups List & GroupsManaging List to contain UserId(userDomain@@userEmail)
+     */
     private void updateUserLists() {
         String instanceDomain = dataManager.getInstanceOfTypeUser ().getInstanceId ().getDomain ();
         String instanceId = dataManager.getInstanceOfTypeUser ().getInstanceId ().getId ();
@@ -393,8 +384,14 @@ public class CreateGroupNextActivity extends AppCompatActivity implements Number
 
     }
 
+    private void startViewAllGroupsActivity() {
+        Intent intent=new Intent (this,ViewAllMyTeamsActivity.class);
+        startActivity (intent);
+    }
+
     private void startSplashActivity() {
         Intent splashIntent = new Intent (this, SplashActivity.class);
         startActivity (splashIntent);
     }
+
 }
