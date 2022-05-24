@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.teamder.databinding.FragmentNotificationsBinding;
 
 public class NotificationsFragment extends Fragment {
-
     private FragmentNotificationsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,

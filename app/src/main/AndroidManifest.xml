@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -16,53 +15,36 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/Theme.Teamder"
-        tools:targetApi="31"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name=".activities.SplashActivity"
+            android:exported="true" >
 
+        </activity>
         <activity
             android:name=".activities.EditProfileActivity"
-            android:exported="true">
-
-        </activity>
-
+            android:exported="true"></activity>
         <activity
             android:name=".activities.ViewProfile"
-            android:exported="true">
-
-        </activity>
-
-       <activity
+            android:exported="true"></activity>
+        <activity
             android:name=".activities.ManageMenu"
-            android:exported="true">
-
-        </activity>
-
+            android:exported="true"></activity>
         <activity
             android:name=".activities.ViewAllGroups"
-            android:exported="true">
-
-        </activity>
-
-
-        <activity android:name=".activities.CreateTeamGroup"
-            android:exported="true">
-
-        </activity>
-
+            android:exported="true"></activity>
+        <activity
+            android:name=".activities.CreateTeamGroup"
+            android:exported="true"></activity>
         <activity
             android:name=".activities.CreateTeamGroupNext"
-            android:exported="true">
-
-        </activity>
-
+            android:exported="true"></activity>
         <activity
             android:name=".activities.MainPageActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:usesCleartextTraffic="true">
-
-        </activity>
-
+            android:usesCleartextTraffic="true"></activity>
         <activity
             android:name=".activities.CreateProfileInterestsActivity"
             android:exported="false" />
@@ -80,6 +62,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
