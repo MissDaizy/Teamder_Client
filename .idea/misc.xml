@@ -5,6 +5,8 @@
       <map>
         <entry key="..\:/Users/diana/AndroidStudioProjects/TeamderClient/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1" />
         <entry key="..\:/Users/diana/AndroidStudioProjects/TeamderClient/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1625" />
+        <entry key="..\:/Users/diana/AndroidStudioProjects/TeamderClient/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1975" />
+        <entry key="..\:/Users/diana/AndroidStudioProjects/TeamderClient/app/src/main/res/layout/activity_create_group_next.xml" value="0.2522146951537259" />
         <entry key="..\:/Users/diana/AndroidStudioProjects/TeamderClient/app/src/main/res/layout/activity_create_profile.xml" value="0.2" />
         <entry key="..\:/Users/diana/AndroidStudioProjects/TeamderClient/app/src/main/res/layout/activity_create_profile_desc.xml" value="0.1" />
         <entry key="..\:/Users/diana/AndroidStudioProjects/TeamderClient/app/src/main/res/layout/activity_create_profile_interests.xml" value="0.153125" />
@@ -17,11 +19,15 @@
         <entry key="..\:/Users/diana/AndroidStudioProjects/TeamderClient/app/src/main/res/layout/activity_main_page.xml" value="0.25" />
         <entry key="..\:/Users/diana/AndroidStudioProjects/TeamderClient/app/src/main/res/layout/activity_main_page_asconstraint.xml" value="0.17604166666666668" />
         <entry key="..\:/Users/diana/AndroidStudioProjects/TeamderClient/app/src/main/res/layout/activity_sign_up.xml" value="0.153125" />
+        <entry key="..\:/Users/diana/AndroidStudioProjects/TeamderClient/app/src/main/res/layout/activity_splash.xml" value="0.27605633802816903" />
+        <entry key="..\:/Users/diana/AndroidStudioProjects/TeamderClient/app/src/main/res/layout/activity_view_all_groups.xml" value="0.1828125" />
         <entry key="..\:/Users/diana/AndroidStudioProjects/TeamderClient/app/src/main/res/layout/fragment_dashboard.xml" value="0.140625" />
         <entry key="..\:/Users/diana/AndroidStudioProjects/TeamderClient/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Users/diana/AndroidStudioProjects/TeamderClient/app/src/main/res/layout/fragment_home_in_future.xml" value="0.18072916666666666" />
         <entry key="..\:/Users/diana/AndroidStudioProjects/TeamderClient/app/src/main/res/layout/fragment_my_groups.xml" value="0.2" />
         <entry key="..\:/Users/diana/AndroidStudioProjects/TeamderClient/app/src/main/res/layout/fragment_notifications.xml" value="0.153125" />
+        <entry key="..\:/Users/diana/AndroidStudioProjects/TeamderClient/app/src/main/res/layout/list_group_row.xml" value="0.18958333333333333" />
+        <entry key="..\:/Users/diana/AndroidStudioProjects/TeamderClient/app/src/main/res/layout/view_user_profile.xml" value="0.24270833333333333" />
         <entry key="..\:/Users/diana/AndroidStudioProjects/TeamderClient/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="..\:/Users/diana/AndroidStudioProjects/TeamderClient/app/src/main/res/menu/botton_group_view.xml" value="0.234375" />
         <entry key="..\:/Users/diana/AndroidStudioProjects/TeamderClient/app/src/main/res/menu/home_menu.xml" value="0.16197916666666667" />

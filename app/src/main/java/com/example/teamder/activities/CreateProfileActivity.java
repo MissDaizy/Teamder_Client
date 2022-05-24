@@ -1,5 +1,6 @@
 package com.example.teamder.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +23,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CreateProfileActivity extends AppCompatActivity {
+    public static Activity singleCreateProfileActivity;
+
     private EditText createProfile_TF_firstName;
     private EditText createProfile_TF_lastName;
     private EditText createProfile_TF_phoneNumber;
@@ -35,7 +38,9 @@ public class CreateProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
+        singleCreateProfileActivity=this;
         setContentView (R.layout.activity_create_profile);
+
         dataManager = new DataManager ();
 
         findViews ();

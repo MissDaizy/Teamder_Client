@@ -1,6 +1,7 @@
 package com.example.teamder.activities;
 
 import android.content.DialogInterface;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,6 +33,8 @@ import retrofit2.Response;
 
 //TODO: put all server methods in package server
 public class CreateProfileInterestsActivity extends AppCompatActivity {
+    public static Activity singleCreateProfileInterestsActivity;
+
     private MaterialButton createProfileInterests_BTN_finish;
     //private Spinner createProfileDesc_SPIN_spinnerTags;
 
@@ -65,6 +68,8 @@ public class CreateProfileInterestsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_create_profile_interests);
+        singleCreateProfileInterestsActivity=this;
+
         dataManager = new DataManager ();
 
         findViews ();
@@ -195,51 +200,57 @@ public class CreateProfileInterestsActivity extends AppCompatActivity {
         bundle.putString(getString(R.string.BUNDLE_USER_BOUNDARY_KEY),userBoundaryJson);
         bundle.putString(getString(R.string.BUNDLE_USER_INSTANCE_BOUNDARY_KEY),instanceBoundaryJson);
         intent.putExtras(bundle);
+        //Finish all Sign Up process activities so can't go back to them:
+        SplashActivity.singleSplashActivity.finish();
+        SignUpActivity.singleSignUpActivity.finish ();
+        CreateProfileActivity.singleCreateProfileActivity.finish ();
+        CreateProfileDescActivity.singleCreateProfileDescActivity.finish ();
+        CreateProfileInterestsActivity.singleCreateProfileInterestsActivity.finish ();
         startActivity (intent);
     }
 
-        private void createInstanceBoundaryOfTypeUser() {
-            //TODO: move this to data mangaer
-            bundle = getIntent ().getExtras ();
-            String phoneNumber = bundle.getString (getString (R.string.BUNDLE_USER_PHONE_NUM_KEY));
-            String name = dataManager.getUserIdFromUserBoundary ();
-            UserId userId = dataManager.getUserBoundary ().getUserId ();
+    private void createInstanceBoundaryOfTypeUser() {
+        //TODO: move this to data mangaer
+        bundle = getIntent ().getExtras ();
+        String phoneNumber = bundle.getString (getString (R.string.BUNDLE_USER_PHONE_NUM_KEY));
+        String name = dataManager.getUserIdFromUserBoundary ();
+        UserId userId = dataManager.getUserBoundary ().getUserId ();
 
 
-            //TODO: CHECK WHICH TYPE OF INSTANCE IS IT
-            // public InstanceOfTypeUser(String name, String type, UserId userId,String description, ArrayList<String> tags) {
+        //TODO: CHECK WHICH TYPE OF INSTANCE IS IT
+        // public InstanceOfTypeUser(String name, String type, UserId userId,String description, ArrayList<String> tags) {
 
-            dataManager.setInstanceOfTypeUser (new InstanceOfTypeUser (name, InstanceType.USER.toString (), userId, userDesc, tags,phoneNumber));
+        dataManager.setInstanceOfTypeUser (new InstanceOfTypeUser (name, InstanceType.USER.toString (), userId, userDesc, tags,phoneNumber));
 
-            RetrofitService retrofitService = new RetrofitService ();
+        RetrofitService retrofitService = new RetrofitService ();
 
-            JsonApiInstances jsonApiInstances = retrofitService.getRetrofit ().create (JsonApiInstances.class);
-            Call<InstanceOfTypeUser> call = jsonApiInstances.createInstanceUser (dataManager.getInstanceOfTypeUser ());
+        JsonApiInstances jsonApiInstances = retrofitService.getRetrofit ().create (JsonApiInstances.class);
+        Call<InstanceOfTypeUser> call = jsonApiInstances.createInstanceUser (dataManager.getInstanceOfTypeUser ());
 
-            call.enqueue (new Callback<InstanceOfTypeUser> () {
-                @Override
-                public void onResponse(Call<InstanceOfTypeUser> call, Response<InstanceOfTypeUser> response) {
-                    if (!response.isSuccessful ()) {
-                        Log.d ("pttt", "" + response.code ());
-                    }
-                    Log.d ("pttt", "Success!!!, Created instance of type user");
-                    dataManager.setInstanceOfTypeUser (response.body ());
-                    Log.d ("pttt", "description"+dataManager.getUserDescription ());
-                    updateUserRoleType();
+        call.enqueue (new Callback<InstanceOfTypeUser> () {
+            @Override
+            public void onResponse(Call<InstanceOfTypeUser> call, Response<InstanceOfTypeUser> response) {
+                if (!response.isSuccessful ()) {
+                    Log.d ("pttt", "" + response.code ());
                 }
+                Log.d ("pttt", "Success!!!, Created instance of type user");
+                dataManager.setInstanceOfTypeUser (response.body ());
+                Log.d ("pttt", "description"+dataManager.getUserDescription ());
+                updateUserRoleType();
+            }
 
-                @Override
-                public void onFailure(Call<InstanceOfTypeUser> call, Throwable t) {
-                    Log.d ("pttt", "Failure!!!, Message: " + t.getMessage ());
-                }
-            });
-        }
+            @Override
+            public void onFailure(Call<InstanceOfTypeUser> call, Throwable t) {
+                Log.d ("pttt", "Failure!!!, Message: " + t.getMessage ());
+            }
+        });
+    }
 
-        /**
-         * Creates new NewUserBoundary and retrieves from server UserBoundary
-         * Input: New User Boundary (From this client)
-         * Output: User Boundary (From server)
-         */
+    /**
+     * Creates new NewUserBoundary and retrieves from server UserBoundary
+     * Input: New User Boundary (From this client)
+     * Output: User Boundary (From server)
+     */
     private void createUserBoundary() {
         startSplashActivity();
 
@@ -314,6 +325,4 @@ public class CreateProfileInterestsActivity extends AppCompatActivity {
         createProfileInterests_TXT_tagsView = findViewById(R.id.createProfileInterests_TXT_tagsView);
 
     }
-
-
 }

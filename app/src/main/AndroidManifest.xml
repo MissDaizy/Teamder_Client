@@ -59,21 +59,24 @@
             android:exported="true"
             android:label="@string/app_name"
             android:usesCleartextTraffic="true">
-
         </activity>
 
         <activity
             android:name=".activities.CreateProfileInterestsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:launchMode= "singleInstance" />
         <activity
             android:name=".activities.CreateProfileDescActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:launchMode= "singleInstance" />
         <activity
             android:name=".activities.CreateProfileActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:launchMode= "singleInstance" />
         <activity
             android:name=".activities.SignUpActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:launchMode= "singleInstance" />
         <activity
             android:name=".activities.LoginActivity"
             android:exported="true">
@@ -85,6 +88,7 @@
 
         <activity
             android:name=".activities.SplashActivity"
+            android:launchMode= "singleInstance"
             android:exported="true">
         </activity>
     </application>

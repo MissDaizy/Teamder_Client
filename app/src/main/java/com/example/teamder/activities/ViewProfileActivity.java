@@ -16,6 +16,8 @@ import com.example.teamder.models.InstanceOfTypeUser;
 import com.example.teamder.models.UserBoundary;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+
 public class ViewProfileActivity extends AppCompatActivity {
 
     private ImageView ViewProfile_IMG_logo;
@@ -50,9 +52,24 @@ public class ViewProfileActivity extends AppCompatActivity {
         ViewProfile_TXT_userName.setText (dataManager.getUsername ());
         ViewProfile_TXT_ProfileDesc.setText (dataManager.getUserDescription ());
         ViewProfile_TXT_PhoneNumber.setText (dataManager.getPhoneNumber ());
-        ViewProfile_TXT_interestsTags.setText (dataManager.getUserTags());
         ViewProfile_TXT_userEmail.setText (dataManager.getUserEmail ());
+        ViewProfile_TXT_interestsTags.setText(createTextWithStringBuilder(dataManager.getUserTagsList ()));
     }
+
+    /**
+     * Function that creating text with String Builder
+     * @param tagsList
+     * @return
+     */
+    private String createTextWithStringBuilder(ArrayList<String> tagsList) {
+        StringBuilder sb = new StringBuilder();
+        for (Object item:tagsList){
+            sb.append(item.toString() + "\n");
+        }
+        return sb.toString ();
+    }
+
+
 
     private void getUserInstance() {
         bundle = getIntent ().getExtras ();

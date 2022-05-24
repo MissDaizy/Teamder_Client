@@ -1,5 +1,6 @@
 package com.example.teamder.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +16,8 @@ import com.google.android.material.textview.MaterialTextView;
 import com.google.gson.Gson;
 
 public class SignUpActivity extends AppCompatActivity {
+    public static Activity singleSignUpActivity;
+
     private EditText signUp_TF_userEmail;
     private EditText signUp_TF_userPassword;
     private EditText signUp_TF_reEnterPassword;
@@ -24,6 +27,7 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
+        singleSignUpActivity=this;
         setContentView (R.layout.activity_sign_up);
 
         findViews();
