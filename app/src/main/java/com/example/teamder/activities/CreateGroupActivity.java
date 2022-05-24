@@ -14,7 +14,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
 
-public class CreateTeamGroup extends AppCompatActivity {
+public class CreateGroupActivity extends AppCompatActivity {
     private TextInputEditText createTeamGroup_TXT_setProjectName;
     private TextInputEditText createTeamGroup_TXT_setProjectDescription;
     private MaterialButton createTeamGroup_BTN_next;
@@ -25,7 +25,7 @@ public class CreateTeamGroup extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
-        setContentView (R.layout.activity_create_team_group);
+        setContentView (R.layout.activity_create_group);
 
         dataManager=new DataManager ();
         bundle=new Bundle ();
@@ -45,7 +45,7 @@ public class CreateTeamGroup extends AppCompatActivity {
     }
 
     private void startCreateTeamGroupNextActivity() {
-        Intent intent = new Intent(CreateTeamGroup.this, CreateTeamGroupNext.class);
+        Intent intent = new Intent(CreateGroupActivity.this, CreateGroupNextActivity.class);
         intent.putExtras(bundle);
         startActivity(intent);
     }
@@ -64,9 +64,9 @@ public class CreateTeamGroup extends AppCompatActivity {
     }
 
     private void findViews() {
-        createTeamGroup_TXT_setProjectName = findViewById(R.id.createTeamGroup_TXT_setProjectName);
-        createTeamGroup_TXT_setProjectDescription = findViewById(R.id.createTeamGroup_TXT_setProjectDescription);
-        createTeamGroup_BTN_next = findViewById(R.id.createTeamGroup_BTN_next);
+        createTeamGroup_TXT_setProjectName = findViewById(R.id.createGroup_TXT_setProjectName);
+        createTeamGroup_TXT_setProjectDescription = findViewById(R.id.createGroup_TXT_setProjectDescription);
+        createTeamGroup_BTN_next = findViewById(R.id.createGroup_BTN_next);
     }
 
     private void getUserBoundary() {
@@ -78,6 +78,7 @@ public class CreateTeamGroup extends AppCompatActivity {
         dataManager.setInstanceOfTypeUser (new Gson ().fromJson (instanceBoundaryJson, InstanceOfTypeUser.class));
         Log.d ("pttt", "description in main page :"+dataManager.getUserDescription ());
     }
+
 
 
 

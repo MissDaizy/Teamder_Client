@@ -2,11 +2,9 @@ package com.example.teamder.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.teamder.R;
@@ -31,7 +29,7 @@ public class ManageMenu extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.homeMenu_startProj: {
-                Intent intent = new Intent(ManageMenu.this, CreateTeamGroup.class);
+                Intent intent = new Intent(ManageMenu.this, CreateGroupActivity.class);
                 //Bundle bundle = new Bundle();
                 //intent.putExtras(bundle);
                 startActivity(intent);

@@ -10,11 +10,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.teamder.R;
 import com.example.teamder.logic.DataManager;
+import com.example.teamder.models.InstanceBoundary;
 import com.example.teamder.models.InstanceOfTypeUser;
 import com.example.teamder.models.UserBoundary;
 import com.example.teamder.retrofit.RetrofitService;
 import com.example.teamder.service.ApiCallback;
 import com.example.teamder.service.JsonApiEnhanced;
+import com.example.teamder.service.JsonApiInstances;
 import com.example.teamder.service.JsonApiUsers;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
@@ -160,7 +162,6 @@ public class LoginActivity extends AppCompatActivity {
         TODO: search in data base if user exists WITH PASSWORD ALSO
          */
     }
-
 
     private void getInstanceOfTypeUser() {
         String name=dataManager.getUserIdFromUserBoundary ();

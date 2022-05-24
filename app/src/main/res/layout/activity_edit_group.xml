@@ -5,37 +5,44 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="#189AB4"
-    tools:context=".activities.CreateTeamGroupNext">
+    tools:context=".activities.EditGroupActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="end"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="start"
-            android:orientation="vertical">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/createTeamGroupNext_TXT_title"
+                android:id="@+id/createTeamGroupNext_TXT_groupName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center|start"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="30dp"
                 android:text="Editing *Group Name*"
                 android:textColor="@color/white"
-                android:textSize="30sp"></com.google.android.material.textview.MaterialTextView>
+                android:textSize="25sp"></com.google.android.material.textview.MaterialTextView>
 
+            <ImageView
+                android:id="@+id/editGroup_IMG_Close"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="end"
+                android:layout_marginStart="30dp"
+                android:src="@drawable/ic_close" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="10dp"
+            android:layout_weight="1"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -45,9 +52,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:text="Change number of members: "
+                android:text="Change number of members: (spin)"
                 android:textColor="@color/white"
-                android:textSize="25sp"></com.google.android.material.textview.MaterialTextView>
+                android:textSize="18sp"></com.google.android.material.textview.MaterialTextView>
 
 
             <NumberPicker
@@ -59,7 +66,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="2"
             android:gravity="start"
             android:orientation="vertical">
 
@@ -70,56 +78,102 @@
                 android:layout_marginStart="16dp"
                 android:text="Change Project Name:"
                 android:textColor="@color/white"
-                android:textSize="25dp"></com.google.android.material.textview.MaterialTextView>
+                android:textSize="18dp"></com.google.android.material.textview.MaterialTextView>
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTeamGroup_TXT_editProjectName"
+                android:id="@+id/editGroup_TXT_editProjectName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_margin="16dp"
                 android:background="@color/white"
                 android:text="Project Name"
-                android:textSize="25dp">
+                android:textSize="16dp">
 
             </com.google.android.material.textfield.TextInputEditText>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_height="0dp"
+            android:layout_weight="3"
             android:gravity="start"
             android:orientation="vertical">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/editTeamGroup_TXT_titleProjectDescription"
+                android:id="@+id/editGroup_TXT_titleProjectDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="Edit Project Description:"
                 android:textColor="@color/white"
-                android:textSize="25dp"></com.google.android.material.textview.MaterialTextView>
+                android:textSize="18dp"></com.google.android.material.textview.MaterialTextView>
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTeamGroup_TXT_editDescription"
+                android:id="@+id/editGroup_TXT_editDescription"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="match_parent"
                 android:layout_margin="16dp"
                 android:background="@color/white"
-                android:text="Tell others about your project"
-                android:textSize="20dp">
+                android:text="*Tell others about your project*"
+                android:textSize="16dp">
 
             </com.google.android.material.textfield.TextInputEditText>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/editGroup_TXT_titleProjectTags"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Edit Interests "
+                android:textColor="@color/white"
+                android:textSize="18sp"></com.google.android.material.textview.MaterialTextView>
+
+            <Button
+                android:id="@+id/editGroup_BTN_ShowTags"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:text="Preferences"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:gravity="start"
+            android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/editGroup_TXT_showTags"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:background="@color/white"
+            android:text="*Current tags*"
+            android:textSize="16dp">
+
+            </com.google.android.material.textview.MaterialTextView>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/editTeamGroupNext_BTN_applyChanges"
+                android:id="@+id/editGroup_BTN_applyChanges"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
@@ -129,6 +183,16 @@
             </com.google.android.material.button.MaterialButton>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+
     </LinearLayout>
 
 </RelativeLayout>

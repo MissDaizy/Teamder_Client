@@ -11,9 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.teamder.R;
-import com.example.teamder.logic.DataManager;
 
-public class ViewProfile extends AppCompatActivity {
+public class ViewProfileActivity extends AppCompatActivity {
 
     private ImageView ViewProfile_IMG_logo;
     private TextView ViewProfile_TXT_userEmail;
@@ -36,8 +35,11 @@ public class ViewProfile extends AppCompatActivity {
         ViewProfile_BTN_editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ViewProfile.this, EditProfileActivity.class);
+                Intent intent = new Intent(ViewProfileActivity.this, EditProfileActivity.class);
                 startActivity(intent);
+
+                //TODO change: do not finish this activity here, finish it in edit > when press APPLY btn
+                finish();
             }
         });
     }
