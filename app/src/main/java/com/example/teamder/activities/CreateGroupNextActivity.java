@@ -340,11 +340,6 @@ public class CreateGroupNextActivity extends AppCompatActivity implements Number
 
     }
 
-    private void startViewAllGroupsActivity() {
-        Intent intent=new Intent (this,ViewAllMyTeamsActivity.class);
-        startActivity (intent);
-    }
-
     private void startSplashActivity() {
         Intent splashIntent = new Intent (this, SplashActivity.class);
         startActivity (splashIntent);

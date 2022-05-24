@@ -129,7 +129,6 @@ public class CreateProfileInterestsActivity extends AppCompatActivity {
         });
 
         createProfileInterests_BTN_finish.setOnClickListener (view -> {
-
             getInstanceBoundaryDesc ();
             /*Start flow of creating :
             (1) UserBoundary
@@ -215,6 +214,8 @@ public class CreateProfileInterestsActivity extends AppCompatActivity {
         String phoneNumber = bundle.getString (getString (R.string.BUNDLE_USER_PHONE_NUM_KEY));
         String name = dataManager.getUserIdFromUserBoundary ();
         UserId userId = dataManager.getUserBoundary ().getUserId ();
+
+        tags=selectItems;
 
 
         //TODO: CHECK WHICH TYPE OF INSTANCE IS IT
