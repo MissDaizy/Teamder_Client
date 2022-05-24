@@ -81,10 +81,7 @@ public class CreateGroupNextActivity extends AppCompatActivity implements Number
         dataManager=new DataManager ();
         bundle=new Bundle ();
 
-        //TODO -back1
-        //getUserBoundary();
-
-
+        getUserBoundary();
         //getGroupDetails();
 
         findViews();
@@ -181,6 +178,7 @@ public class CreateGroupNextActivity extends AppCompatActivity implements Number
 
     private void createTeamGroupButten() {
         createGroupNext_BTN_openGroup.setOnClickListener(view -> {
+
             updateUserRoleType();
             //TODO:new intent, when is going after.
             //TODO: DIANCHIK's <spring:POST>
@@ -235,7 +233,7 @@ public class CreateGroupNextActivity extends AppCompatActivity implements Number
         /*
         Get group attributes from this activity
          */
-        int numOfMembers= createGroupNext_TXT_numOfMembers.getValue ();
+        int numOfMembers=createGroupNext_TXT_numOfMembers.getValue ();
         String name = dataManager.getUserIdFromUserBoundary ();
         UserId userId = dataManager.getUserBoundary ().getUserId ();
         ArrayList<String> selectedItemsList=new ArrayList<> ();
@@ -362,5 +360,10 @@ public class CreateGroupNextActivity extends AppCompatActivity implements Number
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    private void startSplashActivity() {
+        Intent splashIntent = new Intent (this, SplashActivity.class);
+        startActivity (splashIntent);
     }
 }

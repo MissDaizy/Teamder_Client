@@ -1,6 +1,9 @@
 package com.example.teamder.models;
 
 public class UserBoundary {
+
+    private static UserBoundary userBoundaryInstance;
+
         private UserId userId;
         private String role;
         private String username;
@@ -13,8 +16,15 @@ public class UserBoundary {
         this.avatar = avatar;
     }
 
-    public UserBoundary() {
+    private UserBoundary() {
         }
+
+    public static synchronized UserBoundary getUserBoundaryInstance(){
+        if(userBoundaryInstance == null){
+            userBoundaryInstance = new UserBoundary();
+        }
+        return userBoundaryInstance;
+    }
 
         public UserId getUserId() {
             return userId;

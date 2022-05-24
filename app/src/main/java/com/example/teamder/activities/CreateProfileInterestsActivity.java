@@ -20,6 +20,7 @@ import com.example.teamder.models.NewUserBoundary;
 import com.example.teamder.models.UserBoundary;
 import com.example.teamder.models.UserId;
 import com.example.teamder.retrofit.RetrofitService;
+import com.example.teamder.service.ApiCallback;
 import com.example.teamder.service.JsonApiInstances;
 import com.example.teamder.service.JsonApiUsers;
 import com.google.android.material.button.MaterialButton;
@@ -160,6 +161,8 @@ public class CreateProfileInterestsActivity extends AppCompatActivity {
      * Output: User Boundary (From server)
      */
     private void createUserBoundary() {
+        startSplashActivity();
+
         RetrofitService retrofitService = new RetrofitService ();
 
         JsonApiUsers jsonApiUsers = retrofitService.getRetrofit ().create (JsonApiUsers.class);
@@ -215,6 +218,12 @@ public class CreateProfileInterestsActivity extends AppCompatActivity {
                 Log.d ("pttt", "Failure!!!, Message: " + t.getMessage ());
             }
         });
+    }
+
+
+    private void startSplashActivity() {
+        Intent splashIntent = new Intent (this, SplashActivity.class);
+        startActivity (splashIntent);
     }
 
 

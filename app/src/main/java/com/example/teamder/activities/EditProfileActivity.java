@@ -43,9 +43,9 @@ public class EditProfileActivity extends AppCompatActivity {
 
         findViews ();
 //TODO: back
-//        getUserBoundary ();
-//        getUserInstance ();
-//        initFields ();
+        getUserBoundary ();
+        getUserInstance ();
+        initFields ();
         setListeners ();
 
     }
@@ -83,6 +83,8 @@ public class EditProfileActivity extends AppCompatActivity {
         String userEmail = dataManager.getUserEmail ();
 
         dataManager.updateUserRoleTypeData ();
+
+        startSplashActivity ();
 
         RetrofitService retrofitService = new RetrofitService ();
 
@@ -186,6 +188,11 @@ public class EditProfileActivity extends AppCompatActivity {
         bundle.putString (getString (R.string.BUNDLE_USER_INSTANCE_BOUNDARY_KEY), instanceBoundaryJson);
         intent.putExtras (bundle);
         startActivity (intent);
+    }
+
+    private void startSplashActivity() {
+        Intent splashIntent = new Intent (this, SplashActivity.class);
+        startActivity (splashIntent);
     }
 
     private void findViews() {

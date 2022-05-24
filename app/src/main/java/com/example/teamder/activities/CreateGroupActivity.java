@@ -29,11 +29,10 @@ public class CreateGroupActivity extends AppCompatActivity {
 
         dataManager=new DataManager ();
         bundle=new Bundle ();
-//TODO - back this comment1
-    //    getUserBoundary();
+
+        getUserBoundary();
 
         findViews();
-        //TODO - back this comment2
         //getStrings();
         setListener();
     }
@@ -47,7 +46,7 @@ public class CreateGroupActivity extends AppCompatActivity {
 
     private void startCreateTeamGroupNextActivity() {
         Intent intent = new Intent(CreateGroupActivity.this, CreateGroupNextActivity.class);
-    //TODO back    intent.putExtras(bundle);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 

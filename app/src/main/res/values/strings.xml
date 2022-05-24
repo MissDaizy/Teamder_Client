@@ -38,6 +38,8 @@
     <string name="BUNDLE_USER_PHONE_NUM_KEY">USER_PHONE_NUMBER</string>
     <string name="BUNDLE_GROUP_NAME_KEY">GROUP_NAME</string>
     <string name="BUNDLE_GROUP_DESCRIPTION_KEY">GROUP_DESCRIPTION</string>
+    <string name="BUNDLE_USER_EMAIL_LOGIN_KEY">USER_EMAIL</string>
+    <string name="BUNDLE_USER_PASSWORD_LOGIN_KEY">USER_PASSWORD</string>
 
 
 </resources>

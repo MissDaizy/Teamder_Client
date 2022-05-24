@@ -11,10 +11,9 @@ public class RetrofitService {
     public RetrofitService() {
         initializeRetrofit();
     }
-
     private void initializeRetrofit() {
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.43.252:8084/iob/")
+                .baseUrl("http://192.168.1.10:8084/iob/")
                 .addConverterFactory(GsonConverterFactory.create(new Gson ()))
                 .build();
     }

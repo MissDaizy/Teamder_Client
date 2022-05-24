@@ -14,6 +14,7 @@ import com.example.teamder.models.InstanceBoundary;
 import com.example.teamder.models.InstanceOfTypeUser;
 import com.example.teamder.models.UserBoundary;
 import com.example.teamder.retrofit.RetrofitService;
+import com.example.teamder.service.ApiCallback;
 import com.example.teamder.service.JsonApiEnhanced;
 import com.example.teamder.service.JsonApiInstances;
 import com.example.teamder.service.JsonApiUsers;
@@ -32,6 +33,9 @@ public class LoginActivity extends AppCompatActivity {
     private EditText login_TF_userPassword;
     private MaterialTextView login_TXT_signUp;
     private MaterialButton login_BTN_loginBtn;
+
+    private String userEmail;
+    private String userPassword;
 
     private DataManager dataManager;
 
@@ -53,24 +57,84 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         login_BTN_loginBtn.setOnClickListener(view -> {
+            //DO NOT delete comment of find user in here please:
+            // startSplashActivity();
+           // userEmail=login_TF_userEmail.getText().toString();
 
-             findUser(login_TF_userEmail.getText().toString(),
-                    login_TF_userPassword.getText().toString());
+           findUser(login_TF_userEmail.getText().toString(),
+                  login_TF_userPassword.getText().toString());
+
         });
     }
-    private void startMainActivity() {
 
+    public void doRequest(final ApiCallback callback) {
+        RetrofitService retrofitService = new RetrofitService ();
+
+        JsonApiUsers jsonApiUsers = retrofitService.getRetrofit ().create (JsonApiUsers.class);
+        Call<UserBoundary> call = jsonApiUsers.getUserBoundary ("2022b.diana.ukrainsky", userEmail);
+        call.enqueue (new Callback<UserBoundary> () {
+            // If success
+            @Override
+            public void onResponse(Call<UserBoundary> call, Response<UserBoundary> response) {
+                if (!response.isSuccessful ()) {
+                    Log.d ("pttt", "" + response.code ());
+                    showMessage();
+                }
+                else {
+                    UserBoundary userBoundary = response.body ();
+                    callback.onSuccess (userBoundary); // pass the list
+                }
+            }
+
+            // If failed
+            @Override
+            public void onFailure(Call<UserBoundary> call, Throwable t) {
+                // Log error here since request failed
+                Log.e ("pttt", t.toString ());
+            }
+        });
+    }
+
+
+    public void onResume() {
+        super.onResume ();
+        doRequest (new ApiCallback () {
+            @Override
+            public void onSuccess(UserBoundary userBoundary) {
+                dataManager.setUserBoundary (userBoundary);
+                getInstanceOfTypeUser();
+                startMainActivity ();
+            }
+        });
+    }
+
+    private void startSplashActivity() {
+//        String userEmail=login_TF_userEmail.getText().toString();
+//        String userPassword= login_TF_userPassword.getText().toString();
+        Intent splashIntent = new Intent (this, SplashActivity.class);
+//        Bundle bundle = new Bundle ();
+//        bundle.putString (getString (R.string.BUNDLE_USER_EMAIL_LOGIN_KEY), userEmail);
+//        bundle.putString (getString (R.string.BUNDLE_USER_PASSWORD_LOGIN_KEY), userPassword);
+//        splashIntent.putExtras (bundle);
+        startActivity (splashIntent);
+    }
+
+    private void startMainActivity() {
         String userBoundaryJson = new Gson ().toJson (dataManager.getUserBoundary ());
         String instanceTypeUserJson = new Gson ().toJson (dataManager.getInstanceOfTypeUser ());
         Intent intent = new Intent (this, MainPageActivity.class);
+        Intent splashIntent = new Intent (this, SplashActivity.class);
         Bundle bundle = new Bundle ();
         bundle.putString (getString (R.string.BUNDLE_USER_BOUNDARY_KEY), userBoundaryJson);
         bundle.putString (getString (R.string.BUNDLE_USER_INSTANCE_BOUNDARY_KEY), instanceTypeUserJson);
         intent.putExtras (bundle);
+
         startActivity (intent);
     }
 
     private void findUser(String userEmail, String userPassword) {
+        startSplashActivity();
+
         RetrofitService retrofitService = new RetrofitService ();
 
         JsonApiUsers jsonApiUsers = retrofitService.getRetrofit ().create (JsonApiUsers.class);

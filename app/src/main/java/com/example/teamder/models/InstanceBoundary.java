@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class InstanceBoundary {
+    private static InstanceOfTypeUser instance;
+
     private GeneralId instanceId;
     private String type;
     private String name;
