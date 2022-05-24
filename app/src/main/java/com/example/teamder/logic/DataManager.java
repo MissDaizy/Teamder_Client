@@ -23,8 +23,8 @@ public class DataManager {
 
     public DataManager() {
         newUserBoundary = new NewUserBoundary ();
-        userBoundary = new UserBoundary ();
-        instanceOfTypeUser = new InstanceOfTypeUser ();
+        userBoundary = UserBoundary.getUserBoundaryInstance ();
+        instanceOfTypeUser = InstanceOfTypeUser.getInstance ();
         instanceOfTypeGroup = new InstanceOfTypeGroup ();
 
         idConverter=new IdConverter ();
@@ -166,6 +166,10 @@ public class DataManager {
         groupsManaging.add (groupId);
         instanceOfTypeUser.getInstanceAttributes ().put ("Groups",groups);
         instanceOfTypeUser.getInstanceAttributes ().put ("GroupsManaging",groupsManaging);
+    }
+
+    public String getUserTags() {
+        return instanceOfTypeUser.getInstanceAttributes ().get ("Tags").toString ();
     }
 }
 

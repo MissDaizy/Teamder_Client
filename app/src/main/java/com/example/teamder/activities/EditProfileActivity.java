@@ -43,9 +43,9 @@ public class EditProfileActivity extends AppCompatActivity {
 
         findViews ();
 //TODO: back
-//        getUserBoundary ();
-//        getUserInstance ();
-//        initFields ();
+        getUserBoundary ();
+        getUserInstance ();
+        initFields ();
         setListeners ();
 
     }

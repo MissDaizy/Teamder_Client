@@ -11,6 +11,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.teamder.R;
+import com.example.teamder.logic.DataManager;
+import com.example.teamder.models.InstanceOfTypeUser;
+import com.example.teamder.models.UserBoundary;
+import com.google.gson.Gson;
 
 public class ViewProfileActivity extends AppCompatActivity {
 
@@ -22,13 +26,45 @@ public class ViewProfileActivity extends AppCompatActivity {
     private TextView ViewProfile_TXT_interestsTags;
     private Button ViewProfile_BTN_editBtn;
 
+    private DataManager dataManager;
+    private Bundle bundle;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView (R.layout.view_user_profile);
 
+        bundle=new Bundle ();
+        dataManager=new DataManager ();
+
         findViews();
+
+        getUserBoundary ();
+        getUserInstance ();
+        initFields ();
         setListeners();
+    }
+
+    private void initFields() {
+        ViewProfile_TXT_userName.setText (dataManager.getUsername ());
+        ViewProfile_TXT_ProfileDesc.setText (dataManager.getUserDescription ());
+        ViewProfile_TXT_PhoneNumber.setText (dataManager.getPhoneNumber ());
+        ViewProfile_TXT_interestsTags.setText (dataManager.getUserTags());
+        ViewProfile_TXT_userEmail.setText (dataManager.getUserEmail ());
+    }
+
+    private void getUserInstance() {
+        bundle = getIntent ().getExtras ();
+        String instanceBoundaryJson = bundle.getString (getString (R.string.BUNDLE_USER_INSTANCE_BOUNDARY_KEY));
+
+        dataManager.setInstanceOfTypeUser (new Gson ().fromJson (instanceBoundaryJson, InstanceOfTypeUser.class));
+    }
+
+    private void getUserBoundary() {
+        bundle = getIntent ().getExtras ();
+        String userBoundaryJson = bundle.getString (getString (R.string.BUNDLE_USER_BOUNDARY_KEY));
+
+        dataManager.setUserBoundary (new Gson ().fromJson (userBoundaryJson, UserBoundary.class));
     }
 
     private void setListeners() {
@@ -36,6 +72,7 @@ public class ViewProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ViewProfileActivity.this, EditProfileActivity.class);
+                intent.putExtras(bundle);
                 startActivity(intent);
 
                 //TODO change: do not finish this activity here, finish it in edit > when press APPLY btn

@@ -73,7 +73,8 @@ public class MainPageActivity extends AppCompatActivity {
         bundle =new Bundle ();
 
         findViews ();
-    //TODO back    getUserBoundary ();
+    //TODO back
+        getUserBoundary ();
 
         Log.d ("pttt", "onCreate: ");
         textView = findViewById (R.id.fragmentHome_TXT_continue);
