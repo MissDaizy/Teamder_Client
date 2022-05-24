@@ -122,9 +122,9 @@ public class NotificationsFragment extends Fragment implements GroupAdapter.OnNo
 
 //TODO DIANCHIK's:        allGroups.get(position);
 
-        Fragment addNewProj = new NotificationsFragment_viewChosen();
+        Fragment viewGroup = new NotificationsFragment_viewChosen();
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.container, addNewProj);
+        fragmentTransaction.replace(R.id.container, viewGroup);
 
         //TODO: option go back to the "Group" first frag
         fragmentTransaction.addToBackStack("NotificationsFragment");

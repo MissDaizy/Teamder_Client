@@ -1,3 +1,4 @@
+/*
 package com.example.teamder.activities;
 
 import android.content.DialogInterface;
@@ -18,14 +19,7 @@ import com.google.android.material.textview.MaterialTextView;
 
 public class EditGroupActivity extends AppCompatActivity {
 
-    private ImageView editGroup_IMG_Close;
-    private MaterialTextView createTeamGroupNext_TXT_groupName;
-    private NumberPicker createTeamGroupNext_numberOfMembersPicker;
-    private TextInputEditText editGroup_TXT_editProjectName;
-    private TextInputEditText editGroup_TXT_editDescription;
-    private MaterialButton editGroup_BTN_ShowTags;
-    private MaterialTextView editGroup_TXT_showTags;
-    private MaterialButton editGroup_BTN_applyChanges;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,31 +32,7 @@ public class EditGroupActivity extends AppCompatActivity {
 
     private void setListeners() {
 
-        editGroup_BTN_applyChanges.setOnClickListener(v->{
-            //TODO: go to "Group" page view
-        });
 
-        editGroup_IMG_Close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO: go to "chosen group" view
-            }
-        });
-
-        editGroup_BTN_ShowTags.setOnClickListener(v -> {
-            //set the spinner
-
-            showTags();
-        });
-
-        editGroup_BTN_applyChanges.setOnClickListener(v -> {
-            //save all changes of editing
-            //TODO: DIANCHIK: save on DB
-
-            //return to show this group with changes
-//            Intent intent = new Intent (this, ViewChosenGroupActivity.class);
-//            startActivity (intent);
-        });
     }
 
     private void showTags() {
@@ -81,3 +51,4 @@ public class EditGroupActivity extends AppCompatActivity {
         editGroup_IMG_Close.findViewById(R.id.editGroup_IMG_Close);
     }
 }
+*/
