@@ -35,7 +35,7 @@ public class NotificationsFragment_viewChosen extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         Toast.makeText(getActivity(), "view the group you chose", Toast.LENGTH_SHORT).show();
 
-        chosenView = inflater.inflate(R.layout.activity_view_choosen_team, container, false);
+        chosenView = inflater.inflate(R.layout.fragment_view_choosen_team, container, false);
         findViews(chosenView);
         setListeners();
 

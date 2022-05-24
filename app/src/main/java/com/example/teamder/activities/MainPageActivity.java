@@ -73,7 +73,7 @@ public class MainPageActivity extends AppCompatActivity {
         bundle =new Bundle ();
 
         findViews ();
-    //TODO back
+
         getUserBoundary ();
 
         Log.d ("pttt", "onCreate: ");

@@ -25,6 +25,7 @@ public class ViewProfileActivity extends AppCompatActivity {
     private TextView ViewProfile_TXT_ProfileDesc;
     private TextView ViewProfile_TXT_interestsTags;
     private Button ViewProfile_BTN_editBtn;
+    private ImageView editProfile_IMG_Close;
 
     private DataManager dataManager;
     private Bundle bundle;
@@ -32,7 +33,7 @@ public class ViewProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView (R.layout.view_user_profile);
+        setContentView (R.layout.activity_view_user_profile);
 
         bundle=new Bundle ();
         dataManager=new DataManager ();
@@ -79,6 +80,11 @@ public class ViewProfileActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        editProfile_IMG_Close.setOnClickListener(v->{
+            Intent splashIntent = new Intent (this, MainPageActivity.class);
+            startActivity (splashIntent);
+        });
     }
 
     private void findViews() {
@@ -89,5 +95,7 @@ public class ViewProfileActivity extends AppCompatActivity {
         ViewProfile_TXT_PhoneNumber = findViewById(R.id.ViewProfile_TXT_PhoneNumber);
         ViewProfile_TXT_ProfileDesc= findViewById(R.id.ViewProfile_TXT_ProfileDesc);
         ViewProfile_TXT_interestsTags= findViewById(R.id.ViewProfile_TXT_interestsTags);
+        editProfile_IMG_Close = findViewById (R.id.editProfile_IMG_Close);
+
     }
 }

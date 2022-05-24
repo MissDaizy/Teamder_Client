@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,9 +44,9 @@ public class EditProfileActivity extends AppCompatActivity {
 
         findViews ();
 //TODO: back
-        getUserBoundary ();
-        getUserInstance ();
-        initFields ();
+//        getUserBoundary ();
+//        getUserInstance ();
+//        initFields ();
         setListeners ();
 
     }
@@ -72,12 +73,16 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private void setListeners() {
         editProfile_BTN_applyChanges.setOnClickListener (view -> {
+            //TODO REMUVE
+            Intent splashIntent = new Intent (this, MainPageActivity.class);
+            startActivity (splashIntent);
+
+
             updateUserRoleType ();
 
         });
 
     }
-
     private void updateUserRoleType() {
         String userDomain = dataManager.getUserDomain ();
         String userEmail = dataManager.getUserEmail ();

@@ -12,17 +12,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_height="0dp"
+            android:layout_weight="3"
             android:orientation="vertical"
             android:gravity="center">
 
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:layout_marginTop="15dp"
                 android:src="@drawable/ic_upload_avatar">
 
             </ImageView>
@@ -42,44 +45,36 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="3"
             android:gravity="center"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <EditText
+                android:id="@+id/editProfile_TF_Name"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical">
-                <EditText
-                    android:id="@+id/editProfile_TF_Name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="Name"
-                    android:inputType="textPersonName"
-                    android:textAlignment="textStart"
-                    android:textColorHint="@color/white"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    tools:ignore="RtlCompat" />
+                android:ems="10"
+                android:layout_marginTop="15dp"
+                android:hint="Name"
+                android:inputType="textPersonName"
+                android:textAlignment="textStart"
+                android:textColorHint="@color/white"
+                android:layout_gravity="center"
+                tools:ignore="RtlCompat" />
 
-                <EditText
-                    android:id="@+id/editProfile_TF_phoneNumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="Phone Number"
-                    android:inputType="textPersonName"
-                    android:textAlignment="textStart"
-                    android:textColorHint="@color/white"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="30dp"
-                    tools:ignore="RtlCompat" />
-
-
-
-            </LinearLayout>
+            <EditText
+                android:id="@+id/editProfile_TF_phoneNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_marginTop="15dp"
+                android:hint="Phone Number"
+                android:inputType="textPersonName"
+                android:textAlignment="textStart"
+                android:textColorHint="@color/white"
+                android:layout_gravity="center"
+                tools:ignore="RtlCompat" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -95,7 +90,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:ems="10"
-                android:text="Set Desc."
+                android:hint="Set Desc."
                 android:textColor="@color/black"
                 android:backgroundTint="@color/white"
                 android:background="@color/white"/>
@@ -115,8 +110,19 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:text="Apply"
-                android:textSize="20sp"></com.google.android.material.button.MaterialButton>
+                android:backgroundTint="#156969"
+                android:textColor="@color/white"
+                android:textSize="25sp"></com.google.android.material.button.MaterialButton>
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2">
+
+
+        </LinearLayout>
+
     </LinearLayout>
 
 

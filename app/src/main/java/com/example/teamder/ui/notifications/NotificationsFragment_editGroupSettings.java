@@ -1,7 +1,5 @@
 package com.example.teamder.ui.notifications;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,7 +57,7 @@ public class NotificationsFragment_editGroupSettings extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         Toast.makeText(getActivity(), "edit group execute", Toast.LENGTH_SHORT).show();
 
-        View view = inflater.inflate(R.layout.activity_edit_group, container, false);
+        View view = inflater.inflate(R.layout.fragment_edit_group, container, false);
         findViews(view);
         setListeners();
         return view;

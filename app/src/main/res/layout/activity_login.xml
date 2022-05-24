@@ -19,6 +19,7 @@
             android:layout_weight="2"
             android:orientation="vertical"
             android:gravity="center">
+            <!--
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/createProfileDesc_TXT_logoTitle"
                 android:layout_width="wrap_content"
@@ -48,6 +49,17 @@
                 app:layout_constraintBottom_toTopOf="@+id/login_TF_userEmail"
                 android:src="@drawable/ic_teamder_logo">
             </ImageView>
+-->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/fragmentHome_LOGOimg"
+                android:layout_width="350dp"
+                android:layout_height="150dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_logo"
+                app:shapeAppearanceOverlay="@style/semiRoundedImageView" />
+
 
 
         </LinearLayout>
@@ -70,6 +82,7 @@
                 android:inputType="textEmailAddress"
                 android:textAlignment="textStart"
                 android:textColorHint="@color/white"
+                android:backgroundTint="#227B7A"
                 />
 
             <EditText
@@ -82,6 +95,7 @@
                 android:inputType="textPassword"
                 android:hint="@string/password"
                 android:textColorHint="@color/white"
+                android:backgroundTint="#227B7A"
                 android:textAlignment="textStart" />
 
 
@@ -94,6 +108,7 @@
                 android:layout_marginTop="30dp"
                 android:text="New here? sign up"
                 android:textSize="15dp"
+                android:textStyle="bold"
                 android:textColor="@color/white"/>
         </LinearLayout>
 
@@ -111,8 +126,11 @@
             android:layout_gravity="top"
             android:layout_marginTop="10dp"
             android:text="Login"
+            android:textStyle="bold"
+            android:textColor="#156969"
             android:textAppearance="@style/Widget.AppCompat.Button"
-            android:textSize="20dp">
+            android:textSize="20dp"
+            android:backgroundTint="@color/white">
         </com.google.android.material.button.MaterialButton>
 
     </LinearLayout>

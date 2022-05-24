@@ -107,7 +107,9 @@
                 android:id="@+id/createGroup_BTN_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Next">
+                android:text="Next"
+                android:textColor="#156969"
+                android:backgroundTint="@color/white">
 
             </com.google.android.material.button.MaterialButton>
 

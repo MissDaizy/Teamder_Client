@@ -414,7 +414,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Swipe !">
+                android:text="Swipe !"
+                android:backgroundTint="@color/white"
+                android:textColor="#156969">
 
             </com.google.android.material.button.MaterialButton>
 
@@ -431,7 +433,9 @@
             <com.google.android.material.button.MaterialButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Surprise Me !">
+                android:text="Surprise Me !"
+                android:backgroundTint="@color/white"
+                android:textColor="#156969">
 
             </com.google.android.material.button.MaterialButton>
         </LinearLayout>

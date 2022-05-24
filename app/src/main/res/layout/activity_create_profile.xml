@@ -149,6 +149,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:text="Next"
+                android:backgroundTint="@color/white"
+                android:textColor="#156969"
                 android:textSize="20sp"></com.google.android.material.button.MaterialButton>
         </LinearLayout>
     </LinearLayout>

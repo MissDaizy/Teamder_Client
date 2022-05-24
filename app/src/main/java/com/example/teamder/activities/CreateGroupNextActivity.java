@@ -86,6 +86,7 @@ public class CreateGroupNextActivity extends AppCompatActivity implements Number
 
         findViews();
         setViews();
+        setListeners();
     }
 
     private void getUserBoundary() {
@@ -107,24 +108,24 @@ public class CreateGroupNextActivity extends AppCompatActivity implements Number
     private void setViews() {
         setNumberPicker();
         setTopicSpinner();
-        showTagsButton();
-        createTeamGroupButten();
-        clearChosedTags();
     }
 
-    private void clearChosedTags() {
+    private void setListeners() {
+        createGroupNext_BTN_ShowTags.setOnClickListener(view -> {
+            showTags();
+        });
+
         createGroupNext_BTN_Clear.setOnClickListener(view -> {
             selectItems.clear();
             createGroupNext_TXT_tagsView.setText("");
         });
 
+        createGroupNext_BTN_openGroup.setOnClickListener(view -> {
+            updateUserRoleType();
+        });
+
     }
 
-    private void showTagsButton() {
-        createGroupNext_BTN_ShowTags.setOnClickListener(view -> {
-            showTags();
-        });
-    }
 
     private void showTags() {
         // Init alertdialog builder
@@ -144,7 +145,7 @@ public class CreateGroupNextActivity extends AppCompatActivity implements Number
         });
 
         // Show Tags in TextView
-        printChoosenTags();
+        printChosenTags();
 
         // Create Dialog
         tagsDialog = tagsBuilder.create();
@@ -162,7 +163,7 @@ public class CreateGroupNextActivity extends AppCompatActivity implements Number
         return exist;
     }
 
-    private void printChoosenTags() {
+    private void printChosenTags() {
         // Show Tags in TextView
         tagsBuilder.setPositiveButton("Selected Items", new DialogInterface.OnClickListener(){
             @Override
@@ -175,16 +176,6 @@ public class CreateGroupNextActivity extends AppCompatActivity implements Number
             }
         });
     }
-
-    private void createTeamGroupButten() {
-        createGroupNext_BTN_openGroup.setOnClickListener(view -> {
-
-            updateUserRoleType();
-            //TODO:new intent, when is going after.
-            //TODO: DIANCHIK's <spring:POST>
-        });
-    }
-
     private void updateUserRoleType() {
         String userDomain = dataManager.getUserDomain ();
         String userEmail = dataManager.getUserEmail ();
@@ -217,22 +208,24 @@ public class CreateGroupNextActivity extends AppCompatActivity implements Number
         });
     }
 
+
     private void startViewAllGroupsActivity() {
-        Intent intent=new Intent (this,ViewAllMyTeamsActivity.class);
+        Intent intent=new Intent (this,MainPageActivity.class);
+        Toast.makeText(this, "View the group you created in \"Groups\"", Toast.LENGTH_LONG).show();
         startActivity (intent);
     }
 
     private void createInstanceOfTypeGroup() {
-            /*
-        Get group attributes from bundle in previous activity(CreateTeamGroup)
-         */
+
+        //Get group attributes from bundle in previous activity(CreateTeamGroup)
+
         bundle=getIntent ().getExtras ();
         String groupName=bundle.getString (getString(R.string.BUNDLE_GROUP_NAME_KEY));
         String groupDescription=bundle.getString (getString (R.string.BUNDLE_GROUP_DESCRIPTION_KEY));
 
-        /*
-        Get group attributes from this activity
-         */
+
+        //Get group attributes from this activity
+
         int numOfMembers=createGroupNext_TXT_numOfMembers.getValue ();
         String name = dataManager.getUserIdFromUserBoundary ();
         UserId userId = dataManager.getUserBoundary ().getUserId ();
@@ -346,14 +339,6 @@ public class CreateGroupNextActivity extends AppCompatActivity implements Number
             //TODO: DIANCHIK's
 
         }
-//maybe use when work with string buffer
-/*
-        String text = parent.getItemAtPosition(i).toString();
-        tagsArray = new String[MAX_NUMBER_OF_TAGS];
-        tagsArray[currentNumberOfTags] = text;
-        currentNumberOfTags++;
-        showSelectedTags();
- */
 
     }
 

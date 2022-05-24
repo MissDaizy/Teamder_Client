@@ -1,14 +1,13 @@
 package com.example.teamder.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.Toast;
+import android.widget.Button;
+import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.teamder.R;
@@ -20,7 +19,6 @@ import com.example.teamder.models.NewUserBoundary;
 import com.example.teamder.models.UserBoundary;
 import com.example.teamder.models.UserId;
 import com.example.teamder.retrofit.RetrofitService;
-import com.example.teamder.service.ApiCallback;
 import com.example.teamder.service.JsonApiInstances;
 import com.example.teamder.service.JsonApiUsers;
 import com.google.android.material.button.MaterialButton;
@@ -35,8 +33,28 @@ import retrofit2.Response;
 //TODO: put all server methods in package server
 public class CreateProfileInterestsActivity extends AppCompatActivity {
     private MaterialButton createProfileInterests_BTN_finish;
-    private Spinner createProfileDesc_SPIN_spinnerTags;
+    //private Spinner createProfileDesc_SPIN_spinnerTags;
 
+    // Tags
+    private Button createProfileInterests_BTN_ShowTags;
+    private Button createProfileInterests_BTN_Clear;
+    private AlertDialog tagsDialog;
+    private AlertDialog.Builder tagsBuilder;
+    private final CharSequence[] tagsList =
+            {"Drawing", "sculpture", "Soldering",
+                    "Book Readers", "Business",
+                    "aerobic", "Anaerobic",
+                    "Photographers", "Catering", "Halls", "Make Up", "Hair Stylist",
+                    "Java", "Python", "C", "React.js",
+                    "DJ", "Classic Music", "Rock Music",
+                    "Meditation", "Yoga", "Breathing Meditation",
+                    "Morning Runners", "Evening Runners",
+                    "Mountaineering", "Stream Trip",
+                    "Nature Photography", "Animal Photography", "Couple Photography", "Portrait Photography"};
+    private final ArrayList selectItems = new ArrayList();
+    private TextView createProfileInterests_TXT_tagsView;
+
+    // Integration with DB
     private DataManager dataManager;
     private Bundle bundle;
     private String userDesc;
@@ -51,24 +69,22 @@ public class CreateProfileInterestsActivity extends AppCompatActivity {
 
         findViews ();
         getNewUserBoundaryDetails ();
-        initSpinner();
+
+
+        //initSpinner();
 
         setListeners ();
     }
 
     private void initSpinner() {
         //TODO: CONTINUE THE FLOW --> CREATE INTSNCE (POST) ADD INTERFACE FOR INSTANCES AND DO A POST
-        tags = new ArrayList<> ();
         //TODO: function for this & put strings in R string
-        //TODO: Add couple of tags and not only one(spinner by default adds only one), switch to another list
-        ArrayList<String> arrayList = new ArrayList<> ();
-        arrayList.add ("Arts");
-        arrayList.add ("Electronics");
-        arrayList.add ("Programming");
-        arrayList.add ("Music");
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String> (this, android.R.layout.simple_spinner_item, arrayList);
-        arrayAdapter.setDropDownViewResource (android.R.layout.simple_spinner_dropdown_item);
-        createProfileDesc_SPIN_spinnerTags.setAdapter (arrayAdapter);
+
+
+
+        //TODO: DIANCHIK: save chosen tags in DB
+
+        /*createProfileDesc_SPIN_spinnerTags.setAdapter (arrayAdapter);
         createProfileDesc_SPIN_spinnerTags.setOnItemSelectedListener (new AdapterView.OnItemSelectedListener () {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -81,6 +97,8 @@ public class CreateProfileInterestsActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+         */
     }
 
     private void getInstanceBoundaryDesc() {
@@ -95,7 +113,18 @@ public class CreateProfileInterestsActivity extends AppCompatActivity {
     }
 
     private void setListeners() {
+
+        createProfileInterests_BTN_ShowTags.setOnClickListener(view -> {
+            showTags();
+        });
+
+        createProfileInterests_BTN_Clear.setOnClickListener(view -> {
+            selectItems.clear();
+            createProfileInterests_TXT_tagsView.setText("");
+        });
+
         createProfileInterests_BTN_finish.setOnClickListener (view -> {
+
             getInstanceBoundaryDesc ();
             /*Start flow of creating :
             (1) UserBoundary
@@ -104,6 +133,57 @@ public class CreateProfileInterestsActivity extends AppCompatActivity {
             (4) Change RoleType of the User to PLAYER again
              */
             createUserBoundary ();
+        });
+    }
+
+
+    private void showTags() {
+        // Init alertdialog builder
+        tagsBuilder = new AlertDialog.Builder(this);
+        tagsBuilder.setTitle("Your Interests").setMultiChoiceItems(tagsList, null, new DialogInterface.OnMultiChoiceClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
+                if(isChecked){
+                    // Add to selected items
+                    selectItems.add(tagsList[position]);
+                }else if (existInList()){
+                    // TODO: need fixing::: If the Item is already in the list >> delete from selected items
+                    selectItems.remove(Integer.valueOf(position));
+                }
+
+            }
+        });
+
+        // Show Tags in TextView
+        printChosenTags();
+
+        // Create Dialog
+        tagsDialog = tagsBuilder.create();
+        tagsDialog.show();
+    }
+
+    private boolean existInList(){
+        boolean exist = false;
+        for(int i=0; i < tagsList.length; i++) {
+            if(selectItems.equals(tagsList[i])){
+                exist = true;
+            }
+        }
+
+        return exist;
+    }
+
+    private void printChosenTags() {
+        // Show Tags in TextView
+        tagsBuilder.setPositiveButton("Selected Items", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                StringBuilder sb = new StringBuilder();
+                for (Object tagsList:selectItems){
+                    sb.append(tagsList.toString() + "\n");
+                }
+                createProfileInterests_TXT_tagsView.setText(sb.toString());
+            }
         });
     }
 
@@ -118,48 +198,48 @@ public class CreateProfileInterestsActivity extends AppCompatActivity {
         startActivity (intent);
     }
 
-    private void createInstanceBoundaryOfTypeUser() {
-        //TODO: move this to data mangaer
-        bundle = getIntent ().getExtras ();
-        String phoneNumber = bundle.getString (getString (R.string.BUNDLE_USER_PHONE_NUM_KEY));
-        String name = dataManager.getUserIdFromUserBoundary ();
-        UserId userId = dataManager.getUserBoundary ().getUserId ();
+        private void createInstanceBoundaryOfTypeUser() {
+            //TODO: move this to data mangaer
+            bundle = getIntent ().getExtras ();
+            String phoneNumber = bundle.getString (getString (R.string.BUNDLE_USER_PHONE_NUM_KEY));
+            String name = dataManager.getUserIdFromUserBoundary ();
+            UserId userId = dataManager.getUserBoundary ().getUserId ();
 
 
-        //TODO: CHECK WHICH TYPE OF INSTANCE IS IT
-        // public InstanceOfTypeUser(String name, String type, UserId userId,String description, ArrayList<String> tags) {
+            //TODO: CHECK WHICH TYPE OF INSTANCE IS IT
+            // public InstanceOfTypeUser(String name, String type, UserId userId,String description, ArrayList<String> tags) {
 
-        dataManager.setInstanceOfTypeUser (new InstanceOfTypeUser (name, InstanceType.USER.toString (), userId, userDesc, tags,phoneNumber));
+            dataManager.setInstanceOfTypeUser (new InstanceOfTypeUser (name, InstanceType.USER.toString (), userId, userDesc, tags,phoneNumber));
 
-        RetrofitService retrofitService = new RetrofitService ();
+            RetrofitService retrofitService = new RetrofitService ();
 
-        JsonApiInstances jsonApiInstances = retrofitService.getRetrofit ().create (JsonApiInstances.class);
-        Call<InstanceOfTypeUser> call = jsonApiInstances.createInstanceUser (dataManager.getInstanceOfTypeUser ());
+            JsonApiInstances jsonApiInstances = retrofitService.getRetrofit ().create (JsonApiInstances.class);
+            Call<InstanceOfTypeUser> call = jsonApiInstances.createInstanceUser (dataManager.getInstanceOfTypeUser ());
 
-        call.enqueue (new Callback<InstanceOfTypeUser> () {
-            @Override
-            public void onResponse(Call<InstanceOfTypeUser> call, Response<InstanceOfTypeUser> response) {
-                if (!response.isSuccessful ()) {
-                    Log.d ("pttt", "" + response.code ());
+            call.enqueue (new Callback<InstanceOfTypeUser> () {
+                @Override
+                public void onResponse(Call<InstanceOfTypeUser> call, Response<InstanceOfTypeUser> response) {
+                    if (!response.isSuccessful ()) {
+                        Log.d ("pttt", "" + response.code ());
+                    }
+                    Log.d ("pttt", "Success!!!, Created instance of type user");
+                    dataManager.setInstanceOfTypeUser (response.body ());
+                    Log.d ("pttt", "description"+dataManager.getUserDescription ());
+                    updateUserRoleType();
                 }
-                Log.d ("pttt", "Success!!!, Created instance of type user");
-                dataManager.setInstanceOfTypeUser (response.body ());
-                Log.d ("pttt", "description"+dataManager.getUserDescription ());
-                updateUserRoleType();
-            }
 
-            @Override
-            public void onFailure(Call<InstanceOfTypeUser> call, Throwable t) {
-                Log.d ("pttt", "Failure!!!, Message: " + t.getMessage ());
-            }
-        });
-    }
+                @Override
+                public void onFailure(Call<InstanceOfTypeUser> call, Throwable t) {
+                    Log.d ("pttt", "Failure!!!, Message: " + t.getMessage ());
+                }
+            });
+        }
 
-    /**
-     * Creates new NewUserBoundary and retrieves from server UserBoundary
-     * Input: New User Boundary (From this client)
-     * Output: User Boundary (From server)
-     */
+        /**
+         * Creates new NewUserBoundary and retrieves from server UserBoundary
+         * Input: New User Boundary (From this client)
+         * Output: User Boundary (From server)
+         */
     private void createUserBoundary() {
         startSplashActivity();
 
@@ -185,7 +265,6 @@ public class CreateProfileInterestsActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void updateUserRoleType() {
         String userDomain = dataManager.getUserDomain ();
@@ -226,10 +305,15 @@ public class CreateProfileInterestsActivity extends AppCompatActivity {
         startActivity (splashIntent);
     }
 
-
     private void findViews() {
         createProfileInterests_BTN_finish = findViewById (R.id.createProfileInterests_BTN_finish);
-        createProfileDesc_SPIN_spinnerTags = findViewById (R.id.createProfileDesc_SPIN_spinnerTags);
+        //createProfileDesc_SPIN_spinnerTags = findViewById (R.id.createProfileDesc_SPIN_spinnerTags);
+
+        createProfileInterests_BTN_ShowTags = findViewById(R.id.createProfileInterests_BTN_ShowTags);
+        createProfileInterests_BTN_Clear = findViewById(R.id.createProfileInterests_BTN_Clear);
+        createProfileInterests_TXT_tagsView = findViewById(R.id.createProfileInterests_TXT_tagsView);
 
     }
+
+
 }
