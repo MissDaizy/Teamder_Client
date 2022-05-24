@@ -5,11 +5,9 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class InstanceOfTypeUser extends InstanceBoundary {
-
-    private static InstanceOfTypeUser instance;
+    private static InstanceOfTypeUser singleInstanceTypeUser;
 
     private HashMap<String, Object> instanceAttributes;
     // List of group id's  of all groups the user in: [groupId1,groupId2....]
@@ -36,11 +34,11 @@ public class InstanceOfTypeUser extends InstanceBoundary {
     private InstanceOfTypeUser() {
     }
 
-    public static synchronized InstanceOfTypeUser getInstance(){
-        if(instance == null){
-            instance = new InstanceOfTypeUser();
+    public static synchronized InstanceOfTypeUser getSingleInstanceTypeUser(){
+        if(singleInstanceTypeUser == null){
+            singleInstanceTypeUser = new InstanceOfTypeUser();
         }
-        return instance;
+        return singleInstanceTypeUser;
     }
 
     @Override

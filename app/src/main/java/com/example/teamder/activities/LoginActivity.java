@@ -109,15 +109,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void startSplashActivity() {
-        moveTaskToBack(true);
-
-        String userEmail=login_TF_userEmail.getText().toString();
-        String userPassword= login_TF_userPassword.getText().toString();
+//        String userEmail=login_TF_userEmail.getText().toString();
+//        String userPassword= login_TF_userPassword.getText().toString();
         Intent splashIntent = new Intent (this, SplashActivity.class);
-        Bundle bundle = new Bundle ();
-        bundle.putString (getString (R.string.BUNDLE_USER_EMAIL_LOGIN_KEY), userEmail);
-        bundle.putString (getString (R.string.BUNDLE_USER_PASSWORD_LOGIN_KEY), userPassword);
-        splashIntent.putExtras (bundle);
+//        Bundle bundle = new Bundle ();
+//        bundle.putString (getString (R.string.BUNDLE_USER_EMAIL_LOGIN_KEY), userEmail);
+//        bundle.putString (getString (R.string.BUNDLE_USER_PASSWORD_LOGIN_KEY), userPassword);
+//        splashIntent.putExtras (bundle);
         startActivity (splashIntent);
     }
 
@@ -135,7 +133,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void findUser(String userEmail, String userPassword) {
-        //startSplashActivity();
+        startSplashActivity();
 
         RetrofitService retrofitService = new RetrofitService ();
 

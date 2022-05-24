@@ -33,7 +33,7 @@ public class CreateGroupActivity extends AppCompatActivity {
         getUserBoundary();
 
         findViews();
-        getStrings();
+        //getStrings();
         setListener();
     }
 

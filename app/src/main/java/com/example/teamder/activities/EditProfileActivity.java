@@ -84,6 +84,8 @@ public class EditProfileActivity extends AppCompatActivity {
 
         dataManager.updateUserRoleTypeData ();
 
+        startSplashActivity ();
+
         RetrofitService retrofitService = new RetrofitService ();
 
         JsonApiUsers jsonApiUsers = retrofitService.getRetrofit ().create (JsonApiUsers.class);
@@ -186,6 +188,11 @@ public class EditProfileActivity extends AppCompatActivity {
         bundle.putString (getString (R.string.BUNDLE_USER_INSTANCE_BOUNDARY_KEY), instanceBoundaryJson);
         intent.putExtras (bundle);
         startActivity (intent);
+    }
+
+    private void startSplashActivity() {
+        Intent splashIntent = new Intent (this, SplashActivity.class);
+        startActivity (splashIntent);
     }
 
     private void findViews() {

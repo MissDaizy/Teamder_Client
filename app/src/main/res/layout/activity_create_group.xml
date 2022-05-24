@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:background="@color/white"
-                android:text="Project Name"
+                android:hint="Project Name"
                 android:textSize="25dp">
 
             </com.google.android.material.textfield.TextInputEditText>
@@ -91,7 +91,7 @@
                 android:layout_height="150dp"
                 android:layout_margin="16dp"
                 android:background="@color/white"
-                android:text="Tell others about your project"
+                android:hint="Tell others about your project"
                 android:textSize="20dp">
 
             </com.google.android.material.textfield.TextInputEditText>

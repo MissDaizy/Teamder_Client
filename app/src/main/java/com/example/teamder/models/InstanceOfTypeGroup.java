@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 public class InstanceOfTypeGroup extends InstanceBoundary {
+    private static InstanceOfTypeGroup singleInstanceTypeGroup;
+
     /*
     Map of instanceGroupAttributes:
      "instanceAttributes": {
@@ -31,11 +33,18 @@ public class InstanceOfTypeGroup extends InstanceBoundary {
         instanceAttributes.put ("Description", Description);
         instanceAttributes.put ("Members", members);
         instanceAttributes.put ("PendingMembers", pendingMembers);
-        instanceAttributes.put ("Number Of Members", numOfMembers);
+        instanceAttributes.put ("GroupCapacity", numOfMembers);
         instanceAttributes.put ("Tags", tags);
     }
 
-    public InstanceOfTypeGroup() {
+    private InstanceOfTypeGroup() {
+    }
+
+    public static synchronized InstanceOfTypeGroup getSingleInstanceTypeGroup(){
+        if(singleInstanceTypeGroup == null){
+            singleInstanceTypeGroup = new InstanceOfTypeGroup();
+        }
+        return singleInstanceTypeGroup;
     }
 
     @Override

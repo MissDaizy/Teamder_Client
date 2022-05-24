@@ -2,7 +2,6 @@ package com.example.teamder.logic;
 
 import android.util.Log;
 
-import com.example.teamder.models.GeneralId;
 import com.example.teamder.models.InstanceOfTypeGroup;
 import com.example.teamder.models.InstanceOfTypeUser;
 import com.example.teamder.models.NewUserBoundary;
@@ -11,7 +10,6 @@ import com.example.teamder.models.UserBoundary;
 import com.example.teamder.models.UserId;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DataManager {
     private NewUserBoundary newUserBoundary;
@@ -24,8 +22,8 @@ public class DataManager {
     public DataManager() {
         newUserBoundary = new NewUserBoundary ();
         userBoundary = UserBoundary.getUserBoundaryInstance ();
-        instanceOfTypeUser = InstanceOfTypeUser.getInstance ();
-        instanceOfTypeGroup = new InstanceOfTypeGroup ();
+        instanceOfTypeUser = InstanceOfTypeUser.getSingleInstanceTypeUser ();
+        instanceOfTypeGroup = InstanceOfTypeGroup.getSingleInstanceTypeGroup ();
 
         idConverter=new IdConverter ();
     }
@@ -158,8 +156,8 @@ public class DataManager {
     public void updateUserListsAfterGroupCreationData() {
         //GeneralId groupId=instanceOfTypeGroup.getInstanceId ();
         String groupId=idConverter.getEntityGeneralIdFromDomainAndId(
-                instanceOfTypeUser.getInstanceId().getDomain(),
-                instanceOfTypeUser.getInstanceId().getId());
+                instanceOfTypeGroup.getInstanceId().getDomain(),
+                instanceOfTypeGroup.getInstanceId().getId());
         ArrayList<String> groups=(ArrayList<String>)instanceOfTypeUser.getInstanceAttributes ().get ("Groups");
         ArrayList<String> groupsManaging=(ArrayList<String>)instanceOfTypeUser.getInstanceAttributes ().get ("GroupsManaging");
         groups.add (groupId);
