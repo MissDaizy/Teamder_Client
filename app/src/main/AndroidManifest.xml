@@ -50,7 +50,8 @@
 
         <activity
             android:name=".activities.CreateGroupNextActivity"
-            android:exported="true">
+            android:exported="true"
+            android:launchMode= "singleInstance" >
 
         </activity>
 

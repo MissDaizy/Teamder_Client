@@ -1,5 +1,6 @@
 package com.example.teamder.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +16,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
 
 public class CreateGroupActivity extends AppCompatActivity {
+    public static Activity singleGroupActivity;
+
     private TextInputEditText createTeamGroup_TXT_setProjectName;
     private TextInputEditText createTeamGroup_TXT_setProjectDescription;
     private MaterialButton createTeamGroup_BTN_next;
@@ -25,6 +28,7 @@ public class CreateGroupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
+        singleGroupActivity=this;
         setContentView (R.layout.activity_create_group);
 
         dataManager=new DataManager ();

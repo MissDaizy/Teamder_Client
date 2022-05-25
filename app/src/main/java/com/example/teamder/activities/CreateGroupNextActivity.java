@@ -206,6 +206,8 @@ public class CreateGroupNextActivity extends AppCompatActivity implements Number
         Intent intent=new Intent (this,MainPageActivity.class);
         Toast.makeText(this, "View the group you created in \"Groups\"", Toast.LENGTH_LONG).show();
         startActivity (intent);
+        CreateGroupActivity.singleGroupActivity.finish ();
+        finish();
     }
 
     private void createInstanceOfTypeGroup() {

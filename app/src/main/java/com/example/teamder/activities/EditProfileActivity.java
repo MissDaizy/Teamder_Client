@@ -41,10 +41,10 @@ public class EditProfileActivity extends AppCompatActivity {
         dataManager = new DataManager ();
 
         findViews ();
-//TODO: back
-//        getUserBoundary ();
-//        getUserInstance ();
-//        initFields ();
+
+        getUserBoundary ();
+        getUserInstance ();
+        initFields ();
         setListeners ();
 
     }
@@ -71,13 +71,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private void setListeners() {
         editProfile_BTN_applyChanges.setOnClickListener (view -> {
-            //TODO REMUVE
-            Intent splashIntent = new Intent (this, MainPageActivity.class);
-            startActivity (splashIntent);
-
-
             updateUserRoleType ();
-
         });
 
     }
